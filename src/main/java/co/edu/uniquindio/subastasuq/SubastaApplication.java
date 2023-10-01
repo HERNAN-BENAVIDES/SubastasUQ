@@ -10,9 +10,9 @@ import java.io.IOException;
 public class SubastaApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SubastaApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        FXMLLoader fxmlLoader = new FXMLLoader(SubastaApplication.class.getResource("SubastaView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Subasta UQ");
         stage.setScene(scene);
         stage.show();
     }

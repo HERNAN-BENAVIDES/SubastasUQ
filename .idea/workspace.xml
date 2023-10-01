@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2423953f-16b0-4a73-906f-f32f411d2c89" name="Changes" comment="3" />
+    <list default="true" id="2423953f-16b0-4a73-906f-f32f411d2c89" name="Changes" comment="4">
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/ProductoViewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/ProductoView.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/SubastaView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/SubastaViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/SubastaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/SubastaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/hello-view.fxml" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +24,7 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -22,12 +32,26 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "HERNAN-BENAVIDES"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="d2140248-9ffc-41c1-9260-4d574ebdc005" />
+        <option name="url" value="https://github.com/HERNAN-BENAVIDES/SubastasUQ.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2W8pQp4h8HUufDY7MFKXaMUSvBF" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -42,8 +66,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/herna/OneDrive/Documentos/GitHub/banco_javafx",
+    "last_directory_selection": "C:/Users/herna/WorkSpace/Intellij IDEA/SubastasUQ/src/main/resources/co/edu/uniquindio/subastasuq",
+    "last_opened_file_path": "C:/Users/herna/.m2/repository/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -60,6 +86,9 @@
       <recent name="co.edu.uniquindio.subastasuq.controller.services" />
       <recent name="co.edu.uniquindio.subastasuq.model" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\herna\WorkSpace\Intellij IDEA\SubastasUQ\src\main\java\co\edu\uniquindio\subastasuq\viewController" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="co.edu.uniquindio.subastasuq.model" />
     </key>
@@ -68,7 +97,6 @@
     <configuration name="Aplication" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="co.edu.uniquindio.subastasuq.SubastaApplication" />
       <module name="SubastasUQ" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\herna\JAVA\javafx-sdk-21\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -83,6 +111,7 @@
       <option name="presentableId" value="Default" />
       <updated>1696124050377</updated>
       <workItem from="1696124051468" duration="14866000" />
+      <workItem from="1696171666903" duration="5828000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -119,14 +148,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1" />
+    <MESSAGE value="Update workspace.xml" />
     <MESSAGE value="3" />
-    <option name="LAST_COMMIT_MESSAGE" value="3" />
+    <MESSAGE value="4" />
+    <option name="LAST_COMMIT_MESSAGE" value="4" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/HelloController.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/SubastaViewController.java</url>
           <line>11</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
