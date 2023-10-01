@@ -13,7 +13,7 @@ public class SubastaUtils {
         UsuarioAnunciante anunciante = new UsuarioAnunciante("Juan","Perez","12345",18,"juanPerez@gmail.com","12345");
         subasta.getListAnunciantes().add(anunciante);
 
-        Producto producto = new Producto("TV", TipoProducto.TECNOLOGIA);
+        Producto producto = new Producto("TV", TipoProducto.TECNOLOGIA, "12345", true);
         anunciante.getListProductos().add(producto);
 
         return subasta;
