@@ -1,5 +1,6 @@
 package co.edu.uniquindio.subastasuq.model;
 
+import co.edu.uniquindio.subastasuq.excepcions.UsuarioException;
 import co.edu.uniquindio.subastasuq.model.services.ISubastaService;
 
 import java.util.ArrayList;
@@ -29,4 +30,49 @@ public class Subasta implements ISubastaService {
     public void setListCompradores(List<UsuarioComprador> listCompradores) {
         this.listCompradores = listCompradores;
     }
+
+    public boolean agregarUsuarioAnunciante(UsuarioAnunciante usuario){
+        return  getListAnunciantes().add(usuario);
+    }
+
+    public boolean eliminarUsuarioAnunciante(UsuarioAnunciante usuario) throws UsuarioException {
+        if (listAnunciantes.contains(usuario)) {
+            listAnunciantes.remove(usuario);
+            return true;
+        } else {
+            throw new UsuarioException("El Usuario no se encuentra registrado");
+        }
+    }
+
+    public boolean existeUsuarioAnunciante(UsuarioAnunciante usuario) {
+        return listAnunciantes.contains(usuario);
+    }
+
+    public UsuarioAnunciante obtenerUsuarioAnunciante(String username) throws UsuarioException {
+        for (UsuarioAnunciante usuario : listAnunciantes) {
+            if (usuario.getUsername().equals(username)) {
+                return usuario;
+            }
+        }
+        throw new UsuarioException("Usuario no encontrado");
+    }
+
+    public boolean actualizarUsuarioAnunciante(UsuarioAnunciante usuarioAntiguo, UsuarioAnunciante usuarioActualizado) throws UsuarioException {
+        if (usuarioAntiguo == null) {
+            throw new UsuarioException("El Usuario seleccionado es nulo");
+        }
+
+        int i = listAnunciantes.indexOf(usuarioAntiguo);
+
+        if (i != -1) {
+            listAnunciantes.set(i, usuarioActualizado);
+            return true;
+        } else {
+            throw new UsuarioException("El Usuario no existe");
+        }
+    }
+
+
+
+
 }

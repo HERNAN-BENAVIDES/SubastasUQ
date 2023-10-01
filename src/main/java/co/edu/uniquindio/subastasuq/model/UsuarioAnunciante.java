@@ -1,11 +1,12 @@
 package co.edu.uniquindio.subastasuq.model;
 
 import co.edu.uniquindio.subastasuq.excepcions.ProductoException;
+import co.edu.uniquindio.subastasuq.model.services.IUsuarioAnuncianteService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuarioAnunciante extends Usuario{
+public class UsuarioAnunciante extends Usuario implements IUsuarioAnuncianteService {
 
     private List<Anuncio> listAnuncios = new ArrayList<Anuncio>();
     private List<Producto> listProductos = new ArrayList<Producto>();
@@ -42,9 +43,13 @@ public class UsuarioAnunciante extends Usuario{
         return getListProductos().add(producto);
     }
 
-    public boolean existeProducto(Producto producto){
-        return getListProductos().contains(producto);
+    public boolean verificarExistenciaProducto(Producto producto) throws ProductoException {
+        if (getListProductos().contains(producto)) {
+            throw new ProductoException("El producto ya se encuentra registrado");
+        }
+        return false;
     }
+
 
     public boolean actualizarProducto(Producto producto, Producto productoActualizado) throws ProductoException {
 
