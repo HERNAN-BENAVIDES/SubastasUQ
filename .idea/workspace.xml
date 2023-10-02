@@ -4,15 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2423953f-16b0-4a73-906f-f32f411d2c89" name="Changes" comment="4">
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/map.java" afterDir="false" />
+    <list default="true" id="2423953f-16b0-4a73-906f-f32f411d2c89" name="Changes" comment="5">
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/ProductoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/dto/ProductoDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/mappers/UsuarioAnuncianteMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/SubastaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/SubastaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/ModelFactoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/ModelFactoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/services/IModelFactoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/services/IModelFactoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/map.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/Producto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/Producto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/utils/SubastaUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/utils/SubastaUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/UsuarioAnunciante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/UsuarioAnunciante.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/utils/SubastaUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/utils/UsuarioAnuncianteUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/ProductoViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/ProductoViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/SubastaViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/SubastaViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/ProductoView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/ProductoView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/SubastaView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/SubastaView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,10 +29,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="Record" />
+        <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -70,7 +76,7 @@
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "master",
     "last_directory_selection": "C:/Users/herna/WorkSpace/Intellij IDEA/SubastasUQ/src/main/resources/co/edu/uniquindio/subastasuq",
-    "last_opened_file_path": "C:/Users/herna/.m2/repository/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2.jar",
+    "last_opened_file_path": "C:/Users/herna/OneDrive/Documentos/SubastasUQ-master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -83,9 +89,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="co.edu.uniquindio.subastasuq.mapping.mappers" />
+      <recent name="co.edu.uniquindio.subastasuq.controller" />
+      <recent name="co.edu.uniquindio.subastasuq.mapping.dto" />
       <recent name="co.edu.uniquindio.subastasuq.excepcions" />
       <recent name="co.edu.uniquindio.subastasuq.controller.services" />
-      <recent name="co.edu.uniquindio.subastasuq.model" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\herna\WorkSpace\Intellij IDEA\SubastasUQ\src\main\java\co\edu\uniquindio\subastasuq\viewController" />
@@ -112,7 +120,7 @@
       <option name="presentableId" value="Default" />
       <updated>1696124050377</updated>
       <workItem from="1696124051468" duration="14866000" />
-      <workItem from="1696171666903" duration="8977000" />
+      <workItem from="1696171666903" duration="29946000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -138,7 +146,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696178196344</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="5">
+      <option name="closed" value="true" />
+      <created>1696185366937</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1696185366938</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,7 +176,8 @@
     <MESSAGE value="Update workspace.xml" />
     <MESSAGE value="3" />
     <MESSAGE value="4" />
-    <option name="LAST_COMMIT_MESSAGE" value="4" />
+    <MESSAGE value="5" />
+    <option name="LAST_COMMIT_MESSAGE" value="5" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

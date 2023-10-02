@@ -7,13 +7,13 @@ public class Producto {
     private String nombre;
     private TipoProducto tipoProducto;
     private String codigo;
-    private boolean estado;
+    private String estado;
 
     public Producto() {
 
     }
 
-    public Producto(String nombre, TipoProducto tipoProducto, String codigo, boolean estado) {
+    public Producto(String nombre, TipoProducto tipoProducto, String codigo, String estado) {
         this.nombre = nombre;
         this.tipoProducto = tipoProducto;
         this.codigo = codigo;
@@ -44,16 +44,24 @@ public class Producto {
         this.codigo = codigo;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Producto producto)) return false;
-        return Objects.equals(getNombre(), producto.getNombre()) && getTipoProducto() == producto.getTipoProducto() && Objects.equals(getCodigo(), producto.getCodigo());
+        return Objects.equals(getNombre(), producto.getNombre()) && getTipoProducto() == producto.getTipoProducto() && Objects.equals(getCodigo(), producto.getCodigo()) && Objects.equals(estado, producto.estado);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNombre(), getTipoProducto(), getCodigo());
+        return Objects.hash(getNombre(), getTipoProducto(), getCodigo(), estado);
     }
 
     @Override
@@ -62,6 +70,7 @@ public class Producto {
                 "nombre='" + nombre + '\'' +
                 ", tipoProducto=" + tipoProducto +
                 ", codigo='" + codigo + '\'' +
+                ", estado=" + estado +
                 '}';
     }
 }

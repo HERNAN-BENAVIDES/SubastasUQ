@@ -65,4 +65,14 @@ public class UsuarioAnunciante extends Usuario implements IUsuarioAnuncianteServ
         }
         return false;
     }
+
+    public boolean eliminarProducto (Producto producto) throws ProductoException {
+        if(producto != null){
+            listProductos.remove(producto);
+            return true;
+        }else{
+            throw new ProductoException("El Producto seleccionado no existe");
+        }
+
+    }
 }
