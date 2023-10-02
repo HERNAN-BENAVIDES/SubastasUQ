@@ -60,27 +60,57 @@ public class ProductoViewController {
     private TextField txtNombre;
 
 
+    /**
+     * Método de inicialización de la vista.
+     * Este método se utiliza para configurar componentes de la interfaz gráfica de usuario (GUI) en JavaFX.
+     * Se llama automáticamente al cargar la vista.
+     */
     @FXML
     void initialize() {
         productoControllerService = new ProductoController();
         intiView();
     }
 
+    /**
+     * Acción para crear un nuevo producto.
+     * Este método se llama cuando se realiza una acción en un elemento de la interfaz gráfica relacionado con la creación de un nuevo producto.
+     * Su función principal es limpiar los campos del formulario.
+     * @param event Objeto ActionEvent que representa el evento que desencadenó la acción.
+     */
     @FXML
     void nuevoProductoAction(ActionEvent event) {
         limpiarCamposProducto();
     }
 
+    /**
+     * Acción para actualizar un producto.
+     * Este método se llama cuando se realiza una acción en un elemento de la interfaz gráfica relacionado con la actualización de un producto.
+     * Su función principal es llamar al método actualizarProducto().
+     * @param event Objeto ActionEvent que representa el evento que desencadenó la acción.
+     */
     @FXML
     void actualizarProductoAction(ActionEvent event) throws ProductoException {
         actualizarProducto();
     }
 
+    /**
+     * Acción para eliminar un producto.
+     * Este método se llama cuando se realiza una acción en un elemento de la interfaz gráfica relacionado con la eliminación de un producto.
+     * Su función principal es llamar al método eliminarProducto().
+     * @param event Objeto ActionEvent que representa el evento que desencadenó la acción.
+     */
     @FXML
     void eliminarProductoAction(ActionEvent event) throws ProductoException {
         eliminarProducto();
     }
 
+    /**
+     * Acción para agregar un producto.
+     * Este método se llama cuando se realiza una acción en un elemento de la interfaz gráfica relacionado con la agregación de un nuevo producto.
+     * Su función principal es crear un nuevo producto si los campos son válidos y mostrar una alerta informativa.
+     * Además, actualiza la tabla de productos.
+     * @param event Objeto ActionEvent que representa el evento que desencadenó la acción.
+     */
     @FXML
     void agregarProductoAction(ActionEvent event){
         crearProducto();
@@ -89,6 +119,11 @@ public class ProductoViewController {
 
 
 
+
+    /**
+     * Inicializa la vista de la interfaz gráfica.
+     * Configura el enlace de datos, obtiene productos y realiza la inicialización de campos.
+     */
     private void intiView() {
         initDataBinding();
         obtenerProductos();
@@ -98,17 +133,30 @@ public class ProductoViewController {
         listenerSelection();
     }
 
+    /**
+     * Configura el enlace de datos para las columnas de la tabla de productos.
+     */
     private void initDataBinding() {
+        // Configura el enlace de datos para las columnas de la tabla
         tcNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().nombre()));
         tcCodigo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().codigo()));
         tcTipo.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().tipoProducto())));
         tcEstado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().estado()));
     }
 
-   private void obtenerProductos() {
+    /**
+     * Obtiene productos y los agrega a la lista de productos DTO.
+     */
+    private void obtenerProductos() {
         listaProductosDto.addAll(productoControllerService.obtenerProductos());
-   }
+    }
 
+
+
+    /**
+     * Agrega un listener a la selección de la tabla de productos.
+     * Este método se encarga de escuchar cuando se selecciona un elemento de la tabla de productos y mostrar su información correspondiente.
+     */
     private void listenerSelection() {
         tableProductos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             productoSeleccionado = newSelection;
@@ -116,6 +164,10 @@ public class ProductoViewController {
         });
     }
 
+    /**
+     * Muestra la información del producto seleccionado en los campos de texto.
+     * @param productoSeleccionado El producto seleccionado en la tabla.
+     */
     private void mostrarInformacionEmpleado(ProductoDto productoSeleccionado) {
         if (productoSeleccionado != null) {
             txtNombre.setText(productoSeleccionado.nombre());
@@ -125,7 +177,11 @@ public class ProductoViewController {
         }
     }
 
-
+    /**
+     * Crea un nuevo producto.
+     * Este método crea un objeto ProductoDto a partir de los datos ingresados en la interfaz gráfica y lo agrega mediante el servicio de controlador.
+     * Si se agrega correctamente, se muestra una alerta informativa y se actualiza la tabla de productos.
+     */
     private void crearProducto(){
         if(validarCampos()){
             ProductoDto productoDto = crearProductoDto();
@@ -133,12 +189,17 @@ public class ProductoViewController {
                 mostrarAlertaInformacion("El producto se agregó correctamente");
                 tableProductos.getItems().clear();
                 obtenerProductos();
+            }else{
+                mostrarAlertaError("El Producto ya existe");
             }
             limpiarCamposProducto();
 
         }
     }
 
+    /**
+     * Limpia los campos de entrada de datos en la interfaz gráfica.
+     */
     private void limpiarCamposProducto() {
         txtNombre.clear();
         txtCodigo.clear();
@@ -146,14 +207,21 @@ public class ProductoViewController {
         cbxEstado.getSelectionModel().clearSelection();
     }
 
-
+    /**
+     * Crea un objeto ProductoDto a partir de los datos ingresados en la interfaz gráfica.
+     * @return ProductoDto creado a partir de los datos ingresados.
+     */
     private ProductoDto crearProductoDto() {
-       return new ProductoDto(txtNombre.getText(),
-               TipoProducto.valueOf(cbxTipo.getSelectionModel().getSelectedItem().toUpperCase()),
-               txtCodigo.getText(),
-               String.valueOf(cbxEstado.getSelectionModel().getSelectedItem()));
+        return new ProductoDto(txtNombre.getText(),
+                TipoProducto.valueOf(cbxTipo.getSelectionModel().getSelectedItem().toUpperCase()),
+                txtCodigo.getText(),
+                String.valueOf(cbxEstado.getSelectionModel().getSelectedItem()));
     }
 
+    /**
+     * Valida que todos los campos de entrada de datos estén completos y sean válidos.
+     * @return true si todos los campos están completos y válidos, false en caso contrario.
+     */
     private boolean validarCampos() {
         String nombre = txtNombre.getText();
         String codigo = txtCodigo.getText();
@@ -169,6 +237,12 @@ public class ProductoViewController {
         }
     }
 
+    /**
+     * Actualiza un producto seleccionado.
+     * Este método llama al servicio de controlador para actualizar el producto seleccionado con nuevos datos.
+     * Si se actualiza correctamente, se muestra una alerta informativa, se actualiza la tabla de productos y se limpian los campos de entrada.
+     * @throws ProductoException si ocurre un error al actualizar el producto.
+     */
     private void actualizarProducto() throws ProductoException {
         if(productoSeleccionado != null){
             if(validarCampos()){
@@ -189,12 +263,17 @@ public class ProductoViewController {
         }
     }
 
-
+    /**
+     * Elimina un producto seleccionado.
+     * Este método llama al servicio de controlador para eliminar el producto seleccionado.
+     * Si se elimina correctamente, se muestra una alerta informativa, se actualiza la tabla de productos y se limpian los campos de entrada.
+     * @throws ProductoException si ocurre un error al eliminar el producto.
+     */
     private void eliminarProducto() throws ProductoException {
         if(productoSeleccionado != null){
-            if (mostrarAlertaConfirmacion("¿Esta seguro que desea eliminar el producto seleccionado?")){
+            if (mostrarAlertaConfirmacion("¿Está seguro que desea eliminar el producto seleccionado?")){
                 if(productoControllerService.eliminarProducto(productoSeleccionado)){
-                    mostrarAlertaInformacion("Se elimino correctamente el producto");
+                    mostrarAlertaInformacion("Se eliminó correctamente el producto");
                     tableProductos.getItems().clear();
                     obtenerProductos();
                     limpiarCamposProducto();
@@ -205,15 +284,19 @@ public class ProductoViewController {
         }
     }
 
-
-
+    /**
+     * Inicializa los campos de entrada de datos.
+     * Este método agrega validadores a los campos de texto para garantizar que los datos ingresados sean válidos.
+     */
     private void inicializarCampos() {
+        // Validador para el campo de código (solo permite números)
         txtCodigo.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 txtCodigo.setText(newValue.replaceAll("[^\\d]", ""));
             }
         });
 
+        // Validador para el campo de nombre (solo permite letras)
         txtNombre.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("^[a-zA-Z]*$")) {
                 txtNombre.setText(newValue.replaceAll("[^a-zA-Z]", ""));
@@ -229,11 +312,13 @@ public class ProductoViewController {
         List<String> estadosProductos = Arrays.asList("Nuevo", "Usado");
         ObservableList<String> estadosProductosList = FXCollections.observableArrayList(estadosProductos);
         cbxEstado.setItems(estadosProductosList);
-
-
     }
 
 
+    /**
+     * Muestra una alerta de información en la interfaz gráfica.
+     * @param mensaje Mensaje de la alerta informativa.
+     */
     private void mostrarAlertaInformacion(String mensaje) {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Información");
@@ -242,6 +327,10 @@ public class ProductoViewController {
         alerta.showAndWait();
     }
 
+    /**
+     * Muestra una alerta de error en la interfaz gráfica.
+     * @param mensaje Mensaje de la alerta de error.
+     */
     private void mostrarAlertaError(String mensaje) {
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setTitle("Error");
@@ -250,7 +339,11 @@ public class ProductoViewController {
         alerta.showAndWait();
     }
 
-
+    /**
+     * Muestra una alerta de confirmación en la interfaz gráfica.
+     * @param mensaje Mensaje de la alerta de confirmación.
+     * @return true si el usuario confirma la acción, false en caso contrario.
+     */
     private boolean mostrarAlertaConfirmacion(String mensaje) {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("Confirmación");
