@@ -5,8 +5,10 @@ import co.edu.uniquindio.subastasuq.excepcions.ProductoException;
 import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
 import co.edu.uniquindio.subastasuq.mapping.mappers.UsuarioAnuncianteMapper;
 import co.edu.uniquindio.subastasuq.model.UsuarioAnunciante;
+import co.edu.uniquindio.subastasuq.utils.Persistencia;
 import co.edu.uniquindio.subastasuq.utils.UsuarioAnuncianteUtils;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ModelFactoryController implements IModelFactoryController {
@@ -15,7 +17,27 @@ public class ModelFactoryController implements IModelFactoryController {
     UsuarioAnunciante usuarioAnunciante;
 
     public ModelFactoryController() {
-        cargarDatosBase();
+        //cargarDatosBase();
+        //salvarDatosPrueba();
+        cargarDatosArchivo();
+    }
+
+    private void cargarDatosArchivo() {
+        usuarioAnunciante = new UsuarioAnunciante();
+
+        try {
+            Persistencia.cargarDatosArchivo(usuarioAnunciante);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void salvarDatosPrueba() {
+        try {
+            Persistencia.guardarProductos(usuarioAnunciante.getListProductos());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void cargarDatosBase() {
@@ -26,6 +48,7 @@ public class ModelFactoryController implements IModelFactoryController {
     public boolean agregarProducto(ProductoDto productoDto) throws ProductoException {
         if(!usuarioAnunciante.verificarExistenciaProducto(UsuarioAnuncianteMapper.productoDtoToProducto(productoDto))){
             usuarioAnunciante.getListProductos().add(UsuarioAnuncianteMapper.productoDtoToProducto(productoDto));
+            salvarDatosPrueba();
             return true;
         }
         return false;
