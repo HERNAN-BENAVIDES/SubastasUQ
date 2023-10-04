@@ -1,6 +1,10 @@
 package co.edu.uniquindio.subastasuq.model;
 
-public abstract class Persona {
+import java.io.Serializable;
+
+public abstract class Persona implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     private String nombre;
     private String apellido;
     private String cedula;

@@ -3,7 +3,6 @@ package co.edu.uniquindio.subastasuq.viewController;
 import co.edu.uniquindio.subastasuq.controller.ProductoController;
 import co.edu.uniquindio.subastasuq.excepcions.ProductoException;
 import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
-import co.edu.uniquindio.subastasuq.model.TipoProducto;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -182,16 +181,18 @@ public class ProductoViewController {
      * Este método crea un objeto ProductoDto a partir de los datos ingresados en la interfaz gráfica y lo agrega mediante el servicio de controlador.
      * Si se agrega correctamente, se muestra una alerta informativa y se actualiza la tabla de productos.
      */
-    private void crearProducto(){
-        if(validarCampos()){
-            ProductoDto productoDto = crearProductoDto();
-            if (productoControllerService.agregarProducto(productoDto)) {
-                mostrarAlertaInformacion("El producto se agregó correctamente");
-                tableProductos.getItems().clear();
-                obtenerProductos();
-            }else{
-                mostrarAlertaError("El Producto ya existe");
+    private void crearProducto() {
+        try {
+            if(validarCampos()) {
+                ProductoDto productoDto = crearProductoDto();
+                if (productoControllerService.agregarProducto(productoDto)) {
+                    mostrarAlertaInformacion("El producto se agregó correctamente");
+                    tableProductos.getItems().clear();
+                    obtenerProductos();
+                }
             }
+        }catch (ProductoException e) {
+            mostrarAlertaError(e.getMessage());
             limpiarCamposProducto();
 
         }
@@ -213,9 +214,9 @@ public class ProductoViewController {
      */
     private ProductoDto crearProductoDto() {
         return new ProductoDto(txtNombre.getText(),
-                TipoProducto.valueOf(cbxTipo.getSelectionModel().getSelectedItem().toUpperCase()),
+                cbxTipo.getSelectionModel().getSelectedItem(),
                 txtCodigo.getText(),
-                String.valueOf(cbxEstado.getSelectionModel().getSelectedItem()));
+                cbxEstado.getSelectionModel().getSelectedItem());
     }
 
     /**
@@ -241,25 +242,28 @@ public class ProductoViewController {
      * Actualiza un producto seleccionado.
      * Este método llama al servicio de controlador para actualizar el producto seleccionado con nuevos datos.
      * Si se actualiza correctamente, se muestra una alerta informativa, se actualiza la tabla de productos y se limpian los campos de entrada.
-     * @throws ProductoException si ocurre un error al actualizar el producto.
      */
-    private void actualizarProducto() throws ProductoException {
-        if(productoSeleccionado != null){
-            if(validarCampos()){
-                ProductoDto productoNuevo = crearProductoDto();
-                if(!productoNuevo.equals(productoSeleccionado)) {
-                    if (productoControllerService.actualizarProducto(productoSeleccionado, productoNuevo)) {
-                        mostrarAlertaInformacion("Se Actualizo correctamente el producto");
-                        tableProductos.getItems().clear();
-                        obtenerProductos();
-                        limpiarCamposProducto();
+    private void actualizarProducto() {
+        try {
+            if (productoSeleccionado != null) {
+                if (validarCampos()) {
+                    ProductoDto productoNuevo = crearProductoDto();
+                    if (!productoNuevo.equals(productoSeleccionado)) {
+                        if (productoControllerService.actualizarProducto(productoSeleccionado, productoNuevo)) {
+                            mostrarAlertaInformacion("Se Actualizo correctamente el producto");
+                            tableProductos.getItems().clear();
+                            obtenerProductos();
+                            limpiarCamposProducto();
+                        }
+                    }else{
+                        mostrarAlertaError("El producto no sufrio ningun cambio");
                     }
-                }else{
-                    mostrarAlertaInformacion("El producto no subrio ningun cambio");
                 }
+            }else{
+                mostrarAlertaInformacion("Seleccione un producto");
             }
-        }else{
-            mostrarAlertaInformacion("Seleccione un producto");
+        }catch (ProductoException e){
+            mostrarAlertaInformacion(e.getMessage());
         }
     }
 
@@ -267,20 +271,21 @@ public class ProductoViewController {
      * Elimina un producto seleccionado.
      * Este método llama al servicio de controlador para eliminar el producto seleccionado.
      * Si se elimina correctamente, se muestra una alerta informativa, se actualiza la tabla de productos y se limpian los campos de entrada.
-     * @throws ProductoException si ocurre un error al eliminar el producto.
      */
-    private void eliminarProducto() throws ProductoException {
-        if(productoSeleccionado != null){
-            if (mostrarAlertaConfirmacion("¿Está seguro que desea eliminar el producto seleccionado?")){
-                if(productoControllerService.eliminarProducto(productoSeleccionado)){
-                    mostrarAlertaInformacion("Se eliminó correctamente el producto");
-                    tableProductos.getItems().clear();
-                    obtenerProductos();
-                    limpiarCamposProducto();
+    private void eliminarProducto() {
+        try {
+            if (productoSeleccionado != null) {
+                if (mostrarAlertaConfirmacion("¿Está seguro que desea eliminar el producto seleccionado?")) {
+                    if (productoControllerService.eliminarProducto(productoSeleccionado)) {
+                        mostrarAlertaInformacion("Se eliminó correctamente el producto");
+                        tableProductos.getItems().clear();
+                        obtenerProductos();
+                        limpiarCamposProducto();
+                    }
                 }
             }
-        }else{
-            mostrarAlertaInformacion("Seleccione un producto");
+        }catch (ProductoException e){
+            mostrarAlertaError(e.getMessage());
         }
     }
 

@@ -1,6 +1,10 @@
 package co.edu.uniquindio.subastasuq.model;
 
-public abstract class Usuario extends Persona{
+import java.io.Serializable;
+
+public abstract class Usuario extends Persona implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     private String username;
     private String password;
 

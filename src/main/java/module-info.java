@@ -2,6 +2,8 @@ module co.edu.uniquindio.subastasuq {
     requires javafx.controls;
     requires javafx.fxml;
     requires org.mapstruct;
+    requires java.logging;
+    requires java.desktop;
 
 
     opens co.edu.uniquindio.subastasuq to javafx.fxml;

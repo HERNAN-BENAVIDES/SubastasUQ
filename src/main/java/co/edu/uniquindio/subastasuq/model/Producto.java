@@ -1,11 +1,13 @@
 package co.edu.uniquindio.subastasuq.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Producto {
+public class Producto implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private String nombre;
-    private TipoProducto tipoProducto;
+    private String tipoProducto;
     private String codigo;
     private String estado;
 
@@ -13,7 +15,7 @@ public class Producto {
 
     }
 
-    public Producto(String nombre, TipoProducto tipoProducto, String codigo, String estado) {
+    public Producto(String nombre, String tipoProducto, String codigo, String estado) {
         this.nombre = nombre;
         this.tipoProducto = tipoProducto;
         this.codigo = codigo;
@@ -28,11 +30,11 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public TipoProducto getTipoProducto() {
+    public String getTipoProducto() {
         return tipoProducto;
     }
 
-    public void setTipoProducto(TipoProducto tipoProducto) {
+    public void setTipoProducto(String tipoProducto) {
         this.tipoProducto = tipoProducto;
     }
 

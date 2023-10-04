@@ -1,13 +1,19 @@
 package co.edu.uniquindio.subastasuq.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Puja {
+public class Puja implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private String codigo;
     private LocalDateTime fecha = LocalDateTime.now();
     private Anuncio anuncioAsociado;
     private Double oferta;
+
+    public Puja() {
+
+    }
 
     public Puja(String codigo, Double oferta, Anuncio anuncioAsociado) {
         this.codigo = codigo;

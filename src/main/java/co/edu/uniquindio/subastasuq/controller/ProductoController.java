@@ -12,7 +12,7 @@ public class ProductoController {
         modelFactoryController = ModelFactoryController.getInstance();
     }
 
-    public boolean agregarProducto(ProductoDto productoDto) {
+    public boolean agregarProducto(ProductoDto productoDto) throws ProductoException {
         return modelFactoryController.agregarProducto(productoDto);
     }
 

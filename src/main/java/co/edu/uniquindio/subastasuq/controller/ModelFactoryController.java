@@ -23,16 +23,12 @@ public class ModelFactoryController implements IModelFactoryController {
     }
 
     @Override
-    public boolean agregarProducto(ProductoDto productoDto){
-        try {
-            if(!usuarioAnunciante.verificarExistenciaProducto(UsuarioAnuncianteMapper.productoDtoToProducto(productoDto))){
-                usuarioAnunciante.getListProductos().add(UsuarioAnuncianteMapper.productoDtoToProducto(productoDto));
-            }
+    public boolean agregarProducto(ProductoDto productoDto) throws ProductoException {
+        if(!usuarioAnunciante.verificarExistenciaProducto(UsuarioAnuncianteMapper.productoDtoToProducto(productoDto))){
+            usuarioAnunciante.getListProductos().add(UsuarioAnuncianteMapper.productoDtoToProducto(productoDto));
             return true;
-        }catch (ProductoException e){
-            System.out.println(e.getMessage());
-            return false;
         }
+        return false;
     }
 
     public static ModelFactoryController getInstance() {

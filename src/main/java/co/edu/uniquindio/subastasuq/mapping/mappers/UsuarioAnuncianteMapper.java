@@ -23,16 +23,22 @@ public class UsuarioAnuncianteMapper {
         return producto;
     }
 
+
+    public static ProductoDto productoToProductoDto(Producto producto) {
+        if (producto == null) {
+            return null;
+        }
+
+        return new ProductoDto(producto.getNombre(), producto.getTipoProducto(), producto.getCodigo(),
+                producto.getEstado()
+        );
+    }
+
     public static List<ProductoDto> getListProductos(List<Producto> listProductos) {
         List<ProductoDto> listaProductosDto = new ArrayList<>();
 
         for (Producto producto : listProductos) {
-            ProductoDto productoDto = new ProductoDto(
-                    producto.getNombre(),
-                    producto.getTipoProducto(),
-                    producto.getCodigo(),
-                    producto.getEstado()
-            );
+            ProductoDto productoDto = productoToProductoDto(producto);
             listaProductosDto.add(productoDto);
         }
 

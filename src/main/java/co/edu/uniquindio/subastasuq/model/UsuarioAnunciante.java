@@ -3,11 +3,13 @@ package co.edu.uniquindio.subastasuq.model;
 import co.edu.uniquindio.subastasuq.excepcions.ProductoException;
 import co.edu.uniquindio.subastasuq.model.services.IUsuarioAnuncianteService;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuarioAnunciante extends Usuario implements IUsuarioAnuncianteService {
+public class UsuarioAnunciante extends Usuario implements IUsuarioAnuncianteService, Serializable {
 
+    private static final long serialVersionUID = 1L;
     private List<Anuncio> listAnuncios = new ArrayList<Anuncio>();
     private List<Producto> listProductos = new ArrayList<Producto>();
 
@@ -35,9 +37,7 @@ public class UsuarioAnunciante extends Usuario implements IUsuarioAnuncianteServ
         this.listProductos = listProductos;
     }
 
-    public Producto crearProducto(String nombreProducto, TipoProducto tipoProducto){
-        return null;
-    }
+
 
     public boolean agregarProducto(Producto producto){
         return getListProductos().add(producto);

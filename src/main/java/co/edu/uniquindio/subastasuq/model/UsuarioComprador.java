@@ -1,10 +1,12 @@
 package co.edu.uniquindio.subastasuq.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuarioComprador extends Usuario{
+public class UsuarioComprador extends Usuario implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private List<Puja> listPujas = new ArrayList<Puja>();
 
     public UsuarioComprador() {

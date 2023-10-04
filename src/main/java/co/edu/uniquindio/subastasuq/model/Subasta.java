@@ -3,11 +3,13 @@ package co.edu.uniquindio.subastasuq.model;
 import co.edu.uniquindio.subastasuq.excepcions.UsuarioException;
 import co.edu.uniquindio.subastasuq.model.services.ISubastaService;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Subasta implements ISubastaService {
+public class Subasta implements ISubastaService, Serializable {
 
+    private static final long serialVersionUID = 1L;
     private List<UsuarioAnunciante> listAnunciantes = new ArrayList<UsuarioAnunciante>();
     private List<UsuarioComprador> listCompradores = new ArrayList<UsuarioComprador>();
 
