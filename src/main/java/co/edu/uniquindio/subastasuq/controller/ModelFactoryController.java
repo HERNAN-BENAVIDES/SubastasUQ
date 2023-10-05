@@ -2,31 +2,45 @@ package co.edu.uniquindio.subastasuq.controller;
 
 import co.edu.uniquindio.subastasuq.controller.services.IModelFactoryController;
 import co.edu.uniquindio.subastasuq.excepcions.ProductoException;
+import co.edu.uniquindio.subastasuq.excepcions.UsuarioException;
 import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
 import co.edu.uniquindio.subastasuq.mapping.mappers.UsuarioAnuncianteMapper;
+import co.edu.uniquindio.subastasuq.model.Subasta;
 import co.edu.uniquindio.subastasuq.model.UsuarioAnunciante;
 import co.edu.uniquindio.subastasuq.utils.Persistencia;
+import co.edu.uniquindio.subastasuq.utils.SubastaUtils;
 import co.edu.uniquindio.subastasuq.utils.UsuarioAnuncianteUtils;
 
 import java.io.IOException;
 import java.util.List;
 
-public class ModelFactoryController implements IModelFactoryController {
+public class ModelFactoryController {
 
     private static ModelFactoryController instance;
-    UsuarioAnunciante usuarioAnunciante;
+    Subasta subasta;
 
     public ModelFactoryController() {
-        //cargarDatosBase();
-        //salvarDatosPrueba();
-        cargarDatosArchivo();
+        cargarDatosBase();
+        salvarDatosPrueba();
+        cargarDatosPrueba();
+        //cargarDatosArchivoProducto();
     }
 
-    private void cargarDatosArchivo() {
-        usuarioAnunciante = new UsuarioAnunciante();
+    private void cargarDatosPrueba() {
+        try {
+            Persistencia.cargarCompradores();
+            Persistencia.cargarAnunciantes();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    private void cargarDatosArchivoProducto() {
+        subasta = new Subasta();
 
         try {
-            Persistencia.cargarDatosArchivo(usuarioAnunciante);
+            Persistencia.cargarDatosArchivo(subasta);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -34,41 +48,26 @@ public class ModelFactoryController implements IModelFactoryController {
 
     private void salvarDatosPrueba() {
         try {
-            Persistencia.guardarProductos(usuarioAnunciante.getListProductos());
+            Persistencia.guardarAnunciantes(subasta.getListAnunciantes());
+            Persistencia.guardarCompradores(subasta.getListCompradores());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     private void cargarDatosBase() {
-        usuarioAnunciante = UsuarioAnuncianteUtils.inicializarDatos();
+        subasta = SubastaUtils.inicializarDatos();
+      //  usuarioAnunciante = UsuarioAnuncianteUtils.inicializarDatos();
     }
 
-    @Override
-    public boolean agregarProducto(ProductoDto productoDto) throws ProductoException {
-        if(!usuarioAnunciante.verificarExistenciaProducto(UsuarioAnuncianteMapper.productoDtoToProducto(productoDto))){
-            usuarioAnunciante.getListProductos().add(UsuarioAnuncianteMapper.productoDtoToProducto(productoDto));
-            salvarDatosPrueba();
-            return true;
-        }
-        return false;
-    }
+
 
     public static ModelFactoryController getInstance() {
         return SingletonHolder.eINSTANCE;
     }
 
-    public List<ProductoDto> obtenerProductos() {
-        return UsuarioAnuncianteMapper.getListProductos(usuarioAnunciante.getListProductos());
-    }
-
-    public boolean eliminarProducto(ProductoDto productoSeleccionado) throws ProductoException {
-        return usuarioAnunciante.eliminarProducto(UsuarioAnuncianteMapper.productoDtoToProducto(productoSeleccionado));
-    }
-
-    public boolean actualizarProducto(ProductoDto productoSeleccionado, ProductoDto productoNuevo) throws ProductoException {
-        return  usuarioAnunciante.actualizarProducto(UsuarioAnuncianteMapper.productoDtoToProducto(productoSeleccionado),
-                UsuarioAnuncianteMapper.productoDtoToProducto(productoNuevo));
+    public boolean iniciarSesion(String user, String password, String tipo) throws UsuarioException, IOException {
+        return Persistencia.iniciarSesion(user, password, tipo);
     }
 
     private static class SingletonHolder {

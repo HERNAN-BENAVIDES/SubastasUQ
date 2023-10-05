@@ -2,4 +2,3 @@ TV@@Tecnologia@@12345@@Nuevo
 Moto@@Vehiculo@@12345@@Nuevo
 Bicicleta@@Deporte@@12345@@Nuevo
 Casa@@Bienraiz@@12345@@Nuevo
-

@@ -8,6 +8,7 @@ import co.edu.uniquindio.subastasuq.model.UsuarioComprador;
 public class SubastaUtils {
 
     public static Subasta inicializarDatos(){
+
         Subasta subasta = new Subasta();
 
         // Crear anunciantes

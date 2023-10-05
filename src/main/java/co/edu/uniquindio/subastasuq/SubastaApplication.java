@@ -10,7 +10,7 @@ public class SubastaApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SubastaApplication.class.getResource("SubastaView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(SubastaApplication.class.getResource("InicioSesion.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Subasta UQ");
         stage.setScene(scene);
