@@ -52,4 +52,13 @@ public abstract class Persona implements Serializable {
     public void setEdad(Integer edad) {
         this.edad = edad;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", cedula='" + cedula + '\'' +
+                ", edad=" + edad + '\'';
+    }
 }

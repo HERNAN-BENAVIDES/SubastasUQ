@@ -3,6 +3,7 @@ package co.edu.uniquindio.subastasuq.viewController;
 import co.edu.uniquindio.subastasuq.controller.ProductoController;
 import co.edu.uniquindio.subastasuq.excepcions.ProductoException;
 import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
+import co.edu.uniquindio.subastasuq.model.UsuarioAnunciante;
 import co.edu.uniquindio.subastasuq.utils.AlertaUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -60,6 +61,7 @@ public class ProductoViewController {
     private TextField txtNombre;
 
 
+
     /**
      * Método de inicialización de la vista.
      * Este método se utiliza para configurar componentes de la interfaz gráfica de usuario (GUI) en JavaFX.
@@ -90,7 +92,7 @@ public class ProductoViewController {
      */
     @FXML
     void actualizarProductoAction(ActionEvent event) throws ProductoException {
-//        actualizarProducto();
+        actualizarProducto();
     }
 
     /**
@@ -101,7 +103,7 @@ public class ProductoViewController {
      */
     @FXML
     void eliminarProductoAction(ActionEvent event) throws ProductoException {
-//        eliminarProducto();
+        eliminarProducto();
     }
 
     /**
@@ -113,7 +115,7 @@ public class ProductoViewController {
      */
     @FXML
     void agregarProductoAction(ActionEvent event){
-//        crearProducto();
+        crearProducto();
     }
 
 
@@ -126,7 +128,7 @@ public class ProductoViewController {
      */
     private void intiView() {
         initDataBinding();
-//        obtenerProductos();
+        obtenerProductos();
         inicializarCampos();
         tableProductos.getItems().clear();
         tableProductos.setItems(listaProductosDto);
@@ -147,9 +149,9 @@ public class ProductoViewController {
     /**
      * Obtiene productos y los agrega a la lista de productos DTO.
      */
-//    private void obtenerProductos() {
-//        listaProductosDto.addAll(productoControllerService.obtenerProductos());
-//    }
+    private void obtenerProductos() {
+        listaProductosDto.addAll(productoControllerService.obtenerProductos());
+    }
 
 
 
@@ -182,22 +184,23 @@ public class ProductoViewController {
      * Este método crea un objeto ProductoDto a partir de los datos ingresados en la interfaz gráfica y lo agrega mediante el servicio de controlador.
      * Si se agrega correctamente, se muestra una alerta informativa y se actualiza la tabla de productos.
      */
-//    private void crearProducto() {
-//        try {
-//            if(validarCampos()) {
-//                ProductoDto productoDto = crearProductoDto();
-//                if (productoControllerService.agregarProducto(productoDto)) {
-//                    AlertaUtils.mostrarAlertaInformacion("El producto se agregó correctamente");
-//                    tableProductos.getItems().clear();
-//                    obtenerProductos();
-//                }
-//            }
-//        }catch (ProductoException e) {
-//            AlertaUtils.mostrarAlertaError(e.getMessage());
-//            limpiarCamposProducto();
-//
-//      }
-//    }
+    private void crearProducto() {
+        try {
+            if(validarCampos()) {
+                ProductoDto productoDto = crearProductoDto();
+                if (productoControllerService.agregarProducto(productoDto)) {
+                    AlertaUtils.mostrarAlertaInformacion("El producto se agregó correctamente");
+                    tableProductos.getItems().clear();
+                    obtenerProductos();
+                    limpiarCamposProducto();
+                }
+            }
+        }catch (ProductoException e) {
+            AlertaUtils.mostrarAlertaError(e.getMessage());
+            limpiarCamposProducto();
+
+      }
+    }
 
     /**
      * Limpia los campos de entrada de datos en la interfaz gráfica.
@@ -244,50 +247,51 @@ public class ProductoViewController {
      * Este método llama al servicio de controlador para actualizar el producto seleccionado con nuevos datos.
      * Si se actualiza correctamente, se muestra una alerta informativa, se actualiza la tabla de productos y se limpian los campos de entrada.
      */
-//    private void actualizarProducto() {
-//        try {
-//            if (productoSeleccionado != null) {
-//                if (validarCampos()) {
-//                    ProductoDto productoNuevo = crearProductoDto();
-//                    if (!productoNuevo.equals(productoSeleccionado)) {
-//                        if (productoControllerService.actualizarProducto(productoSeleccionado, productoNuevo)) {
-//                            AlertaUtils.mostrarAlertaInformacion("Se Actualizo correctamente el producto");
-//                            tableProductos.getItems().clear();
-//                            obtenerProductos();
-//                            limpiarCamposProducto();
-//                        }
-//                    }else{
-//                        AlertaUtils.mostrarAlertaError("El producto no sufrio ningun cambio");
-//                    }
-//                }
-//            }else{
-//                AlertaUtils.mostrarAlertaInformacion("Seleccione un producto");//}
-//        }catch (ProductoException e){
-//            AlertaUtils.mostrarAlertaInformacion(e.getMessage());
-//        }
-//    }
+    private void actualizarProducto() {
+        try {
+            if (productoSeleccionado != null) {
+                if (validarCampos()) {
+                    ProductoDto productoNuevo = crearProductoDto();
+                    if (!productoNuevo.equals(productoSeleccionado)) {
+                        if (productoControllerService.actualizarProducto(productoSeleccionado, productoNuevo)) {
+                            AlertaUtils.mostrarAlertaInformacion("Se Actualizo correctamente el producto");
+                            tableProductos.getItems().clear();
+                            obtenerProductos();
+                            limpiarCamposProducto();
+                        }
+                    }else{
+                        AlertaUtils.mostrarAlertaError("El producto no sufrio ningun cambio");
+                    }
+                }
+            }else{
+                AlertaUtils.mostrarAlertaInformacion("Seleccione un producto");
+            }
+        }catch (ProductoException e){
+            AlertaUtils.mostrarAlertaInformacion(e.getMessage());
+        }
+    }
 
     /**
      * Elimina un producto seleccionado.
      * Este método llama al servicio de controlador para eliminar el producto seleccionado.
      * Si se elimina correctamente, se muestra una alerta informativa, se actualiza la tabla de productos y se limpian los campos de entrada.
      */
-//    private void eliminarProducto() {
-//        try {
-//            if (productoSeleccionado != null) {
-//                if (AlertaUtils.mostrarAlertaConfirmacion("¿Está seguro que desea eliminar el producto seleccionado?")) {
-//                    if (productoControllerService.eliminarProducto(productoSeleccionado)) {
-//                        AlertaUtils.mostrarAlertaInformacion("Se eliminó correctamente el producto");
-//                        tableProductos.getItems().clear();
-//                        obtenerProductos();
-//                        limpiarCamposProducto();
-//                    }
-//                }
-//            }
-//        }catch (ProductoException e){
-//            AlertaUtils.mostrarAlertaError(e.getMessage());
-//        }
-//    }
+    private void eliminarProducto() {
+        try {
+            if (productoSeleccionado != null) {
+                if (AlertaUtils.mostrarAlertaConfirmacion("¿Está seguro que desea eliminar el producto seleccionado?")) {
+                    if (productoControllerService.eliminarProducto(productoSeleccionado)) {
+                        AlertaUtils.mostrarAlertaInformacion("Se eliminó correctamente el producto");
+                        tableProductos.getItems().clear();
+                        obtenerProductos();
+                        limpiarCamposProducto();
+                    }
+                }
+            }
+        }catch (ProductoException e){
+            AlertaUtils.mostrarAlertaError(e.getMessage());
+        }
+    }
 
     /**
      * Inicializa los campos de entrada de datos.
@@ -318,10 +322,5 @@ public class ProductoViewController {
         ObservableList<String> estadosProductosList = FXCollections.observableArrayList(estadosProductos);
         cbxEstado.setItems(estadosProductosList);
     }
-
-
-
-
-
 
 }

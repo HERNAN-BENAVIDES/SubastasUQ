@@ -40,8 +40,8 @@ public class SubastaUtils {
         anunciante3.getListProductos().add(producto5);
         anunciante3.getListProductos().add(producto6);
 
-        anunciante3.getListProductos().add(producto7);
-        anunciante3.getListProductos().add(producto8);
+        anunciante4.getListProductos().add(producto7);
+        anunciante4.getListProductos().add(producto8);
 
         // Crear usuarios
         UsuarioComprador usuario1 = new UsuarioComprador("Elena", "Barcelona", "1111", 24, "elena@example.com", "abcd");

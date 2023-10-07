@@ -4,16 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2423953f-16b0-4a73-906f-f32f411d2c89" name="Changes" comment="Cargar datos de un archivo plano Subasta">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/AnuncioView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/CompradorView.fxml" afterDir="false" />
+    <list default="true" id="2423953f-16b0-4a73-906f-f32f411d2c89" name="Changes" comment="14">
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/excepcions/AutenticacionException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/dto/UsuarioAnuncianteDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/mappers/ProductoMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/SubastaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/SubastaApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/Anuncio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/Anuncio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/InicioSesionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/InicioSesionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/ModelFactoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/ModelFactoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/ProductoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/ProductoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/mappers/UsuarioAnuncianteMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/mappers/UsuarioAnuncianteMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/Persona.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/utils/Persistencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/utils/Persistencia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/utils/SubastaUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/utils/SubastaUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/utils/UsuarioAnuncianteUtils.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/InicioSesionViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/InicioSesionViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/InicioSesion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/InicioSesion.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/ProductoView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/ProductoView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/SubastaView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/AnuncianteView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/ProductoViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/ProductoViewController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +32,8 @@
         <option value="Enum" />
         <option value="Record" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -96,11 +102,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="co.edu.uniquindio.subastasuq.mapping.dto" />
+      <recent name="co.edu.uniquindio.subastasuq.excepcions" />
       <recent name="co.edu.uniquindio.subastasuq.controller" />
       <recent name="co.edu.uniquindio.subastasuq.utils" />
       <recent name="co.edu.uniquindio.subastasuq.mapping.mappers" />
-      <recent name="co.edu.uniquindio.subastasuq.mapping.dto" />
-      <recent name="co.edu.uniquindio.subastasuq.excepcions" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\herna\WorkSpace\Intellij IDEA\SubastasUQ\src\main\java\co\edu\uniquindio\subastasuq\utils" />
@@ -142,7 +148,7 @@
       <workItem from="1696545234926" duration="6650000" />
       <workItem from="1696551922233" duration="23000" />
       <workItem from="1696551982073" duration="560000" />
-      <workItem from="1696689709274" duration="4288000" />
+      <workItem from="1696689709274" duration="25391000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -216,7 +222,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696546829423</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="14">
+      <option name="closed" value="true" />
+      <created>1696695317025</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1696695317025</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,7 +257,8 @@
     <MESSAGE value="10" />
     <MESSAGE value="Cargar datos de un archivo plano" />
     <MESSAGE value="Cargar datos de un archivo plano Subasta" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cargar datos de un archivo plano Subasta" />
+    <MESSAGE value="14" />
+    <option name="LAST_COMMIT_MESSAGE" value="14" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
