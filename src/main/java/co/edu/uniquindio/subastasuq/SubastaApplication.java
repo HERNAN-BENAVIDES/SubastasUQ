@@ -14,6 +14,7 @@ public class SubastaApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Subasta UQ");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

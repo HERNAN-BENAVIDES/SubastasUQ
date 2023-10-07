@@ -6,12 +6,16 @@ import co.edu.uniquindio.subastasuq.excepcions.UsuarioException;
 import co.edu.uniquindio.subastasuq.utils.AlertaUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -59,12 +63,51 @@ public class InicioSesionViewController {
         if (validarCampos()) {
             try {
                 if(inicioSecionService.iniciarSesion(txtUsuario.getText(), PasswordField.getText(), determinarTipo())){
-
+                    if(determinarTipo().equals("Anunciante")){
+                        abrirVentanaAnunciante();
+                    }else if(determinarTipo().equals("Comprador")){
+                        abrirVentanaComprador();
+                    }
                 }
             } catch (UsuarioException | IOException e) {
                 AlertaUtils.mostrarAlertaError(e.getMessage());
             }
 
+        }
+    }
+
+    private void abrirVentanaComprador() {
+        try {
+            Stage ventanaActual = (Stage) btIniciarSesion.getScene().getWindow(); // Reemplaza yourButton con el control que desencadena la acción.
+            // Cargar el archivo FXML de la nueva ventana
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/subastasuq/AnuncianteView.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage nuevaVentana = new Stage();
+            nuevaVentana.setScene(scene);
+            ventanaActual.close();
+            // Mostrar la nueva ventana
+            nuevaVentana.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void abrirVentanaAnunciante() {
+        try {
+            Stage ventanaActual = (Stage) btIniciarSesion.getScene().getWindow();
+            // Cargar el archivo FXML de la nueva ventana
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/subastasuq/AnuncianteView.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage nuevaVentana = new Stage();
+            nuevaVentana.setScene(scene);
+            ventanaActual.close();
+            // Mostrar la nueva ventana
+            nuevaVentana.show();
+            nuevaVentana.setResizable(false);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

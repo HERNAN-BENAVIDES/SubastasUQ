@@ -11,17 +11,21 @@ public class Anuncio implements Serializable{
     private String descripcionAnuncio;
     private String fotoAnuncio;
     private Producto productoAsociado;
+    private Double precioInicial;
+    private Double pujaMasAlta;
 
     public Anuncio() {
 
     }
 
-    public Anuncio(String nombreAnuncio, String codigoAnuncio, String descripcionAnuncio, String fotoAnuncio, Producto productoAsociado) {
+    public Anuncio(String nombreAnuncio, String codigoAnuncio, String descripcionAnuncio, String fotoAnuncio, Producto productoAsociado, Double precioInicial) {
         this.nombreAnuncio = nombreAnuncio;
         this.codigoAnuncio = codigoAnuncio;
         this.descripcionAnuncio = descripcionAnuncio;
         this.fotoAnuncio = fotoAnuncio;
         this.productoAsociado = productoAsociado;
+        this.precioInicial = precioInicial;
+        this.pujaMasAlta = precioInicial;
     }
 
     public String getNombreAnuncio() {
@@ -64,6 +68,21 @@ public class Anuncio implements Serializable{
         this.productoAsociado = productoAsociado;
     }
 
+    public Double getPrecioInicial() {
+        return precioInicial;
+    }
+
+    public void setPrecioInicial(Double precioInicial) {
+        this.precioInicial = precioInicial;
+    }
+
+    public Double getPujaMasAlta() {
+        return pujaMasAlta;
+    }
+
+    public void setPujaMasAlta(Double pujaMasAlta) {
+        this.pujaMasAlta = pujaMasAlta;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -76,4 +95,6 @@ public class Anuncio implements Serializable{
     public int hashCode() {
         return Objects.hash(getNombreAnuncio(), getCodigoAnuncio(), getProductoAsociado());
     }
+
+
 }
