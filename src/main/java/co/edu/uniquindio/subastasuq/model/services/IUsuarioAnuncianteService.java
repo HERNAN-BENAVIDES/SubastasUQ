@@ -5,7 +5,7 @@ import co.edu.uniquindio.subastasuq.model.Producto;
 
 public interface IUsuarioAnuncianteService {
 
-    public boolean agregarProducto(Producto producto);
+    public boolean agregarProducto(Producto producto) throws ProductoException;
 
     public boolean verificarExistenciaProducto(Producto producto) throws ProductoException;
 

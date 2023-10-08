@@ -7,7 +7,6 @@ import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
 import co.edu.uniquindio.subastasuq.mapping.mappers.ProductoMapper;
 import co.edu.uniquindio.subastasuq.model.Subasta;
 import co.edu.uniquindio.subastasuq.model.UsuarioAnunciante;
-import co.edu.uniquindio.subastasuq.utils.ArchivoUtil;
 import co.edu.uniquindio.subastasuq.utils.Persistencia;
 import co.edu.uniquindio.subastasuq.utils.SubastaUtils;
 
@@ -21,19 +20,27 @@ public class ModelFactoryController {
     private UsuarioAnunciante usuarioAnunciante;
 
     public ModelFactoryController() {
+        //1
 //        cargarDatosBase();
 
-        //1
-//        salvarDatosPrueba();
-//        cargarDatosPrueba();
-
         //2
+//        salvarDatosPrueba();
+        cargarDatosPrueba();
+
+        //3
 //        guardarResourceBinario();
 //        cargarResourceBinario();
 
-        //3
+        //4
 //        guardarResourceXML();
-        cargarResourceXML();
+//        cargarResourceXML();
+
+        if(subasta == null){
+            cargarDatosBase();
+            guardarResourceXML();
+        }
+
+
     }
 
     public void setUsuarioAnunciante(UsuarioAnunciante usuarioAnunciante){
@@ -62,7 +69,6 @@ public class ModelFactoryController {
 
     private void cargarDatosBase() {
         subasta = SubastaUtils.inicializarDatos();
-      //  usuarioAnunciante = UsuarioAnuncianteUtils.inicializarDatos();
     }
 
     private static class SingletonHolder {
@@ -85,7 +91,7 @@ public class ModelFactoryController {
         return subasta.obtenerUsuarioAnunciante(user);
     }
 
-    public boolean agregarProducto(ProductoDto productoDto) {
+    public boolean agregarProducto(ProductoDto productoDto) throws ProductoException {
         if(usuarioAnunciante.agregarProducto(ProductoMapper.productoDtoToProducto(productoDto))){
             Persistencia.guardarRegistroLog("Usuario: " + usuarioAnunciante.getNombre() + " " + usuarioAnunciante.getApellido(),1,"Registrar producto");
             salvarDatosPrueba();
@@ -100,7 +106,7 @@ public class ModelFactoryController {
 
     public boolean eliminarProducto(ProductoDto productoSeleccionado) throws ProductoException {
         if(usuarioAnunciante.eliminarProducto(ProductoMapper.productoDtoToProducto(productoSeleccionado))){
-            Persistencia.guardarRegistroLog("Usuario: " + usuarioAnunciante.getNombre() + " " + usuarioAnunciante.getApellido(),1,"Eliminar producto");
+            registrarAccionesSistema("Usuario: " + usuarioAnunciante.getNombre() + " " + usuarioAnunciante.getApellido(),1,"Eliminar producto");
             salvarDatosPrueba();
             return true;
         }
@@ -110,12 +116,16 @@ public class ModelFactoryController {
     public boolean actualizarProducto(ProductoDto productoSeleccionado, ProductoDto productoNuevo) throws ProductoException {
         if(usuarioAnunciante.actualizarProducto(ProductoMapper.productoDtoToProducto(productoSeleccionado),
                 ProductoMapper.productoDtoToProducto(productoNuevo))){
-            Persistencia.guardarRegistroLog("Usuario: " + usuarioAnunciante.getNombre() + " " + usuarioAnunciante.getApellido(),1,"Actualizar producto");
+            registrarAccionesSistema("Usuario: " + usuarioAnunciante.getNombre() + " " + usuarioAnunciante.getApellido(),1,"Actualizar producto");
             salvarDatosPrueba();
             return  true;
         }
 
         return false;
+    }
+
+    public void registrarAccionesSistema(String mensaje, int nivel, String accion){
+        Persistencia.guardarRegistroLog(mensaje,nivel,accion);
     }
 
 

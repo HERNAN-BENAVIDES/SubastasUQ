@@ -39,8 +39,12 @@ public class UsuarioAnunciante extends Usuario implements IUsuarioAnuncianteServ
 
 
 
-    public boolean agregarProducto(Producto producto){
-        return getListProductos().add(producto);
+    public boolean agregarProducto(Producto producto) throws ProductoException {
+        if(!verificarExistenciaProducto(producto)){
+            getListProductos().add(producto);
+            return true;
+        }
+        return false;
     }
 
     public boolean verificarExistenciaProducto(Producto producto) throws ProductoException {

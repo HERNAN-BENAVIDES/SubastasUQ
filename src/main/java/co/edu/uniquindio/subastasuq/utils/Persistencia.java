@@ -18,13 +18,17 @@ import java.io.BufferedReader;
 
 public class Persistencia {
 
-    public static final String RUTA_ARCHIVO_PRODUCTOS = "src/main/resources/persistencia/archivoProductos.txt";
-    public static final String RUTA_ARCHIVO_ANUNCIANTES = "src/main/resources/persistencia/archivoAnunciantes.txt";
-    public static final String RUTA_ARCHIVO_ANUNCIANTES2 = "src/main/resources/persistencia/archivoAnunciantes2.txt";
-    public static final String RUTA_ARCHIVO_COMPRADORES = "src/main/resources/persistencia/archivoCompradores.txt";
+    public static final String RUTA_ARCHIVO_PRODUCTOS = "src/main/resources/persistencia/archivos/archivoProductos.txt";
+    public static final String RUTA_ARCHIVO_ANUNCIANTES = "src/main/resources/persistencia/archivos/archivoAnunciantes.txt";
+    public static final String RUTA_ARCHIVO_ANUNCIANTES2 = "src/main/resources/persistencia/archivos/archivoAnunciantes2.txt";
+    public static final String RUTA_ARCHIVO_COMPRADORES = "src/main/resources/persistencia/archivos/archivoCompradores.txt";
     public static final String RUTA_ARCHIVO_SUBASTA_XML = "src/main/resources/persistencia/Subasta.xml";
     public static final String RUTA_ARCHIVO_SUBASTA_BINARIO = "src/main/resources/persistencia/Subasta.dat";
     private static final String RUTA_ARCHIVO_LOG = "src/main/resources/persistencia/log/SubastaLog.txt";
+    private static final String RUTA_ARCHIVO_LOG_RESPALDO = "src/main/resources/persistencia/respaldo/SubastaLogRespaldo.txt";
+    private static final String RUTA_ARCHIVO_ANUNCIANTES_RESPALDO = "src/main/resources/persistencia/respaldo/archivoAnunciantesRespaldo.txt";
+    private static final String RUTA_ARCHIVO_ANUNCIANTES2_RESPALDO = "src/main/resources/persistencia/respaldo/archivoAnunciantes2Respaldo.txt";
+    private static final String RUTA_ARCHIVO_COMPRADORES_RESPALDO = "src/main/resources/persistencia/respaldo/archivoCompradoresRespaldo.txt";
 
 
     public static void guardarProductos(List<Producto> listProductos) throws IOException {
@@ -44,6 +48,7 @@ public class Persistencia {
                     .append(anunciante.getUsername()).append("@@").append(anunciante.getPassword()).append("\n");
         }
         ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_ANUNCIANTES, contenido.toString(), false);
+        ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_ANUNCIANTES_RESPALDO, contenido.toString(), false);
     }
 
 
@@ -55,6 +60,7 @@ public class Persistencia {
                     .append(comprador.getUsername()).append("@@").append(comprador.getPassword()).append("\n");
         }
         ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_COMPRADORES, contenido.toString(), false);
+        ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_COMPRADORES_RESPALDO, contenido.toString(), false);
     }
 
 
@@ -126,6 +132,7 @@ public class Persistencia {
     public static List<UsuarioComprador> cargarCompradores() throws IOException {
         List<UsuarioComprador> listCompradores = new ArrayList<UsuarioComprador>();
         List<String> contenido = ArchivoUtil.leerArchivo(RUTA_ARCHIVO_COMPRADORES);
+
 
         for (String linea : contenido) {
             String[] partes = linea.split("@@");
@@ -201,6 +208,7 @@ public class Persistencia {
             contenido.append("\n");
         }
         ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_ANUNCIANTES2, contenido.toString(), false);
+        ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_ANUNCIANTES2_RESPALDO, contenido.toString(), false);
         return contenido.toString();
     }
 
@@ -235,13 +243,12 @@ public class Persistencia {
             }
 
             if (partes.length >= 2) {
-                String infoAnuncianteStr = partes[0];
+                String infoAnunciante = partes[0];
                 String[] productoInfo = Arrays.copyOfRange(partes, 1, partes.length);
 
-                UsuarioAnunciante anunciante = crearAnunciante(infoAnuncianteStr);
+                UsuarioAnunciante anunciante = crearAnunciante(infoAnunciante);
                 List<Producto> productos = crearProductos(productoInfo);
 
-                assert anunciante != null;
                 anunciante.setListProductos(productos);
                 listAnunciantes.add(anunciante);
             }
@@ -285,6 +292,7 @@ public class Persistencia {
 
     public static void guardarRegistroLog(String mensajeLog, int nivel, String accion) {
         ArchivoUtil.guardarRegistroLog(mensajeLog, nivel, accion, RUTA_ARCHIVO_LOG);
+        ArchivoUtil.guardarRegistroLog(mensajeLog, nivel, accion, RUTA_ARCHIVO_LOG_RESPALDO);
     }
 
 /*

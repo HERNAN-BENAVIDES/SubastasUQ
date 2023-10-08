@@ -5,6 +5,7 @@ import co.edu.uniquindio.subastasuq.excepcions.ProductoException;
 import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
 import co.edu.uniquindio.subastasuq.model.UsuarioAnunciante;
 import co.edu.uniquindio.subastasuq.utils.AlertaUtils;
+import co.edu.uniquindio.subastasuq.utils.Persistencia;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -196,6 +197,7 @@ public class ProductoViewController {
                 }
             }
         }catch (ProductoException e) {
+            Persistencia.guardarRegistroLog(e.getMessage(),2,"Excepcion");
             AlertaUtils.mostrarAlertaError(e.getMessage());
             limpiarCamposProducto();
 
@@ -267,6 +269,7 @@ public class ProductoViewController {
                 AlertaUtils.mostrarAlertaInformacion("Seleccione un producto");
             }
         }catch (ProductoException e){
+            Persistencia.guardarRegistroLog(e.getMessage(),2, "Excepcion");
             AlertaUtils.mostrarAlertaInformacion(e.getMessage());
         }
     }
