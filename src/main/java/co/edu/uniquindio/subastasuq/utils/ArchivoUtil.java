@@ -5,7 +5,6 @@ import java.beans.XMLEncoder;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -14,10 +13,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
+import java.util.logging.*;
 
 
 /**
@@ -65,45 +61,49 @@ public  class ArchivoUtil {
     }
 
 
-    public static void guardarRegistroLog(String mensajeLog, int nivel, String accion, String rutaArchivo)
-    {
-        String log = "";
+    public static void guardarRegistroLog(String mensajeLog, int nivel, String accion, String rutaArchivo) {
         Logger LOGGER = Logger.getLogger(accion);
-        FileHandler fileHandler =  null;
+        FileHandler fileHandler = null;
         cargarFechaSistema();
+
         try {
-            fileHandler = new FileHandler(rutaArchivo,true);
+            // Eliminar el manejador de consola
+            Logger rootLogger = Logger.getLogger("");
+            Handler[] handlers = rootLogger.getHandlers();
+            if (handlers.length > 0 && handlers[0] instanceof ConsoleHandler) {
+                rootLogger.removeHandler(handlers[0]);
+            }
+
+            fileHandler = new FileHandler(rutaArchivo, true);
             fileHandler.setFormatter(new SimpleFormatter());
             LOGGER.addHandler(fileHandler);
+
             switch (nivel) {
                 case 1:
-                    LOGGER.log(Level.INFO,accion+","+mensajeLog+","+fechaSistema) ;
+                    LOGGER.log(Level.INFO, accion + "," + mensajeLog + "," + fechaSistema);
                     break;
 
                 case 2:
-                    LOGGER.log(Level.WARNING,accion+","+mensajeLog+","+fechaSistema) ;
+                    LOGGER.log(Level.WARNING, accion + "," + mensajeLog + "," + fechaSistema);
                     break;
 
                 case 3:
-                    LOGGER.log(Level.SEVERE,accion+","+mensajeLog+","+fechaSistema) ;
+                    LOGGER.log(Level.SEVERE, accion + "," + mensajeLog + "," + fechaSistema);
                     break;
 
                 default:
                     break;
             }
-
         } catch (SecurityException e) {
-
-            LOGGER.log(Level.SEVERE,e.getMessage());
+            LOGGER.log(Level.SEVERE, e.getMessage());
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            LOGGER.log(Level.SEVERE,e.getMessage());
+            LOGGER.log(Level.SEVERE, e.getMessage());
             e.printStackTrace();
-        }
-        finally {
-
-            fileHandler.close();
+        } finally {
+            if (fileHandler != null) {
+                fileHandler.close();
+            }
         }
     }
 

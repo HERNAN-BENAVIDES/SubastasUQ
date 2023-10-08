@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.BufferedReader;
 
@@ -19,9 +20,11 @@ public class Persistencia {
 
     public static final String RUTA_ARCHIVO_PRODUCTOS = "src/main/resources/persistencia/archivoProductos.txt";
     public static final String RUTA_ARCHIVO_ANUNCIANTES = "src/main/resources/persistencia/archivoAnunciantes.txt";
+    public static final String RUTA_ARCHIVO_ANUNCIANTES2 = "src/main/resources/persistencia/archivoAnunciantes2.txt";
     public static final String RUTA_ARCHIVO_COMPRADORES = "src/main/resources/persistencia/archivoCompradores.txt";
     public static final String RUTA_ARCHIVO_SUBASTA_XML = "src/main/resources/persistencia/Subasta.xml";
     public static final String RUTA_ARCHIVO_SUBASTA_BINARIO = "src/main/resources/persistencia/Subasta.dat";
+    private static final String RUTA_ARCHIVO_LOG = "src/main/resources/persistencia/log/SubastaLog.txt";
 
 
     public static void guardarProductos(List<Producto> listProductos) throws IOException {
@@ -32,19 +35,6 @@ public class Persistencia {
         }
         ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_PRODUCTOS, contenido.toString(),false);
     }
-    /*
-        public static void guardarAnunciantes(List<UsuarioAnunciante> listAnunciantes) throws IOException {
-            StringBuilder contenido = new StringBuilder();
-            for (UsuarioAnunciante anunciante : listAnunciantes) {
-                contenido.append(anunciante.getNombre()).append("@@").append(anunciante.getApellido()).append("@@")
-                        .append(anunciante.getCedula()).append("@@").append(anunciante.getEdad()).append("@@")
-                        .append(anunciante.getUsername()).append("@@").append(anunciante.getPassword()).append("\n");
-            }
-            ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_ANUNCIANTES, contenido.toString(), false);
-        }
-
-
-    */
 
     public static void guardarAnunciantes(List<UsuarioAnunciante> listAnunciantes) throws IOException {
         StringBuilder contenido = new StringBuilder();
@@ -54,16 +44,6 @@ public class Persistencia {
                     .append(anunciante.getUsername()).append("@@").append(anunciante.getPassword()).append("\n");
         }
         ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_ANUNCIANTES, contenido.toString(), false);
-    }
-
-    public static String guardarProductos(UsuarioAnunciante anunciante) {
-        StringBuilder contenido = new StringBuilder();
-        List<Producto> listProductos = anunciante.getListProductos(); // Obtiene la lista de productos del anunciante
-        for (Producto producto : listProductos) {
-            contenido.append(producto.getNombre()).append("@@").append(producto.getTipoProducto()).append("@@")
-                    .append(producto.getCodigo()).append("@@").append(producto.getEstado()).append("\n");
-        }
-        return contenido.toString();
     }
 
 
@@ -77,16 +57,6 @@ public class Persistencia {
         ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_COMPRADORES, contenido.toString(), false);
     }
 
-    /*
-
-    public  static  void  guardarProductos (List <Producto> listProductos){
-        StringBuilder  contenido = new StringBuilder();
-        for ( Producto  producto : listProductos ) {
-            contenido . append ( producto . getNombre ()). agregar ( "@@" ). append ( producto . getTipoProducto ()). agregar ( "@@" ). append ( producto.getCodigo ( )) . agregar ( "@@" ). append ( producto . getEstado ()). agregar ( " \n " );
-        }
-        ArchivoUtil.guardarArchivo ( RUTA_ARCHIVO_PRODUCTOS , contenido . toString (), false );
-    }
-     */
 
     public static List<Producto> cargarProductos() throws IOException {
         List<Producto> productos = new ArrayList<Producto>();
@@ -112,16 +82,20 @@ public class Persistencia {
 
 
     public static void cargarDatosArchivo(Subasta subasta) throws IOException {
-        List<UsuarioAnunciante> listAnunciantes = cargarAnunciantes();
-        List<UsuarioComprador> listCompradores = cargarCompradores();
+        //List<UsuarioAnunciante> listAnunciantes = cargarAnunciantes();
+        List<UsuarioAnunciante> listAnunciantes2 = cargarAnunciantes2();
 
-        if (!listAnunciantes.isEmpty()){
-            subasta.getListAnunciantes().addAll(listAnunciantes);
+ //      if (!listAnunciantes.isEmpty()){
+ //          subasta.getListAnunciantes().addAll(listAnunciantes);
+ //      }
+
+        if (!listAnunciantes2.isEmpty()){
+            subasta.getListAnunciantes().addAll(listAnunciantes2);
         }
 
-        if(!listCompradores.isEmpty()){
-            subasta.getListCompradores().addAll(listCompradores);
-        }
+ //       if(!listCompradores.isEmpty()){
+ //           subasta.getListCompradores().addAll(listCompradores);
+ //       }
     }
 
 
@@ -148,54 +122,6 @@ public class Persistencia {
         }
         return listAnunciantes;
     }
-     /*
-
-    public static List<UsuarioAnunciante> cargarAnunciantes() throws IOException {
-        List<UsuarioAnunciante> listAnunciantes = new ArrayList<>();
-        BufferedReader br = new BufferedReader(new FileReader(RUTA_ARCHIVO_ANUNCIANTES));
-        String linea;
-
-        while ((linea = br.readLine()) != null) {
-            String[] partes = linea.split("@@");
-            if (partes.length >= 7) {
-                String nombre = partes[0];
-                String apellido = partes[1];
-                String cedula = partes[2];
-                int edad = Integer.parseInt(partes[3]);
-                String username = partes[4];
-                String password = partes[5];
-
-                // Llama al método para cargar los productos de este anunciante
-                List<Producto> productos = cargarProductos(partes[6]);
-
-                UsuarioAnunciante anunciante = new UsuarioAnunciante(nombre, apellido, cedula, edad, username, password);
-                anunciante.setListProductos(productos);
-                listAnunciantes.add(anunciante);
-                System.out.println(anunciante.toString());
-            }
-        }
-
-        br.close();
-        return listAnunciantes;
-    }
-
-    public static List<Producto> cargarProductos(String productosStr) {
-        List<Producto> productos = new ArrayList<>();
-        String[] productosPartes = productosStr.split("##");
-        for (String productoParte : productosPartes) {
-            String[] productoInfo = productoParte.split("@@");
-            if (productoInfo.length == 4) {
-                String nombreProducto = productoInfo[0];
-                String tipoProducto = productoInfo[1];
-                String codigo = productoInfo[2];
-                String estado = productoInfo[3];
-                Producto producto = new Producto(nombreProducto, tipoProducto, codigo, estado);
-                productos.add(producto);
-            }
-        }
-        return productos;
-    }
-    */
 
     public static List<UsuarioComprador> cargarCompradores() throws IOException {
         List<UsuarioComprador> listCompradores = new ArrayList<UsuarioComprador>();
@@ -262,6 +188,157 @@ public class Persistencia {
     }
 
 
+    public static String guardarAnunciantes2(List<UsuarioAnunciante> listAnunciantes) throws IOException {
+        StringBuilder contenido = new StringBuilder();
+        for (UsuarioAnunciante anunciante : listAnunciantes) {
+            contenido.append(anunciante.getNombre()).append("@@").append(anunciante.getApellido()).append("@@")
+                    .append(anunciante.getCedula()).append("@@").append(anunciante.getEdad()).append("@@")
+                    .append(anunciante.getUsername()).append("@@").append(anunciante.getPassword()).append("##");
+
+            // Llama al método para obtener y guardar los productos de este anunciante
+            contenido.append(guardarProductos2(anunciante));
+
+            contenido.append("\n");
+        }
+        ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_ANUNCIANTES2, contenido.toString(), false);
+        return contenido.toString();
+    }
+
+    public static String guardarProductos2(UsuarioAnunciante anunciante) {
+        StringBuilder contenido = new StringBuilder();
+        List<Producto> listProductos = anunciante.getListProductos();
+        for (int i = 0; i < listProductos.size(); i++) {
+            if (i < listProductos.size()-1) {
+                contenido.append(listProductos.get(i).getNombre()).append("@@").append(listProductos.get(i).getTipoProducto()).append("@@")
+                        .append(listProductos.get(i).getCodigo()).append("@@").append(listProductos.get(i).getEstado()).append("##");
+            }
+            if (i == listProductos.size()-1) {
+                contenido.append(listProductos.get(i).getNombre()).append("@@").append(listProductos.get(i).getTipoProducto()).append("@@")
+                        .append(listProductos.get(i).getCodigo()).append("@@").append(listProductos.get(i).getEstado());
+            }
+        }
+        return contenido.toString();
+    }
+
+
+    public static List<UsuarioAnunciante> cargarAnunciantes2() throws IOException {
+        List<UsuarioAnunciante> listAnunciantes = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader(RUTA_ARCHIVO_ANUNCIANTES2));
+        String linea;
+
+        while ((linea = br.readLine()) != null) {
+            String[] partes = linea.split("##");
+
+            if (partes.length == 1){
+                UsuarioAnunciante anunciante = crearAnunciante(partes[0]);
+                listAnunciantes.add(anunciante);
+            }
+
+            if (partes.length >= 2) {
+                String infoAnuncianteStr = partes[0];
+                String[] productoInfo = Arrays.copyOfRange(partes, 1, partes.length);
+
+                UsuarioAnunciante anunciante = crearAnunciante(infoAnuncianteStr);
+                List<Producto> productos = crearProductos(productoInfo);
+
+                assert anunciante != null;
+                anunciante.setListProductos(productos);
+                listAnunciantes.add(anunciante);
+            }
+
+        }
+
+        br.close();
+        return listAnunciantes;
+    }
+
+    public static UsuarioAnunciante crearAnunciante(String infoAnuncianteStr) {
+        String[] infoAnunciante = infoAnuncianteStr.split("@@");
+        if (infoAnunciante.length >= 6) {
+            String nombre = infoAnunciante[0];
+            String apellido = infoAnunciante[1];
+            String cedula = infoAnunciante[2];
+            int edad = Integer.parseInt(infoAnunciante[3]);
+            String username = infoAnunciante[4];
+            String password = infoAnunciante[5];
+            return new UsuarioAnunciante(nombre, apellido, cedula, edad, username, password);
+        }
+        return null; // Manejo de errores opcional
+    }
+
+    public static List<Producto> crearProductos(String[] productoInfoStrs) {
+        List<Producto> productos = new ArrayList<>();
+        for (String productoInfoStr : productoInfoStrs) {
+            String[] productoInfo = productoInfoStr.split("@@");
+            if (productoInfo.length == 4) {
+                String nombreProducto = productoInfo[0];
+                String tipoProducto = productoInfo[1];
+                String codigo = productoInfo[2];
+                String estado = productoInfo[3];
+                Producto producto = new Producto(nombreProducto, tipoProducto, codigo, estado);
+                productos.add(producto);
+            }
+        }
+        return productos;
+    }
+
+
+    public static void guardarRegistroLog(String mensajeLog, int nivel, String accion) {
+        ArchivoUtil.guardarRegistroLog(mensajeLog, nivel, accion, RUTA_ARCHIVO_LOG);
+    }
+
+/*
+-----------------------------------------------------------------------------------------------------------
+--------------------------------------BINARIO--------------------------------------------------------------
+ */
+    public static void guardarRecursoBancoBinario(Subasta subasta) {
+        try {
+            ArchivoUtil.salvarRecursoSerializado(RUTA_ARCHIVO_SUBASTA_BINARIO,subasta);
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static Subasta cargarRecursoBancoBinario() {
+        Subasta subasta = null;
+
+        try {
+            subasta = (Subasta) ArchivoUtil.cargarRecursoSerializado(RUTA_ARCHIVO_SUBASTA_BINARIO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return subasta;
+    }
+
+    /*
+-----------------------------------------------------------------------------------------------------------
+--------------------------------------XML--------------------------------------------------------------
+ */
+
+    public static Subasta cargarRecursoBancoXML() {
+
+        Subasta subasta = null;
+
+        try {
+            subasta = (Subasta) ArchivoUtil.cargarRecursoSerializadoXML(RUTA_ARCHIVO_SUBASTA_XML);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return subasta;
+
+    }
+
+
+    public static void guardarRecursoBancoXML(Subasta banco) {
+
+        try {
+            ArchivoUtil.salvarRecursoSerializadoXML(RUTA_ARCHIVO_SUBASTA_XML, banco);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
 }
 

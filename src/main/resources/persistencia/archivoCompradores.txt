@@ -1,4 +1,0 @@
-Elena@@Barcelona@@1111@@24@@elena@example.com@@abcd
-Pedro@@Valencia@@2222@@28@@pedro@example.com@@efgh
-Laura@@Madrid@@3333@@22@@laura@example.com@@ijkl
-Luis@@Sevilla@@4444@@30@@luis@example.com@@mnop

@@ -7,6 +7,7 @@ import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
 import co.edu.uniquindio.subastasuq.mapping.mappers.ProductoMapper;
 import co.edu.uniquindio.subastasuq.model.Subasta;
 import co.edu.uniquindio.subastasuq.model.UsuarioAnunciante;
+import co.edu.uniquindio.subastasuq.utils.ArchivoUtil;
 import co.edu.uniquindio.subastasuq.utils.Persistencia;
 import co.edu.uniquindio.subastasuq.utils.SubastaUtils;
 
@@ -20,9 +21,19 @@ public class ModelFactoryController {
     private UsuarioAnunciante usuarioAnunciante;
 
     public ModelFactoryController() {
-        cargarDatosBase();
-        salvarDatosPrueba();
+//        cargarDatosBase();
+
+        //1
+//        salvarDatosPrueba();
 //        cargarDatosPrueba();
+
+        //2
+//        guardarResourceBinario();
+//        cargarResourceBinario();
+
+        //3
+//        guardarResourceXML();
+        cargarResourceXML();
     }
 
     public void setUsuarioAnunciante(UsuarioAnunciante usuarioAnunciante){
@@ -42,6 +53,7 @@ public class ModelFactoryController {
     private void salvarDatosPrueba() {
         try {
             Persistencia.guardarAnunciantes(subasta.getListAnunciantes());
+            Persistencia.guardarAnunciantes2(subasta.getListAnunciantes());
             Persistencia.guardarCompradores(subasta.getListCompradores());
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -53,14 +65,20 @@ public class ModelFactoryController {
       //  usuarioAnunciante = UsuarioAnuncianteUtils.inicializarDatos();
     }
 
-
+    private static class SingletonHolder {
+        private final static ModelFactoryController eINSTANCE = new ModelFactoryController();
+    }
 
     public static ModelFactoryController getInstance() {
         return SingletonHolder.eINSTANCE;
     }
 
     public boolean iniciarSesion(String user, String password, String tipo) throws IOException, AutenticacionException {
-        return Persistencia.iniciarSesion(user, password, tipo);
+        if(Persistencia.iniciarSesion(user, password, tipo)){
+            Persistencia.guardarRegistroLog("Inicio de sesión",1,"Inicio de sesión: " + "user: " + user);
+            return true;
+        }
+        return false;
     }
 
     public UsuarioAnunciante obtenerUsuarioAnunciante(String user) throws UsuarioException {
@@ -68,7 +86,12 @@ public class ModelFactoryController {
     }
 
     public boolean agregarProducto(ProductoDto productoDto) {
-        return usuarioAnunciante.agregarProducto(ProductoMapper.productoDtoToProducto(productoDto));
+        if(usuarioAnunciante.agregarProducto(ProductoMapper.productoDtoToProducto(productoDto))){
+            Persistencia.guardarRegistroLog("Usuario: " + usuarioAnunciante.getNombre() + " " + usuarioAnunciante.getApellido(),1,"Registrar producto");
+            salvarDatosPrueba();
+            return true;
+        }
+        return false;
     }
 
     public List<ProductoDto> obtenerProductos() {
@@ -76,15 +99,49 @@ public class ModelFactoryController {
     }
 
     public boolean eliminarProducto(ProductoDto productoSeleccionado) throws ProductoException {
-        return  usuarioAnunciante.eliminarProducto(ProductoMapper.productoDtoToProducto(productoSeleccionado));
+        if(usuarioAnunciante.eliminarProducto(ProductoMapper.productoDtoToProducto(productoSeleccionado))){
+            Persistencia.guardarRegistroLog("Usuario: " + usuarioAnunciante.getNombre() + " " + usuarioAnunciante.getApellido(),1,"Eliminar producto");
+            salvarDatosPrueba();
+            return true;
+        }
+        return false;
     }
 
     public boolean actualizarProducto(ProductoDto productoSeleccionado, ProductoDto productoNuevo) throws ProductoException {
-        return usuarioAnunciante.actualizarProducto(ProductoMapper.productoDtoToProducto(productoSeleccionado),
-                ProductoMapper.productoDtoToProducto(productoNuevo));
+        if(usuarioAnunciante.actualizarProducto(ProductoMapper.productoDtoToProducto(productoSeleccionado),
+                ProductoMapper.productoDtoToProducto(productoNuevo))){
+            Persistencia.guardarRegistroLog("Usuario: " + usuarioAnunciante.getNombre() + " " + usuarioAnunciante.getApellido(),1,"Actualizar producto");
+            salvarDatosPrueba();
+            return  true;
+        }
+
+        return false;
     }
 
-    private static class SingletonHolder {
-        private final static ModelFactoryController eINSTANCE = new ModelFactoryController();
+
+    /*
+    -----------------------------------------------------------------------------------------------------------
+    --------------------------------------BINARIO--------------------------------------------------------------
+     */
+    private void guardarResourceBinario() {
+        Persistencia.guardarRecursoBancoBinario(subasta);
     }
+    private void cargarResourceBinario() {
+        subasta = Persistencia.cargarRecursoBancoBinario();
+    }
+
+        /*
+-----------------------------------------------------------------------------------------------------------
+--------------------------------------XML--------------------------------------------------------------
+ */
+
+    private void cargarResourceXML() {
+        subasta = Persistencia.cargarRecursoBancoXML();
+    }
+
+    private void guardarResourceXML() {
+        Persistencia.guardarRecursoBancoXML(subasta);
+    }
+
+
 }

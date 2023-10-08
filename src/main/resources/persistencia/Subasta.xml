@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="19" class="java.beans.XMLDecoder">
+ <object class="co.edu.uniquindio.subastasuq.model.Subasta" id="Subasta0">
+  <void property="listAnunciantes">
+   <void method="add">
+    <object class="co.edu.uniquindio.subastasuq.model.UsuarioAnunciante" id="UsuarioAnunciante0">
+     <void property="apellido">
+      <string>Cordoba</string>
+     </void>
+     <void property="cedula">
+      <string>1234</string>
+     </void>
+     <void property="edad">
+      <int>20</int>
+     </void>
+     <void property="listProductos">
+      <void method="add">
+       <object class="co.edu.uniquindio.subastasuq.model.Producto">
+        <void property="codigo">
+         <string>12345</string>
+        </void>
+        <void property="estado">
+         <string>Nuevo</string>
+        </void>
+        <void property="nombre">
+         <string>TV</string>
+        </void>
+        <void property="tipoProducto">
+         <string>Tecnologia</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.subastasuq.model.Producto">
+        <void property="codigo">
+         <string>12345</string>
+        </void>
+        <void property="estado">
+         <string>Nuevo</string>
+        </void>
+        <void property="nombre">
+         <string>Moto</string>
+        </void>
+        <void property="tipoProducto">
+         <string>Vehiculo</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="nombre">
+      <string>Dario</string>
+     </void>
+     <void property="password">
+      <string>1234</string>
+     </void>
+     <void property="username">
+      <string>dariobenavides42@gmail.com</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.subastasuq.model.UsuarioAnunciante" id="UsuarioAnunciante1">
+     <void property="apellido">
+      <string>Madrid</string>
+     </void>
+     <void property="cedula">
+      <string>5678</string>
+     </void>
+     <void property="edad">
+      <int>25</int>
+     </void>
+     <void property="listProductos">
+      <void method="add">
+       <object class="co.edu.uniquindio.subastasuq.model.Producto">
+        <void property="codigo">
+         <string>12345</string>
+        </void>
+        <void property="estado">
+         <string>Nuevo</string>
+        </void>
+        <void property="nombre">
+         <string>Bicicleta</string>
+        </void>
+        <void property="tipoProducto">
+         <string>Deporte</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.subastasuq.model.Producto">
+        <void property="codigo">
+         <string>12345</string>
+        </void>
+        <void property="estado">
+         <string>Nuevo</string>
+        </void>
+        <void property="nombre">
+         <string>Casa</string>
+        </void>
+        <void property="tipoProducto">
+         <string>Bienraiz</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.subastasuq.model.Producto">
+        <void property="codigo">
+         <string>123454</string>
+        </void>
+        <void property="estado">
+         <string>Nuevo</string>
+        </void>
+        <void property="nombre">
+         <string>Casa</string>
+        </void>
+        <void property="tipoProducto">
+         <string>Bienraiz</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.subastasuq.model.Producto">
+        <void property="codigo">
+         <string>1234544</string>
+        </void>
+        <void property="estado">
+         <string>Nuevo</string>
+        </void>
+        <void property="nombre">
+         <string>Bicicleta</string>
+        </void>
+        <void property="tipoProducto">
+         <string>Deporte</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="nombre">
+      <string>Ana</string>
+     </void>
+     <void property="password">
+      <string>5678</string>
+     </void>
+     <void property="username">
+      <string>ana@example.com</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.subastasuq.model.UsuarioAnunciante" id="UsuarioAnunciante2">
+     <void property="apellido">
+      <string>Barcelona</string>
+     </void>
+     <void property="cedula">
+      <string>9012</string>
+     </void>
+     <void property="edad">
+      <int>30</int>
+     </void>
+     <void property="listProductos">
+      <void method="add">
+       <object class="co.edu.uniquindio.subastasuq.model.Producto">
+        <void property="codigo">
+         <string>12345</string>
+        </void>
+        <void property="estado">
+         <string>Usado</string>
+        </void>
+        <void property="nombre">
+         <string>Televisor</string>
+        </void>
+        <void property="tipoProducto">
+         <string>Tecnologia</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.subastasuq.model.Producto">
+        <void property="codigo">
+         <string>12345</string>
+        </void>
+        <void property="estado">
+         <string>Nuevo</string>
+        </void>
+        <void property="nombre">
+         <string>MotoGP</string>
+        </void>
+        <void property="tipoProducto">
+         <string>Vehiculo</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="nombre">
+      <string>Juan</string>
+     </void>
+     <void property="password">
+      <string>9012</string>
+     </void>
+     <void property="username">
+      <string>juan@example.com</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.subastasuq.model.UsuarioAnunciante" id="UsuarioAnunciante3">
+     <void property="apellido">
+      <string>Valencia</string>
+     </void>
+     <void property="cedula">
+      <string>3456</string>
+     </void>
+     <void property="edad">
+      <int>22</int>
+     </void>
+     <void property="listProductos">
+      <void method="add">
+       <object class="co.edu.uniquindio.subastasuq.model.Producto">
+        <void property="codigo">
+         <string>12345</string>
+        </void>
+        <void property="estado">
+         <string>Nuevo</string>
+        </void>
+        <void property="nombre">
+         <string>Bicicleta</string>
+        </void>
+        <void property="tipoProducto">
+         <string>Deporte</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.subastasuq.model.Producto">
+        <void property="codigo">
+         <string>12345</string>
+        </void>
+        <void property="estado">
+         <string>Nuevo</string>
+        </void>
+        <void property="nombre">
+         <string>Finca</string>
+        </void>
+        <void property="tipoProducto">
+         <string>Bienraiz</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="nombre">
+      <string>Maria</string>
+     </void>
+     <void property="password">
+      <string>3456</string>
+     </void>
+     <void property="username">
+      <string>maria@example.com</string>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>

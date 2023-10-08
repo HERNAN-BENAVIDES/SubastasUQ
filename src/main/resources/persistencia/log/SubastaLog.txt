@@ -1,0 +1,4 @@
+oct 07, 2023 11:42:43 P. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-10-07
+oct 07, 2023 11:48:56 P. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-10-07
