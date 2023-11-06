@@ -10,8 +10,8 @@ import java.util.List;
 public class UsuarioAnunciante extends Usuario implements IUsuarioAnuncianteService, Serializable {
 
     private static final long serialVersionUID = 1L;
-    private List<Anuncio> listAnuncios = new ArrayList<Anuncio>();
-    private List<Producto> listProductos = new ArrayList<Producto>();
+    private List<Anuncio> listAnuncios;
+    private List<Producto> listProductos;
 
     public UsuarioAnunciante() {
 
@@ -19,6 +19,8 @@ public class UsuarioAnunciante extends Usuario implements IUsuarioAnuncianteServ
 
     public UsuarioAnunciante(String nombre, String apellido, String cedula, Integer edad, String username, String password) {
         super(nombre, apellido, cedula, edad, username, password);
+        this.listAnuncios = new ArrayList<Anuncio>();
+        this.listProductos = new ArrayList<Producto>();
     }
 
     public List<Anuncio> getListAnuncios() {

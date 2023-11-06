@@ -195,7 +195,7 @@ public class Persistencia {
     }
 
 
-    public static String guardarAnunciantes2(List<UsuarioAnunciante> listAnunciantes) throws IOException {
+    public static void guardarAnunciantes2(List<UsuarioAnunciante> listAnunciantes) throws IOException {
         StringBuilder contenido = new StringBuilder();
         for (UsuarioAnunciante anunciante : listAnunciantes) {
             contenido.append(anunciante.getNombre()).append("@@").append(anunciante.getApellido()).append("@@")
@@ -209,7 +209,7 @@ public class Persistencia {
         }
         ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_ANUNCIANTES2, contenido.toString(), false);
         ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_ANUNCIANTES2_RESPALDO, contenido.toString(), false);
-        return contenido.toString();
+
     }
 
     public static String guardarProductos2(UsuarioAnunciante anunciante) {

@@ -76,6 +76,8 @@ public class Anuncio implements Serializable{
         this.precioInicial = precioInicial;
     }
 
+
+
     public Double getPujaMasAlta() {
         return pujaMasAlta;
     }
@@ -95,6 +97,7 @@ public class Anuncio implements Serializable{
     public int hashCode() {
         return Objects.hash(getNombreAnuncio(), getCodigoAnuncio(), getProductoAsociado());
     }
+
 
 
 }

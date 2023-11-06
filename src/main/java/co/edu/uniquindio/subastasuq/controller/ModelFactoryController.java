@@ -3,8 +3,11 @@ package co.edu.uniquindio.subastasuq.controller;
 import co.edu.uniquindio.subastasuq.excepcions.AutenticacionException;
 import co.edu.uniquindio.subastasuq.excepcions.ProductoException;
 import co.edu.uniquindio.subastasuq.excepcions.UsuarioException;
+import co.edu.uniquindio.subastasuq.mapping.dto.AnuncioDto;
 import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
+import co.edu.uniquindio.subastasuq.mapping.mappers.AnuncioMapper;
 import co.edu.uniquindio.subastasuq.mapping.mappers.ProductoMapper;
+import co.edu.uniquindio.subastasuq.model.Producto;
 import co.edu.uniquindio.subastasuq.model.Subasta;
 import co.edu.uniquindio.subastasuq.model.UsuarioAnunciante;
 import co.edu.uniquindio.subastasuq.utils.Persistencia;
@@ -21,11 +24,11 @@ public class ModelFactoryController {
 
     public ModelFactoryController() {
         //1
-//        cargarDatosBase();
+        cargarDatosBase();
 
         //2
 //        salvarDatosPrueba();
-        cargarDatosPrueba();
+//        cargarDatosPrueba();
 
         //3
 //        guardarResourceBinario();
@@ -45,6 +48,10 @@ public class ModelFactoryController {
 
     public void setUsuarioAnunciante(UsuarioAnunciante usuarioAnunciante){
         this.usuarioAnunciante = usuarioAnunciante;
+    }
+
+    public UsuarioAnunciante obtenerUsuarioAnunciante(String user) throws UsuarioException {
+        return subasta.obtenerUsuarioAnunciante(user);
     }
 
     private void cargarDatosPrueba() {
@@ -71,6 +78,14 @@ public class ModelFactoryController {
         subasta = SubastaUtils.inicializarDatos();
     }
 
+
+
+
+
+    /*
+    -----------------------------------------------------------------------------------------------------------
+    --------------------------------------GET INSTANCE--------------------------------------------------------------
+ */
     private static class SingletonHolder {
         private final static ModelFactoryController eINSTANCE = new ModelFactoryController();
     }
@@ -78,6 +93,11 @@ public class ModelFactoryController {
     public static ModelFactoryController getInstance() {
         return SingletonHolder.eINSTANCE;
     }
+
+        /*
+    -----------------------------------------------------------------------------------------------------------
+    --------------------------------------INICIO SESION--------------------------------------------------------------
+     */
 
     public boolean iniciarSesion(String user, String password, String tipo) throws IOException, AutenticacionException {
         if(Persistencia.iniciarSesion(user, password, tipo)){
@@ -87,9 +107,10 @@ public class ModelFactoryController {
         return false;
     }
 
-    public UsuarioAnunciante obtenerUsuarioAnunciante(String user) throws UsuarioException {
-        return subasta.obtenerUsuarioAnunciante(user);
-    }
+    /*
+    -----------------------------------------------------------------------------------------------------------
+    --------------------------------------PRODUCTOS--------------------------------------------------------------
+     */
 
     public boolean agregarProducto(ProductoDto productoDto) throws ProductoException {
         if(usuarioAnunciante.agregarProducto(ProductoMapper.productoDtoToProducto(productoDto))){
@@ -124,6 +145,31 @@ public class ModelFactoryController {
         return false;
     }
 
+        /*
+    -----------------------------------------------------------------------------------------------------------
+    --------------------------------------ANUNCIOS--------------------------------------------------------------
+     */
+
+    public List<AnuncioDto> obtenerAnuncios() {
+        return AnuncioMapper.getListAnunciosDto(usuarioAnunciante.getListAnuncios());
+    }
+
+    public String[] obtenerProductosNombres() {
+        List<Producto> listaProductos = usuarioAnunciante.getListProductos();
+        String[] nombres = new String[listaProductos.size()+1];
+        nombres[0] = "Selecciona";
+        for (int i = 0; i < listaProductos.size(); i++) {
+            nombres[i+1] = listaProductos.get(i).getNombre();
+        }
+
+        return nombres;
+    }
+
+
+    /*
+    -----------------------------------------------------------------------------------------------------------
+    --------------------------------------LOG--------------------------------------------------------------
+     */
     public void registrarAccionesSistema(String mensaje, int nivel, String accion){
         Persistencia.guardarRegistroLog(mensaje,nivel,accion);
     }

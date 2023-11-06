@@ -3,7 +3,6 @@ package co.edu.uniquindio.subastasuq.viewController;
 import co.edu.uniquindio.subastasuq.controller.ProductoController;
 import co.edu.uniquindio.subastasuq.excepcions.ProductoException;
 import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
-import co.edu.uniquindio.subastasuq.model.UsuarioAnunciante;
 import co.edu.uniquindio.subastasuq.utils.AlertaUtils;
 import co.edu.uniquindio.subastasuq.utils.Persistencia;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,25 +13,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public class ProductoViewController {
 
     ProductoController productoControllerService;
     ObservableList<ProductoDto> listaProductosDto = FXCollections.observableArrayList();
     ProductoDto productoSeleccionado;
-
-    @FXML
-    private Button btnActualizar;
-
-    @FXML
-    private Button btnAgregar;
-
-    @FXML
-    private Button btnEliminar;
-
-    @FXML
-    private Button btnNuevo;
 
     @FXML
     private ComboBox<String> cbxEstado;
@@ -61,6 +47,9 @@ public class ProductoViewController {
     @FXML
     private TextField txtNombre;
 
+    @FXML
+    private TextArea txtInformation;
+
 
 
     /**
@@ -81,7 +70,7 @@ public class ProductoViewController {
      * @param event Objeto ActionEvent que representa el evento que desencadenó la acción.
      */
     @FXML
-    void nuevoProductoAction(ActionEvent event) {
+    void limpiarCamposAction(ActionEvent event) {
         limpiarCamposProducto();
     }
 
@@ -115,7 +104,7 @@ public class ProductoViewController {
      * @param event Objeto ActionEvent que representa el evento que desencadenó la acción.
      */
     @FXML
-    void agregarProductoAction(ActionEvent event){
+    void crearProductoAction(ActionEvent event){
         crearProducto();
     }
 
@@ -163,7 +152,7 @@ public class ProductoViewController {
     private void listenerSelection() {
         tableProductos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             productoSeleccionado = newSelection;
-            mostrarInformacionEmpleado(productoSeleccionado);
+            mostrarInformacionProducto(productoSeleccionado);
         });
     }
 
@@ -171,8 +160,10 @@ public class ProductoViewController {
      * Muestra la información del producto seleccionado en los campos de texto.
      * @param productoSeleccionado El producto seleccionado en la tabla.
      */
-    private void mostrarInformacionEmpleado(ProductoDto productoSeleccionado) {
+    private void mostrarInformacionProducto(ProductoDto productoSeleccionado) {
         if (productoSeleccionado != null) {
+            txtInformation.setText("Nombre: " + productoSeleccionado.nombre() + "\nCodigo: " + productoSeleccionado.codigo()
+                    + "\nEstado: " + productoSeleccionado.estado() + "\nTipo: " + productoSeleccionado.tipoProducto());
             txtNombre.setText(productoSeleccionado.nombre());
             txtCodigo.setText(productoSeleccionado.codigo());
             cbxEstado.getSelectionModel().select(productoSeleccionado.estado());
@@ -210,8 +201,9 @@ public class ProductoViewController {
     private void limpiarCamposProducto() {
         txtNombre.clear();
         txtCodigo.clear();
-        cbxTipo.getSelectionModel().clearSelection();
-        cbxEstado.getSelectionModel().clearSelection();
+        cbxTipo.getSelectionModel().selectFirst();
+        cbxEstado.getSelectionModel().selectFirst();
+
     }
 
     /**
@@ -236,7 +228,7 @@ public class ProductoViewController {
         String tipoProducto = cbxTipo.getSelectionModel().getSelectedItem();
 
         // Verifica si alguno de los campos es nulo o vacío
-        if (nombre.isEmpty() || codigo.isEmpty() || estado == null || tipoProducto == null) {
+        if (nombre.isEmpty() || codigo.isEmpty() || estado.equals("Selecciona") || tipoProducto.equals("Selecciona")) {
             AlertaUtils.mostrarAlertaInformacion("Por favor complete todos los campos");
             return false; // Retorna false si los campos no están completos
         } else {
@@ -316,12 +308,12 @@ public class ProductoViewController {
         });
 
         // Crear una lista de los tipos de productos
-        List<String> tiposProductos = Arrays.asList("Tecnologia", "Hogar", "Deporte", "Vehiculo", "Bienraiz");
+        List<String> tiposProductos = Arrays.asList("Selecciona", "Tecnologia", "Hogar", "Deporte", "Vehiculo", "Bienraiz");
         ObservableList<String> tiposProductosList = FXCollections.observableArrayList(tiposProductos);
         cbxTipo.setItems(tiposProductosList);
 
         // Crear una lista de los estados de productos
-        List<String> estadosProductos = Arrays.asList("Nuevo", "Usado");
+        List<String> estadosProductos = Arrays.asList("Selecciona", "Nuevo", "Usado");
         ObservableList<String> estadosProductosList = FXCollections.observableArrayList(estadosProductos);
         cbxEstado.setItems(estadosProductosList);
     }

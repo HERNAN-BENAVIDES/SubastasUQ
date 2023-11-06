@@ -1,9 +1,6 @@
 package co.edu.uniquindio.subastasuq.utils;
 
-import co.edu.uniquindio.subastasuq.model.Producto;
-import co.edu.uniquindio.subastasuq.model.Subasta;
-import co.edu.uniquindio.subastasuq.model.UsuarioAnunciante;
-import co.edu.uniquindio.subastasuq.model.UsuarioComprador;
+import co.edu.uniquindio.subastasuq.model.*;
 
 public class SubastaUtils {
 
@@ -31,11 +28,24 @@ public class SubastaUtils {
         Producto producto7 = new Producto("Bicicleta", "Deporte", "12345", "Nuevo");
         Producto producto8 = new Producto("Finca", "Bienraiz", "12345", "Nuevo");
 
+        Anuncio anuncio = new Anuncio("Moto", "12", "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
+        Anuncio anuncio1 = new Anuncio("Moto1", "12", "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
+        Anuncio anuncio2 = new Anuncio("Moto2", "12", "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
+        Anuncio anuncio3 = new Anuncio("Moto3", "12", "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
+        Anuncio anuncio4 = new Anuncio("Moto4", "12", "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
+        Anuncio anuncio5 = new Anuncio("Moto5", "12", "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
+
         anunciante1.getListProductos().add(producto1);
         anunciante1.getListProductos().add(producto2);
 
         anunciante2.getListProductos().add(producto3);
         anunciante2.getListProductos().add(producto4);
+        anunciante2.getListAnuncios().add(anuncio);
+        anunciante2.getListAnuncios().add(anuncio1);
+        anunciante2.getListAnuncios().add(anuncio2);
+        anunciante2.getListAnuncios().add(anuncio3);
+        anunciante2.getListAnuncios().add(anuncio4);
+        anunciante2.getListAnuncios().add(anuncio5);
 
         anunciante3.getListProductos().add(producto5);
         anunciante3.getListProductos().add(producto6);

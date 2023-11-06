@@ -1,9 +1,7 @@
 package co.edu.uniquindio.subastasuq.viewController;
 
 import co.edu.uniquindio.subastasuq.controller.InicioSesionController;
-import co.edu.uniquindio.subastasuq.controller.ProductoController;
 import co.edu.uniquindio.subastasuq.excepcions.AutenticacionException;
-import co.edu.uniquindio.subastasuq.excepcions.UsuarioException;
 import co.edu.uniquindio.subastasuq.utils.AlertaUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -81,7 +79,7 @@ public class InicioSesionViewController {
         try {
             Stage ventanaActual = (Stage) btIniciarSesion.getScene().getWindow(); // Reemplaza yourButton con el control que desencadena la acción.
             // Cargar el archivo FXML de la nueva ventana
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/subastasuq/AnuncianteView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/subastasuq/comprador/CompradorView.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage nuevaVentana = new Stage();
@@ -98,7 +96,7 @@ public class InicioSesionViewController {
         try {
             Stage ventanaActual = (Stage) btIniciarSesion.getScene().getWindow();
             // Cargar el archivo FXML de la nueva ventana
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/subastasuq/AnuncianteView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/subastasuq/vendedor/AnuncianteView.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage nuevaVentana = new Stage();
@@ -106,7 +104,6 @@ public class InicioSesionViewController {
             ventanaActual.close();
             // Mostrar la nueva ventana
             nuevaVentana.show();
-            nuevaVentana.setResizable(false);
         } catch (Exception e) {
             e.printStackTrace();
         }

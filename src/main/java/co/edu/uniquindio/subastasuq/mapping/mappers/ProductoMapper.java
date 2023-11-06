@@ -11,14 +11,8 @@ public class ProductoMapper {
         if (productoDto == null) {
             return null;
         }
+        return  new Producto(productoDto.nombre(), productoDto.tipoProducto(), productoDto.codigo(), productoDto.estado());
 
-        Producto producto = new Producto();
-        producto.setNombre(productoDto.nombre());
-        producto.setCodigo(productoDto.codigo());
-        producto.setTipoProducto(productoDto.tipoProducto());
-        producto.setEstado(productoDto.estado());
-
-        return producto;
     }
 
 
