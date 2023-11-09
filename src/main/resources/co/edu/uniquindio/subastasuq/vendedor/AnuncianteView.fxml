@@ -3,7 +3,6 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
@@ -14,20 +13,20 @@
                <tabs>
                   <Tab text="Mis Productos">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="815.0">
+                        <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <fx:include source="ProductoView.fxml" />
                            </children>
-                        </AnchorPane>
+                        </VBox>
                      </content>
                   </Tab>
                   <Tab text="Mis anuncios">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="815.0">
+                        <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <fx:include source="AnuncioView.fxml" />
                            </children>
-                        </AnchorPane>
+                        </VBox>
                      </content>
                   </Tab>
                </tabs>

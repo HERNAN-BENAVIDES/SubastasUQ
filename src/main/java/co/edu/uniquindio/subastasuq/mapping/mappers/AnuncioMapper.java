@@ -18,7 +18,7 @@ public class AnuncioMapper {
         Anuncio anuncio =  new Anuncio(
                 anuncioDto.nombreAnuncio(),
                 anuncioDto.codigoAnuncio(),
-                anuncioDto.descripcionAnuncio(),
+                anuncioDto.fechaFinal(), anuncioDto.descripcionAnuncio(),
                 anuncioDto.fotoAnuncio(),
                 productoDtoToProducto(anuncioDto.productoAsociado()),
                 anuncioDto.precioInicial()
@@ -36,6 +36,7 @@ public class AnuncioMapper {
         return new AnuncioDto(
                 anuncio.getNombreAnuncio(),
                 anuncio.getCodigoAnuncio(),
+                anuncio.getFechaFinal(),
                 anuncio.getDescripcionAnuncio(),
                 anuncio.getFotoAnuncio(),
                 productoToProductoDto(anuncio.getProductoAsociado()),

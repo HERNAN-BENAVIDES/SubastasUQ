@@ -1,5 +1,6 @@
 package co.edu.uniquindio.subastasuq.model;
 
+import co.edu.uniquindio.subastasuq.excepcions.AnuncioException;
 import co.edu.uniquindio.subastasuq.excepcions.ProductoException;
 import co.edu.uniquindio.subastasuq.model.services.IUsuarioAnuncianteService;
 
@@ -80,5 +81,43 @@ public class UsuarioAnunciante extends Usuario implements IUsuarioAnuncianteServ
             throw new ProductoException("El Producto seleccionado no existe");
         }
 
+    }
+
+    public boolean agregarAnuncio(Anuncio anuncio) throws AnuncioException {
+        if(!verificarExistenciaAnuncio(anuncio)){
+            getListAnuncios().add(anuncio);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean verificarExistenciaAnuncio(Anuncio anuncio) throws AnuncioException {
+        if (getListAnuncios().contains(anuncio)) {
+            throw new AnuncioException("El producto ya se encuentra registrado");
+        }
+        return false;
+    }
+
+    public boolean eliminarAnuncio(Anuncio anuncio) throws AnuncioException {
+        if(anuncio != null){
+            listAnuncios.remove(anuncio);
+            return true;
+        }else{
+            throw new AnuncioException("El Producto seleccionado no existe");
+        }
+    }
+
+    public boolean actualizarAnuncio(Anuncio elementoSeleccionado, Anuncio anuncioDto) throws AnuncioException {
+        if(elementoSeleccionado == null){
+            throw new AnuncioException("El anuncio a actualizar no existe");
+        }else{
+            int i = getListAnuncios().indexOf(elementoSeleccionado);
+
+            if (i != -1) {
+                getListAnuncios().set(i, anuncioDto); // Reemplaza el producto antiguo con el producto actualizado
+                return true; // Retorna true para indicar que se actualizó exitosamente
+            }
+        }
+        return false;
     }
 }

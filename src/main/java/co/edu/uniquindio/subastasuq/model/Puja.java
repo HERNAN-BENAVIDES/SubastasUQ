@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 public class Puja implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private String codigo;
     private LocalDateTime fecha = LocalDateTime.now();
     private Anuncio anuncioAsociado;
     private Double oferta;
@@ -15,18 +14,9 @@ public class Puja implements Serializable {
 
     }
 
-    public Puja(String codigo, Double oferta, Anuncio anuncioAsociado) {
-        this.codigo = codigo;
+    public Puja(Double oferta, Anuncio anuncioAsociado) {
         this.oferta = oferta;
         this.anuncioAsociado = anuncioAsociado;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     public LocalDateTime getFecha() {

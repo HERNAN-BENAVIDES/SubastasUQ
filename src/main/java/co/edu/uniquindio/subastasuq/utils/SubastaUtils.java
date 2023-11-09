@@ -2,6 +2,9 @@ package co.edu.uniquindio.subastasuq.utils;
 
 import co.edu.uniquindio.subastasuq.model.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class SubastaUtils {
 
     public static Subasta inicializarDatos(){
@@ -28,12 +31,16 @@ public class SubastaUtils {
         Producto producto7 = new Producto("Bicicleta", "Deporte", "12345", "Nuevo");
         Producto producto8 = new Producto("Finca", "Bienraiz", "12345", "Nuevo");
 
-        Anuncio anuncio = new Anuncio("Moto", "12", "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
-        Anuncio anuncio1 = new Anuncio("Moto1", "12", "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
-        Anuncio anuncio2 = new Anuncio("Moto2", "12", "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
-        Anuncio anuncio3 = new Anuncio("Moto3", "12", "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
-        Anuncio anuncio4 = new Anuncio("Moto4", "12", "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
-        Anuncio anuncio5 = new Anuncio("Moto5", "12", "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
+        String fechaHoraString = "2023-11-07 21:00"; // La fecha y hora como una cadena
+        LocalDateTime fechaHora = LocalDateTime.parse(fechaHoraString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+
+
+        Anuncio anuncio = new Anuncio("Moto", "12", fechaHora, "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto3, 50000.0);
+        Anuncio anuncio1 = new Anuncio("Moto1", "12", fechaHora, "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
+        Anuncio anuncio2 = new Anuncio("Moto2", "12", fechaHora, "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
+        Anuncio anuncio3 = new Anuncio("Moto3", "12", fechaHora, "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
+        Anuncio anuncio4 = new Anuncio("Moto4", "12", fechaHora, "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
+        Anuncio anuncio5 = new Anuncio("Moto5", "12", fechaHora, "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
 
         anunciante1.getListProductos().add(producto1);
         anunciante1.getListProductos().add(producto2);

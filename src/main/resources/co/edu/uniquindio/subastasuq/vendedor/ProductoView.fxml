@@ -36,7 +36,7 @@
                 </Label>
                 <GridPane>
                   <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="69.0" minWidth="7.0" prefWidth="7.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="7.0" prefWidth="7.0" />
                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.0" minWidth="10.0" prefWidth="113.0" />
                     <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="7.0" prefWidth="7.0" />

@@ -1,5 +1,6 @@
 package co.edu.uniquindio.subastasuq.controller;
 
+import co.edu.uniquindio.subastasuq.excepcions.AnuncioException;
 import co.edu.uniquindio.subastasuq.excepcions.AutenticacionException;
 import co.edu.uniquindio.subastasuq.excepcions.ProductoException;
 import co.edu.uniquindio.subastasuq.excepcions.UsuarioException;
@@ -77,7 +78,6 @@ public class ModelFactoryController {
     private void cargarDatosBase() {
         subasta = SubastaUtils.inicializarDatos();
     }
-
 
 
 
@@ -165,6 +165,29 @@ public class ModelFactoryController {
         return nombres;
     }
 
+    public ProductoDto obtenerProductoSeleccionado(String nombreProducto) {
+        List<Producto> listaProductos = usuarioAnunciante.getListProductos();
+
+        for (Producto producto: listaProductos) {
+            if (producto.getNombre().equals(nombreProducto)){
+                return ProductoMapper.productoToProductoDto(producto);
+            }
+        }
+        return  null;
+    }
+
+    public boolean agregarAnuncio(AnuncioDto anuncioDto) throws AnuncioException {
+        return usuarioAnunciante.agregarAnuncio(AnuncioMapper.anuncioDtoToAnuncio(anuncioDto));
+    }
+
+    public boolean eliminarAnuncio(AnuncioDto elementoSeleccionado) throws AnuncioException {
+        return usuarioAnunciante.eliminarAnuncio(AnuncioMapper.anuncioDtoToAnuncio(elementoSeleccionado));
+    }
+
+    public boolean actualizarAnuncio(AnuncioDto elementoSeleccionado, AnuncioDto anuncioDto) throws AnuncioException {
+        return usuarioAnunciante.actualizarAnuncio(AnuncioMapper.anuncioDtoToAnuncio(elementoSeleccionado),
+                AnuncioMapper.anuncioDtoToAnuncio(anuncioDto));
+    }
 
     /*
     -----------------------------------------------------------------------------------------------------------

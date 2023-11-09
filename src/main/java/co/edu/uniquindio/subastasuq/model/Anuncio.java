@@ -1,6 +1,7 @@
 package co.edu.uniquindio.subastasuq.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Anuncio implements Serializable{
@@ -8,6 +9,7 @@ public class Anuncio implements Serializable{
     private static final long serialVersionUID = 1L;
     private String nombreAnuncio;
     private String codigoAnuncio;
+    private LocalDateTime fechaFinal;
     private String descripcionAnuncio;
     private String fotoAnuncio;
     private Producto productoAsociado;
@@ -18,9 +20,10 @@ public class Anuncio implements Serializable{
 
     }
 
-    public Anuncio(String nombreAnuncio, String codigoAnuncio, String descripcionAnuncio, String fotoAnuncio, Producto productoAsociado, Double precioInicial) {
+    public Anuncio(String nombreAnuncio, String codigoAnuncio, LocalDateTime fechaFinal, String descripcionAnuncio, String fotoAnuncio, Producto productoAsociado, Double precioInicial) {
         this.nombreAnuncio = nombreAnuncio;
         this.codigoAnuncio = codigoAnuncio;
+        this.fechaFinal = fechaFinal;
         this.descripcionAnuncio = descripcionAnuncio;
         this.fotoAnuncio = fotoAnuncio;
         this.productoAsociado = productoAsociado;
@@ -99,5 +102,11 @@ public class Anuncio implements Serializable{
     }
 
 
+    public LocalDateTime getFechaFinal() {
+        return fechaFinal;
+    }
 
+    public void setFechaFinal(LocalDateTime fechaFinal) {
+        this.fechaFinal = fechaFinal;
+    }
 }

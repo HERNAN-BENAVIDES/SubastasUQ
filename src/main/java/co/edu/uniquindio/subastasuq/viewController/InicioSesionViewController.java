@@ -6,6 +6,7 @@ import co.edu.uniquindio.subastasuq.utils.AlertaUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,6 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -78,15 +80,23 @@ public class InicioSesionViewController {
     private void abrirVentanaComprador() {
         try {
             Stage ventanaActual = (Stage) btIniciarSesion.getScene().getWindow(); // Reemplaza yourButton con el control que desencadena la acción.
+
             // Cargar el archivo FXML de la nueva ventana
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/subastasuq/comprador/CompradorView.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage nuevaVentana = new Stage();
             nuevaVentana.setScene(scene);
-            ventanaActual.close();
+
+            nuevaVentana.setX(ventanaActual.getX());
+            nuevaVentana.setY(ventanaActual.getY());
+            nuevaVentana.setWidth(ventanaActual.getWidth());
+            nuevaVentana.setHeight(ventanaActual.getHeight());
+
             // Mostrar la nueva ventana
             nuevaVentana.show();
+            ventanaActual.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -95,19 +105,29 @@ public class InicioSesionViewController {
     private void abrirVentanaAnunciante() {
         try {
             Stage ventanaActual = (Stage) btIniciarSesion.getScene().getWindow();
+
             // Cargar el archivo FXML de la nueva ventana
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/subastasuq/vendedor/AnuncianteView.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage nuevaVentana = new Stage();
             nuevaVentana.setScene(scene);
-            ventanaActual.close();
+
+            // Configurar la nueva ventana en la misma posición y con el mismo tamaño
+            nuevaVentana.setX(ventanaActual.getX());
+            nuevaVentana.setY(ventanaActual.getY());
+            nuevaVentana.setWidth(ventanaActual.getWidth());
+            nuevaVentana.setHeight(ventanaActual.getHeight());
+
             // Mostrar la nueva ventana
             nuevaVentana.show();
+            ventanaActual.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
 
     private String determinarTipo() {
         if(rbComprador.isSelected()){

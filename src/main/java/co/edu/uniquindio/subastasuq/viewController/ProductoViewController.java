@@ -81,7 +81,7 @@ public class ProductoViewController {
      * @param event Objeto ActionEvent que representa el evento que desencadenó la acción.
      */
     @FXML
-    void actualizarProductoAction(ActionEvent event) throws ProductoException {
+    void actualizarProductoAction(ActionEvent event){
         actualizarProducto();
     }
 
@@ -92,7 +92,7 @@ public class ProductoViewController {
      * @param event Objeto ActionEvent que representa el evento que desencadenó la acción.
      */
     @FXML
-    void eliminarProductoAction(ActionEvent event) throws ProductoException {
+    void eliminarProductoAction(ActionEvent event){
         eliminarProducto();
     }
 
