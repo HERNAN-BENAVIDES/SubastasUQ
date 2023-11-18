@@ -50,7 +50,7 @@ public class Subasta implements ISubastaService, Serializable {
         return listAnunciantes.contains(usuario);
     }
 
-    public UsuarioAnunciante obtenerUsuarioAnunciante(String username) throws UsuarioException {
+    public UsuarioAnunciante obtenerAnunciante(String username) throws UsuarioException {
         for (UsuarioAnunciante usuario : listAnunciantes) {
             if (usuario.getUsername().equals(username)) {
                 return usuario;
@@ -74,7 +74,29 @@ public class Subasta implements ISubastaService, Serializable {
         }
     }
 
+    @Override
+    public List<Anuncio> getListAnuncios() {
+        List<Anuncio> anunciosActivos = new ArrayList<>();
 
+        for (UsuarioAnunciante anunciante : listAnunciantes) {
+            for (Anuncio anuncio : anunciante.getListAnuncios()) {
+                if (anuncio.getIsActivo()) {
+                    anunciosActivos.add(anuncio);
+                }
+            }
+        }
+        return anunciosActivos;
+    }
+
+    @Override
+    public UsuarioComprador obtenerComprador(String user) throws UsuarioException {
+        for (UsuarioComprador comprador : listCompradores) {
+            if (comprador.getUsername().equals(user)) {
+                return comprador;
+            }
+        }
+        throw new UsuarioException("Usuario no encontrado");
+    }
 
 
 }

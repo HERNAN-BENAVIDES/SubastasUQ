@@ -2,6 +2,8 @@ package co.edu.uniquindio.subastasuq.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Anuncio implements Serializable{
@@ -15,6 +17,9 @@ public class Anuncio implements Serializable{
     private Producto productoAsociado;
     private Double precioInicial;
     private Double pujaMasAlta;
+    private Boolean isActivo;
+    private String tipoAnuncio;
+    private List<Puja> listPujas;
 
     public Anuncio() {
 
@@ -27,8 +32,11 @@ public class Anuncio implements Serializable{
         this.descripcionAnuncio = descripcionAnuncio;
         this.fotoAnuncio = fotoAnuncio;
         this.productoAsociado = productoAsociado;
+        this.tipoAnuncio = productoAsociado.getTipoProducto();
         this.precioInicial = precioInicial;
         this.pujaMasAlta = precioInicial;
+        this.isActivo = true;
+        this.listPujas = new ArrayList<>();
     }
 
     public String getNombreAnuncio() {
@@ -79,14 +87,20 @@ public class Anuncio implements Serializable{
         this.precioInicial = precioInicial;
     }
 
-
-
     public Double getPujaMasAlta() {
         return pujaMasAlta;
     }
 
     public void setPujaMasAlta(Double pujaMasAlta) {
         this.pujaMasAlta = pujaMasAlta;
+    }
+
+    public boolean getIsActivo() {
+        return isActivo;
+    }
+
+    public void setIsActivo(boolean activo) {
+        this.isActivo = activo;
     }
 
     @Override
@@ -108,5 +122,22 @@ public class Anuncio implements Serializable{
 
     public void setFechaFinal(LocalDateTime fechaFinal) {
         this.fechaFinal = fechaFinal;
+    }
+
+    public List<Puja> getListPujas() {
+        return listPujas;
+    }
+
+    public void setListPujas(List<Puja> listPujas) {
+        this.listPujas = listPujas;
+    }
+
+
+    public String getTipoAnuncio() {
+        return tipoAnuncio;
+    }
+
+    public void setTipoAnuncio(String tipoAnuncio) {
+        this.tipoAnuncio = tipoAnuncio;
     }
 }

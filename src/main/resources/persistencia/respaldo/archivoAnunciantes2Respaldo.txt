@@ -1,4 +1,0 @@
-Dario@@Cordoba@@1234@@20@@dariobenavides42@gmail.com@@1234##TV@@Tecnologia@@12345@@Nuevo##Moto@@Vehiculo@@12345@@Nuevo
-Ana@@Madrid@@5678@@25@@ana@example.com@@5678##Bicicleta@@Deporte@@12345@@Nuevo##Casa@@Bienraiz@@12345@@Nuevo##weweqwe@@Tecnologia@@12342@@Nuevo
-Juan@@Barcelona@@9012@@30@@juan@example.com@@9012##Televisor@@Tecnologia@@12345@@Usado##MotoGP@@Vehiculo@@12345@@Nuevo
-Maria@@Valencia@@3456@@22@@maria@example.com@@3456##Bicicleta@@Deporte@@12345@@Nuevo##Finca@@Bienraiz@@12345@@Nuevo

@@ -308,7 +308,7 @@ public class ProductoViewController {
         });
 
         // Crear una lista de los tipos de productos
-        List<String> tiposProductos = Arrays.asList("Selecciona", "Tecnologia", "Hogar", "Deporte", "Vehiculo", "Bienraiz");
+        List<String> tiposProductos = Arrays.asList("Selecciona", "Tecnologia", "Hogar", "Deporte", "Vehiculo", "Bien raiz");
         ObservableList<String> tiposProductosList = FXCollections.observableArrayList(tiposProductos);
         cbxTipo.setItems(tiposProductosList);
 

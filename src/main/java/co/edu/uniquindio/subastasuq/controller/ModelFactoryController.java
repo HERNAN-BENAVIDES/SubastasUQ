@@ -6,11 +6,11 @@ import co.edu.uniquindio.subastasuq.excepcions.ProductoException;
 import co.edu.uniquindio.subastasuq.excepcions.UsuarioException;
 import co.edu.uniquindio.subastasuq.mapping.dto.AnuncioDto;
 import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
+import co.edu.uniquindio.subastasuq.mapping.dto.PujaDto;
 import co.edu.uniquindio.subastasuq.mapping.mappers.AnuncioMapper;
 import co.edu.uniquindio.subastasuq.mapping.mappers.ProductoMapper;
-import co.edu.uniquindio.subastasuq.model.Producto;
-import co.edu.uniquindio.subastasuq.model.Subasta;
-import co.edu.uniquindio.subastasuq.model.UsuarioAnunciante;
+import co.edu.uniquindio.subastasuq.mapping.mappers.PujaMapper;
+import co.edu.uniquindio.subastasuq.model.*;
 import co.edu.uniquindio.subastasuq.utils.Persistencia;
 import co.edu.uniquindio.subastasuq.utils.SubastaUtils;
 
@@ -19,25 +19,14 @@ import java.util.List;
 
 public class ModelFactoryController {
 
-    private static ModelFactoryController instance;
     private Subasta subasta;
-    private UsuarioAnunciante usuarioAnunciante;
+    private UsuarioAnunciante anunciante;
+    private UsuarioComprador comprador;
 
     public ModelFactoryController() {
-        //1
         cargarDatosBase();
 
-        //2
-//        salvarDatosPrueba();
-//        cargarDatosPrueba();
-
-        //3
-//        guardarResourceBinario();
-//        cargarResourceBinario();
-
-        //4
-//        guardarResourceXML();
-//        cargarResourceXML();
+        //cargarResourceXML();
 
         if(subasta == null){
             cargarDatosBase();
@@ -47,12 +36,18 @@ public class ModelFactoryController {
 
     }
 
-    public void setUsuarioAnunciante(UsuarioAnunciante usuarioAnunciante){
-        this.usuarioAnunciante = usuarioAnunciante;
+    public void setAnunciante(UsuarioAnunciante anunciante){
+        this.anunciante = anunciante;
+    }
+    public void setComprador(UsuarioComprador comprador) {
+        this.comprador = comprador;
     }
 
-    public UsuarioAnunciante obtenerUsuarioAnunciante(String user) throws UsuarioException {
-        return subasta.obtenerUsuarioAnunciante(user);
+    public UsuarioAnunciante obtenerAnunciante(String user) throws UsuarioException {
+        return subasta.obtenerAnunciante(user);
+    }
+    public UsuarioComprador obtenerComprador(String user) throws UsuarioException {
+        return subasta.obtenerComprador(user);
     }
 
     private void cargarDatosPrueba() {
@@ -65,36 +60,22 @@ public class ModelFactoryController {
 
     }
 
-    private void salvarDatosPrueba() {
-        try {
-            Persistencia.guardarAnunciantes(subasta.getListAnunciantes());
-            Persistencia.guardarAnunciantes2(subasta.getListAnunciantes());
-            Persistencia.guardarCompradores(subasta.getListCompradores());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private void cargarDatosBase() {
         subasta = SubastaUtils.inicializarDatos();
     }
 
-
-
-
     /*
     -----------------------------------------------------------------------------------------------------------
     --------------------------------------GET INSTANCE--------------------------------------------------------------
- */
+    */
+    public static ModelFactoryController getInstance() {
+        return SingletonHolder.eINSTANCE;
+    }
     private static class SingletonHolder {
         private final static ModelFactoryController eINSTANCE = new ModelFactoryController();
     }
 
-    public static ModelFactoryController getInstance() {
-        return SingletonHolder.eINSTANCE;
-    }
-
-        /*
+    /*
     -----------------------------------------------------------------------------------------------------------
     --------------------------------------INICIO SESION--------------------------------------------------------------
      */
@@ -113,32 +94,29 @@ public class ModelFactoryController {
      */
 
     public boolean agregarProducto(ProductoDto productoDto) throws ProductoException {
-        if(usuarioAnunciante.agregarProducto(ProductoMapper.productoDtoToProducto(productoDto))){
-            Persistencia.guardarRegistroLog("Usuario: " + usuarioAnunciante.getNombre() + " " + usuarioAnunciante.getApellido(),1,"Registrar producto");
-            salvarDatosPrueba();
+        if(anunciante.agregarProducto(ProductoMapper.productoDtoToProducto(productoDto))){
+            Persistencia.guardarRegistroLog("Usuario: " + anunciante.getNombre() + " " + anunciante.getApellido(),1,"Registrar producto");
             return true;
         }
         return false;
     }
 
     public List<ProductoDto> obtenerProductos() {
-        return ProductoMapper.getListProductos(usuarioAnunciante.getListProductos());
+        return ProductoMapper.getListProductos(anunciante.getListProductos());
     }
 
     public boolean eliminarProducto(ProductoDto productoSeleccionado) throws ProductoException {
-        if(usuarioAnunciante.eliminarProducto(ProductoMapper.productoDtoToProducto(productoSeleccionado))){
-            registrarAccionesSistema("Usuario: " + usuarioAnunciante.getNombre() + " " + usuarioAnunciante.getApellido(),1,"Eliminar producto");
-            salvarDatosPrueba();
+        if(anunciante.eliminarProducto(ProductoMapper.productoDtoToProducto(productoSeleccionado))){
+            registrarAccionesSistema("Usuario: " + anunciante.getNombre() + " " + anunciante.getApellido(),1,"Eliminar producto");
             return true;
         }
         return false;
     }
 
     public boolean actualizarProducto(ProductoDto productoSeleccionado, ProductoDto productoNuevo) throws ProductoException {
-        if(usuarioAnunciante.actualizarProducto(ProductoMapper.productoDtoToProducto(productoSeleccionado),
+        if(anunciante.actualizarProducto(ProductoMapper.productoDtoToProducto(productoSeleccionado),
                 ProductoMapper.productoDtoToProducto(productoNuevo))){
-            registrarAccionesSistema("Usuario: " + usuarioAnunciante.getNombre() + " " + usuarioAnunciante.getApellido(),1,"Actualizar producto");
-            salvarDatosPrueba();
+            registrarAccionesSistema("Usuario: " + anunciante.getNombre() + " " + anunciante.getApellido(),1,"Actualizar producto");
             return  true;
         }
 
@@ -150,12 +128,16 @@ public class ModelFactoryController {
     --------------------------------------ANUNCIOS--------------------------------------------------------------
      */
 
-    public List<AnuncioDto> obtenerAnuncios() {
-        return AnuncioMapper.getListAnunciosDto(usuarioAnunciante.getListAnuncios());
+    public List<AnuncioDto> obtenerAnunciosActivos() {
+        return AnuncioMapper.getListAnunciosDto(anunciante.getListAnunciosActivos());
+    }
+
+    public List<AnuncioDto> obtenerAnunciosInactivos() {
+        return AnuncioMapper.getListAnunciosDto(anunciante.getListAnunciosInactivos());
     }
 
     public String[] obtenerProductosNombres() {
-        List<Producto> listaProductos = usuarioAnunciante.getListProductos();
+        List<Producto> listaProductos = anunciante.getListProductos();
         String[] nombres = new String[listaProductos.size()+1];
         nombres[0] = "Selecciona";
         for (int i = 0; i < listaProductos.size(); i++) {
@@ -166,7 +148,7 @@ public class ModelFactoryController {
     }
 
     public ProductoDto obtenerProductoSeleccionado(String nombreProducto) {
-        List<Producto> listaProductos = usuarioAnunciante.getListProductos();
+        List<Producto> listaProductos = anunciante.getListProductos();
 
         for (Producto producto: listaProductos) {
             if (producto.getNombre().equals(nombreProducto)){
@@ -177,16 +159,49 @@ public class ModelFactoryController {
     }
 
     public boolean agregarAnuncio(AnuncioDto anuncioDto) throws AnuncioException {
-        return usuarioAnunciante.agregarAnuncio(AnuncioMapper.anuncioDtoToAnuncio(anuncioDto));
+        return anunciante.agregarAnuncio(AnuncioMapper.anuncioDtoToAnuncio(anuncioDto));
     }
 
     public boolean eliminarAnuncio(AnuncioDto elementoSeleccionado) throws AnuncioException {
-        return usuarioAnunciante.eliminarAnuncio(AnuncioMapper.anuncioDtoToAnuncio(elementoSeleccionado));
+        return anunciante.eliminarAnuncio(AnuncioMapper.anuncioDtoToAnuncio(elementoSeleccionado));
     }
 
     public boolean actualizarAnuncio(AnuncioDto elementoSeleccionado, AnuncioDto anuncioDto) throws AnuncioException {
-        return usuarioAnunciante.actualizarAnuncio(AnuncioMapper.anuncioDtoToAnuncio(elementoSeleccionado),
+        return anunciante.actualizarAnuncio(AnuncioMapper.anuncioDtoToAnuncio(elementoSeleccionado),
                 AnuncioMapper.anuncioDtoToAnuncio(anuncioDto));
+    }
+
+    public List<PujaDto> obtenerListaPujasAnuncio(AnuncioDto anuncioDto) {
+        return PujaMapper.getListPujas(AnuncioMapper.anuncioDtoToAnuncio(anuncioDto).getListPujas());
+    }
+
+    public boolean aceptarPuja(AnuncioDto anuncioSeleccionado, PujaDto pujaSeleccionada) {
+        List<Puja> listaPujas = AnuncioMapper.anuncioDtoToAnuncio(anuncioSeleccionado).getListPujas();
+
+        Puja pujaEnLista = listaPujas.stream()
+                .filter(puja -> puja.equals(PujaMapper.pujaDtoToPuja(pujaSeleccionada)))
+                .findFirst()
+                .orElse(null);
+
+        if (pujaEnLista != null) {
+            pujaEnLista.setAceptada(true);
+            return true;
+        }
+
+        return false;
+    }
+
+
+    public void cerrarAnuncio(AnuncioDto anuncioSeleccionado) throws AnuncioException {
+        if(anunciante.getListAnuncios().contains(AnuncioMapper.anuncioDtoToAnuncio(anuncioSeleccionado))){
+            Anuncio anuncio = AnuncioMapper.anuncioDtoToAnuncio(anuncioSeleccionado);
+            anuncio.setIsActivo(false);
+            anunciante.actualizarAnuncio(AnuncioMapper.anuncioDtoToAnuncio(anuncioSeleccionado),anuncio);
+        }
+    }
+
+    public List<AnuncioDto> obtenerAnunciosSubasta() {
+        return AnuncioMapper.getListAnunciosDto(subasta.getListAnuncios());
     }
 
     /*
@@ -197,22 +212,10 @@ public class ModelFactoryController {
         Persistencia.guardarRegistroLog(mensaje,nivel,accion);
     }
 
-
     /*
     -----------------------------------------------------------------------------------------------------------
-    --------------------------------------BINARIO--------------------------------------------------------------
-     */
-    private void guardarResourceBinario() {
-        Persistencia.guardarRecursoBancoBinario(subasta);
-    }
-    private void cargarResourceBinario() {
-        subasta = Persistencia.cargarRecursoBancoBinario();
-    }
-
-        /*
------------------------------------------------------------------------------------------------------------
---------------------------------------XML--------------------------------------------------------------
- */
+    --------------------------------------XML--------------------------------------------------------------
+    */
 
     private void cargarResourceXML() {
         subasta = Persistencia.cargarRecursoBancoXML();

@@ -24,6 +24,8 @@ public class AnuncioMapper {
                 anuncioDto.precioInicial()
         );
         anuncio.setPujaMasAlta(anuncioDto.pujaMasAlta());
+        anuncio.setIsActivo(anuncio.getIsActivo());
+        anuncio.setListPujas(PujaMapper.setListPujas(anuncioDto.listPujas()));
         return anuncio;
 
     }
@@ -41,7 +43,10 @@ public class AnuncioMapper {
                 anuncio.getFotoAnuncio(),
                 productoToProductoDto(anuncio.getProductoAsociado()),
                 anuncio.getPrecioInicial(),
-                anuncio.getPujaMasAlta()
+                anuncio.getPujaMasAlta(),
+                anuncio.getIsActivo(),
+                anuncio.getTipoAnuncio(),
+                PujaMapper.getListPujas(anuncio.getListPujas())
         );
     }
 

@@ -4,7 +4,6 @@ module co.edu.uniquindio.subastasuq {
     requires org.mapstruct;
     requires java.logging;
     requires java.desktop;
-    requires com.jfoenix;
 
     exports co.edu.uniquindio.subastasuq.model;
     opens co.edu.uniquindio.subastasuq to javafx.fxml;

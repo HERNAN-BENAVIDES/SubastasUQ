@@ -120,4 +120,24 @@ public class UsuarioAnunciante extends Usuario implements IUsuarioAnuncianteServ
         }
         return false;
     }
+
+    public List<Anuncio> getListAnunciosActivos() {
+        List<Anuncio> anunciosActivos = new ArrayList<>();
+        for (Anuncio anuncio: listAnuncios) {
+            if(anuncio.getIsActivo()){
+                anunciosActivos.add(anuncio);
+            }
+        }
+        return anunciosActivos;
+    }
+
+    public List<Anuncio> getListAnunciosInactivos() {
+        List<Anuncio> anunciosInactivos = new ArrayList<>();
+        for (Anuncio anuncio: listAnuncios) {
+            if(!anuncio.getIsActivo()){
+                anunciosInactivos.add(anuncio);
+            }
+        }
+        return anunciosInactivos;
+    }
 }

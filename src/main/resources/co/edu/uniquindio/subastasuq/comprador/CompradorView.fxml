@@ -1,29 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <TabPane prefHeight="700.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
-            <tabs>
-                <Tab text="Anuncios">
-                    <content>
-                        <VBox prefHeight="600.0" prefWidth="950.0">
-                            <children>
-                                <fx:include source="AnunciosView.fxml" />
-                            </children>
-                        </VBox>
-                    </content>
-                </Tab>
-                <Tab text="Untitled Tab 2">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
-    </children>
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.subastasuq.viewController.CompradorViewController">
+   <children>
+      <SplitPane dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true" VBox.vgrow="ALWAYS">
+         <items>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox spacing="15.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label alignment="CENTER" style="&#10;" text="Crear anuncios" textAlignment="CENTER" wrapText="false">
+                           <font>
+                              <Font size="18.0" fx:id="x11" />
+                           </font>
+                           <textFill>
+                              <Color red="0.624" green="0.624" blue="0.624" fx:id="x21" />
+                           </textFill>
+                        </Label>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="5.0" prefWidth="5.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="189.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="5.0" prefWidth="5.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <CheckBox fx:id="tecnologiaCheckBox" mnemonicParsing="false" onAction="#actualizarListaAnuncios" style="-fx-background-radius: 20;" text="Tecnologia" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="hogarCheckBox" mnemonicParsing="false" onAction="#actualizarListaAnuncios" text="Hogar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <CheckBox fx:id="deportesCheckBox" mnemonicParsing="false" onAction="#actualizarListaAnuncios" text="Deportes" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <CheckBox fx:id="vehiculosCheckBox" mnemonicParsing="false" onAction="#actualizarListaAnuncios" text="Vehiculos" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <CheckBox fx:id="bienRaizCheckBox" mnemonicParsing="false" onAction="#actualizarListaAnuncios" text="Bien raiz" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label alignment="CENTER" style="&#10;" text="Categorias" textAlignment="CENTER" wrapText="false" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font size="18.0" fx:id="x112" />
+                                 </font>
+                                 <textFill>
+                                    <Color red="0.624" green="0.624" blue="0.624" fx:id="x212" />
+                                 </textFill>
+                              </Label>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <VBox prefHeight="598.0" prefWidth="278.0">
+               <children>
+                  <Label alignment="CENTER" style="&#10;" text="Anuncios" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x111" />
+                     </font>
+                     <textFill>
+                        <Color red="0.624" green="0.624" blue="0.624" fx:id="x211" />
+                     </textFill>
+                  </Label>
+                  <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="574.0" prefWidth="443.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox spacing="15.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label alignment="CENTER" style="&#10;" text="Detalles" textAlignment="CENTER" wrapText="false">
+                           <font>
+                              <Font size="18.0" fx:id="x12" />
+                           </font>
+                           <textFill>
+                              <Color red="0.624" green="0.624" blue="0.624" fx:id="x22" />
+                           </textFill>
+                        </Label>
+                        <GridPane prefHeight="120.0" prefWidth="220.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="164.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <TextArea fx:id="txtInformation" editable="false" prefHeight="128.0" prefWidth="201.0" style="-fx-background-radius: 200;" wrapText="true" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </items>
+      </SplitPane>
+   </children>
 </VBox>

@@ -4,7 +4,8 @@ import java.time.LocalDateTime;
 
 public record PujaDto(
         LocalDateTime fecha,
-        AnuncioDto anuncioAsociado,
-        Double oferta
+        Double oferta,
+        UsuarioCompradorDto compradorAsociado,
+        Boolean isAceptada
 ) {
 }
