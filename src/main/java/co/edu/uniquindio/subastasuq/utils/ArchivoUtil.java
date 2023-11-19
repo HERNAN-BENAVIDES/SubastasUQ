@@ -202,29 +202,29 @@ public  class ArchivoUtil {
 //        }
 //    }
 
-//    public static void salvarRecursoSerializadoXML(String rutaArchivo, Object objeto) throws IOException {
-//        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(rutaArchivo))) {
-//            oos.writeObject(objeto);
-//        }
-//    }
-//
-//    public static Object cargarRecursoSerializadoXML(String rutaArchivo) throws IOException, ClassNotFoundException {
-//        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(rutaArchivo))) {
-//            return ois.readObject();
-//        }
-//    }
-
     public static void salvarRecursoSerializadoXML(String rutaArchivo, Object objeto) throws IOException {
-        try (XMLEncoder xmlEncoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(rutaArchivo)))) {
-            xmlEncoder.writeObject(objeto);
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(rutaArchivo))) {
+            oos.writeObject(objeto);
         }
     }
 
-    public static Object cargarRecursoSerializadoXML(String rutaArchivo) throws IOException {
-        try (XMLDecoder xmlDecoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(rutaArchivo)))) {
-            return xmlDecoder.readObject();
+    public static Object cargarRecursoSerializadoXML(String rutaArchivo) throws IOException, ClassNotFoundException {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(rutaArchivo))) {
+            return ois.readObject();
         }
     }
+
+//   public static void salvarRecursoSerializadoXML(String rutaArchivo, Object objeto) throws IOException {
+//       try (XMLEncoder xmlEncoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(rutaArchivo)))) {
+//           xmlEncoder.writeObject(objeto);
+//       }
+//   }
+//
+//   public static Object cargarRecursoSerializadoXML(String rutaArchivo) throws IOException {
+//       try (XMLDecoder xmlDecoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(rutaArchivo)))) {
+//           return xmlDecoder.readObject();
+//       }
+//   }
 
 
 

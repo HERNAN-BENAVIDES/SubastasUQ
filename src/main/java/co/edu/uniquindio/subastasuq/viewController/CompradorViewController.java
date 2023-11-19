@@ -1,7 +1,14 @@
 package co.edu.uniquindio.subastasuq.viewController;
 
 import co.edu.uniquindio.subastasuq.controller.CompradorController;
+import co.edu.uniquindio.subastasuq.excepcions.PujaException;
 import co.edu.uniquindio.subastasuq.mapping.dto.AnuncioDto;
+import co.edu.uniquindio.subastasuq.mapping.dto.PujaDto;
+import co.edu.uniquindio.subastasuq.mapping.dto.UsuarioCompradorDto;
+import co.edu.uniquindio.subastasuq.utils.AlertaUtils;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -18,6 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompradorViewController {
+
+    @FXML
+    private Button btHacerOferta;
+    @FXML
+    private Button btOfertar;
     @FXML
     private CheckBox bienRaizCheckBox;
     @FXML
@@ -32,10 +44,22 @@ public class CompradorViewController {
     private ScrollPane scrollPane;
     @FXML
     private TextArea txtInformation;
+    @FXML
+    private TextField txtOferta;
+    @FXML
+    private TableView<PujaDto> tableMisPujas;
+    @FXML
+    private TableColumn<PujaDto, String> tcFecha;
+    @FXML
+    private TableColumn<PujaDto, String> tcOferta;
+
     private CompradorController compradorControllerService;
     private final List<AnuncioDto> listAnuncios = new ArrayList<>();
     private final List<AnuncioDto> listAnunciosFiltrada = new ArrayList<>();
     private AnuncioDto anuncioSeleccionado;
+
+    private ObservableList<PujaDto> listPujas = FXCollections.observableArrayList();
+    private PujaDto pujaSeleccionada;
 
 
     @FXML
@@ -47,7 +71,38 @@ public class CompradorViewController {
     private void intiView() {
         obtenerAnuncios();
         mostrarAnuncios();
-//        listenerCheckBox();
+        inicializarPujas();
+        listenerSelection();
+        inicializarCampo();
+    }
+
+    private void inicializarCampo() {
+        txtOferta.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                txtOferta.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+    }
+
+    private void inicializarPujas() {
+        tcFecha.setCellValueFactory(cellData -> new SimpleStringProperty(formatofecha(cellData.getValue().fecha())));
+        tcOferta.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().oferta())));
+    }
+
+    private void listenerSelection() {
+        tableMisPujas.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            pujaSeleccionada = newSelection;
+        });
+    }
+
+    private void actualizarTabla() {
+        tableMisPujas.getItems().clear();
+        obtenerPujas();
+        tableMisPujas.setItems(listPujas);
+    }
+
+    private void obtenerPujas() {
+        listPujas.addAll(compradorControllerService.obtenerListaPujasAnuncio(anuncioSeleccionado));
     }
 
     private void obtenerAnuncios() {
@@ -97,6 +152,7 @@ public class CompradorViewController {
         imagenView.setOnMouseClicked(event -> {
             anuncioSeleccionado = anuncioDto;
             mostrarDetallesAnuncio(anuncioDto);
+            actualizarTabla();
         });
 
         Label nombre = new Label("Nombre: " + anuncioDto.nombreAnuncio());
@@ -123,6 +179,8 @@ public class CompradorViewController {
     }
 
     private void actualizarAnuncios() {
+        limpiarCampos();
+        tableMisPujas.getItems().clear();
         listAnunciosFiltrada.clear();
         if(!tecnologiaCheckBox.isSelected() && !hogarCheckBox.isSelected() && !deportesCheckBox.isSelected() &&
             !vehiculosCheckBox.isSelected() && !bienRaizCheckBox.isSelected()){
@@ -146,5 +204,38 @@ public class CompradorViewController {
         scrollPane.setContent(null);
         GridPane gridPane = crearGridPane(listAnunciosFiltrada);
         scrollPane.setContent(gridPane);
+    }
+
+    @FXML
+    void ofertar(ActionEvent event) {
+        realizarPuja();
+    }
+
+    private void realizarPuja() {
+        try {
+            if(!txtOferta.getText().isEmpty()){
+                PujaDto pujaDto = crearPuja();
+                if(compradorControllerService.realizarPuja(pujaDto, anuncioSeleccionado)){
+                    anuncioSeleccionado.listPujas().add(pujaDto);
+                    tableMisPujas.getItems().add(pujaDto);
+                    AlertaUtils.mostrarAlertaInformacion("Se genero una oferta");
+                    obtenerAnuncios();
+                    mostrarAnuncios();
+                    limpiarCampos();
+                }
+            }
+        } catch (PujaException e) {
+            AlertaUtils.mostrarAlertaInformacion(e.getMessage());
+        }
+    }
+
+    private PujaDto crearPuja() {
+        UsuarioCompradorDto c = compradorControllerService.obtenerCompradorDto();
+        return new PujaDto(LocalDateTime.now(),Double.parseDouble(txtOferta.getText()),c,false);
+    }
+
+    private void limpiarCampos() {
+        txtOferta.clear();
+        txtInformation.clear();
     }
 }

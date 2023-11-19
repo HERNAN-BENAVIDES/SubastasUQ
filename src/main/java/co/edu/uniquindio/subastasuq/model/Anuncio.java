@@ -1,5 +1,7 @@
 package co.edu.uniquindio.subastasuq.model;
 
+import co.edu.uniquindio.subastasuq.mapping.dto.PujaDto;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -146,4 +148,18 @@ public class Anuncio implements Serializable{
     }
 
 
+    public int getPujasRealizadasPorUsuario(UsuarioComprador usuarioComprador) {
+        return (int) listPujas.stream()
+                .filter(puja -> puja.getCompradorAsociado().equals(usuarioComprador))
+                .count();
+    }
+
+    public void realizarPuja(UsuarioComprador usuarioComprador, Double oferta) {
+        Puja puja = new Puja(oferta,usuarioComprador);
+        listPujas.add(puja);
+    }
+
+    public List<Puja> getPujasUsuario(UsuarioComprador comprador) {
+        return listPujas.stream().filter(puja -> puja.getCompradorAsociado().equals(comprador)).toList();
+    }
 }

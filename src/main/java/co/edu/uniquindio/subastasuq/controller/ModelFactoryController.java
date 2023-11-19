@@ -1,13 +1,12 @@
 package co.edu.uniquindio.subastasuq.controller;
 
-import co.edu.uniquindio.subastasuq.excepcions.AnuncioException;
-import co.edu.uniquindio.subastasuq.excepcions.AutenticacionException;
-import co.edu.uniquindio.subastasuq.excepcions.ProductoException;
-import co.edu.uniquindio.subastasuq.excepcions.UsuarioException;
+import co.edu.uniquindio.subastasuq.excepcions.*;
 import co.edu.uniquindio.subastasuq.mapping.dto.AnuncioDto;
 import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
 import co.edu.uniquindio.subastasuq.mapping.dto.PujaDto;
+import co.edu.uniquindio.subastasuq.mapping.dto.UsuarioCompradorDto;
 import co.edu.uniquindio.subastasuq.mapping.mappers.AnuncioMapper;
+import co.edu.uniquindio.subastasuq.mapping.mappers.CompradorMapper;
 import co.edu.uniquindio.subastasuq.mapping.mappers.ProductoMapper;
 import co.edu.uniquindio.subastasuq.mapping.mappers.PujaMapper;
 import co.edu.uniquindio.subastasuq.model.*;
@@ -24,9 +23,9 @@ public class ModelFactoryController {
     private UsuarioComprador comprador;
 
     public ModelFactoryController() {
-        cargarDatosBase();
+//        cargarDatosBase();
 
-//        cargarResourceXML();
+        cargarResourceXML();
 
         if(subasta == null){
             cargarDatosBase();
@@ -202,6 +201,22 @@ public class ModelFactoryController {
         return AnuncioMapper.getListAnunciosDto(subasta.getListAnuncios());
     }
 
+    public List<PujaDto> obtenerPujasAnuncio(AnuncioDto anuncioSeleccionado) {
+        return PujaMapper.getListPujas(AnuncioMapper.anuncioDtoToAnuncio(anuncioSeleccionado).getPujasUsuario(comprador));
+    }
+
+    public Boolean realizarPuja(PujaDto pujaDto, AnuncioDto anuncioSeleccionado) throws PujaException {
+        if(comprador.realizarPuja(AnuncioMapper.anuncioDtoToAnuncio(anuncioSeleccionado), comprador)){
+            int i = subasta.getListAnuncios().indexOf(AnuncioMapper.anuncioDtoToAnuncio(anuncioSeleccionado));
+            subasta.getListAnuncios().get(i).getListPujas().add(PujaMapper.pujaDtoToPuja(pujaDto));
+            return true;
+        }
+        return false;
+    }
+
+    public UsuarioCompradorDto obtenerCompradorDto() {
+        return CompradorMapper.compradorToCompradorDto(comprador);
+    }
     /*
     -----------------------------------------------------------------------------------------------------------
     --------------------------------------LOG--------------------------------------------------------------

@@ -134,7 +134,7 @@ public class InicioSesionViewController {
 
     private void manejarCierre(WindowEvent windowEvent, Stage stage) {
         if(AlertaUtils.mostrarAlertaConfirmacion("¿Desea cerrar la aplicación?")){
-            //inicioSecionService.guardarCambios();
+            inicioSecionService.guardarCambios();
             stage.close();
         }else{
             windowEvent.consume();

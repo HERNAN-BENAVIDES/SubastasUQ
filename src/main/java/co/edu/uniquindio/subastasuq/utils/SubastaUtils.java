@@ -32,7 +32,7 @@ public class SubastaUtils {
 
         Anuncio anuncio = new Anuncio("Moto", "12", LocalDate.of(2023, 12, 24), LocalTime.of(21,0),"MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 160000.0);
         Anuncio anuncio1 = new Anuncio("Moto1", "12", LocalDate.of(2023, 12, 24),LocalTime.of(21,0), "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
-        Anuncio anuncio2 = new Anuncio("Moto1", "12", LocalDate.of(2023, 12, 24),LocalTime.of(21,0), "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
+        Anuncio anuncio2 = new Anuncio("Moto2", "12", LocalDate.of(2023, 12, 24),LocalTime.of(21,0), "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
 
         anuncio.setIsActivo(false);
    //     anuncio1.setIsActivo(true);
@@ -58,8 +58,8 @@ public class SubastaUtils {
 
         anunciante1.getListProductos().add(producto3);
         anunciante1.getListProductos().add(producto4);
+        anunciante1.getListAnuncios().add(anuncio);
         anunciante1.getListAnuncios().add(anuncio2);
-        anunciante1.getListAnuncios().add(anuncio1);
 
         subasta.getListAnunciantes().add(anunciante1);
 
