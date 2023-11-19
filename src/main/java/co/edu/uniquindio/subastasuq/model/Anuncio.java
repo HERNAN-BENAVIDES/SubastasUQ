@@ -1,7 +1,8 @@
 package co.edu.uniquindio.subastasuq.model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -11,13 +12,14 @@ public class Anuncio implements Serializable{
     private static final long serialVersionUID = 1L;
     private String nombreAnuncio;
     private String codigoAnuncio;
-    private LocalDateTime fechaFinal;
+    private LocalDate fechaFinal;
+    private LocalTime horaFinal;
     private String descripcionAnuncio;
     private String fotoAnuncio;
     private Producto productoAsociado;
     private Double precioInicial;
     private Double pujaMasAlta;
-    private Boolean isActivo;
+    private boolean isActivo;
     private String tipoAnuncio;
     private List<Puja> listPujas;
 
@@ -25,10 +27,11 @@ public class Anuncio implements Serializable{
 
     }
 
-    public Anuncio(String nombreAnuncio, String codigoAnuncio, LocalDateTime fechaFinal, String descripcionAnuncio, String fotoAnuncio, Producto productoAsociado, Double precioInicial) {
+    public Anuncio(String nombreAnuncio, String codigoAnuncio, LocalDate fechaFinal, LocalTime horaFinal, String descripcionAnuncio, String fotoAnuncio, Producto productoAsociado, Double precioInicial) {
         this.nombreAnuncio = nombreAnuncio;
         this.codigoAnuncio = codigoAnuncio;
         this.fechaFinal = fechaFinal;
+        this.horaFinal = horaFinal;
         this.descripcionAnuncio = descripcionAnuncio;
         this.fotoAnuncio = fotoAnuncio;
         this.productoAsociado = productoAsociado;
@@ -116,23 +119,24 @@ public class Anuncio implements Serializable{
     }
 
 
-    public LocalDateTime getFechaFinal() {
+    public LocalDate getFechaFinal() {
         return fechaFinal;
     }
-
-    public void setFechaFinal(LocalDateTime fechaFinal) {
+    public void setFechaFinal(LocalDate fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
-
+    public LocalTime getHoraFinal() {
+        return horaFinal;
+    }
+    public void setHoraFinal(LocalTime horaFinal) {
+        this.horaFinal = horaFinal;
+    }
     public List<Puja> getListPujas() {
         return listPujas;
     }
-
     public void setListPujas(List<Puja> listPujas) {
         this.listPujas = listPujas;
     }
-
-
     public String getTipoAnuncio() {
         return tipoAnuncio;
     }
@@ -140,4 +144,6 @@ public class Anuncio implements Serializable{
     public void setTipoAnuncio(String tipoAnuncio) {
         this.tipoAnuncio = tipoAnuncio;
     }
+
+
 }

@@ -323,24 +323,26 @@ public class Persistencia {
  */
 
     public static Subasta cargarRecursoBancoXML() {
-
         Subasta subasta = null;
 
         try {
             subasta = (Subasta) ArchivoUtil.cargarRecursoSerializadoXML(RUTA_ARCHIVO_SUBASTA_XML);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassCastException e) {
+            e.printStackTrace();
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return subasta;
 
+        return subasta;
     }
 
 
-    public static void guardarRecursoBancoXML(Subasta banco) {
+    public static void guardarRecursoSubastaXML(Subasta subasta) {
 
         try {
-            ArchivoUtil.salvarRecursoSerializadoXML(RUTA_ARCHIVO_SUBASTA_XML, banco);
+            ArchivoUtil.salvarRecursoSerializadoXML(RUTA_ARCHIVO_SUBASTA_XML, subasta);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

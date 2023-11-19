@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="19" class="java.beans.XMLDecoder">
+ <object class="co.edu.uniquindio.subastasuq.model.Subasta" id="Subasta0">
+  <void property="listAnunciantes">
+   <void method="add">
+    <object class="co.edu.uniquindio.subastasuq.model.UsuarioAnunciante">
+     <void property="apellido">
+      <string>Madrid</string>
+     </void>
+     <void property="cedula">
+      <string>5678</string>
+     </void>
+     <void property="edad">
+      <int>25</int>
+     </void>
+     <void property="listAnuncios">
+      <object class="java.util.ArrayList">
+       <void method="add">
+        <object class="co.edu.uniquindio.subastasuq.model.Anuncio" id="Anuncio0">
+         <void property="codigoAnuncio">
+          <string>12</string>
+         </void>
+         <void property="descripcionAnuncio">
+          <string>MT09</string>
+         </void>
+         <void property="fotoAnuncio">
+          <string>C:\Users\herna\OneDrive\Escritorio\mt15.png</string>
+         </void>
+         <void id="Boolean0" property="isActivo"/>
+         <void property="listPujas">
+          <object class="java.util.ArrayList">
+           <void method="add">
+            <object class="co.edu.uniquindio.subastasuq.model.Puja">
+             <void property="aceptada">
+              <boolean>true</boolean>
+             </void>
+             <void property="compradorAsociado">
+              <object class="co.edu.uniquindio.subastasuq.model.UsuarioComprador" id="UsuarioComprador0">
+               <void property="apellido">
+                <string>Barcelona</string>
+               </void>
+               <void property="cedula">
+                <string>1111</string>
+               </void>
+               <void property="edad">
+                <int>24</int>
+               </void>
+               <void property="listPujas">
+                <object class="java.util.ArrayList"/>
+               </void>
+               <void property="nombre">
+                <string>Elena</string>
+               </void>
+               <void property="password">
+                <string>abcd</string>
+               </void>
+               <void property="username">
+                <string>elena@example.com</string>
+               </void>
+              </object>
+             </void>
+             <void property="oferta">
+              <double>200000.0</double>
+             </void>
+            </object>
+           </void>
+           <void method="add">
+            <object class="co.edu.uniquindio.subastasuq.model.Puja" id="Puja0">
+             <void property="aceptada">
+              <object idref="Boolean0"/>
+             </void>
+             <void property="compradorAsociado">
+              <object idref="UsuarioComprador0"/>
+             </void>
+             <void property="oferta">
+              <double>200000.0</double>
+             </void>
+            </object>
+           </void>
+          </object>
+         </void>
+         <void property="nombreAnuncio">
+          <string>Moto</string>
+         </void>
+         <void property="precioInicial">
+          <double>160000.0</double>
+         </void>
+         <void property="productoAsociado">
+          <object class="co.edu.uniquindio.subastasuq.model.Producto" id="Producto0">
+           <void property="codigo">
+            <string>12345</string>
+           </void>
+           <void property="estado">
+            <string>Nuevo</string>
+           </void>
+           <void property="nombre">
+            <string>Bicicleta</string>
+           </void>
+           <void property="tipoProducto">
+            <string>Deporte</string>
+           </void>
+          </object>
+         </void>
+         <void property="pujaMasAlta">
+          <double>160000.0</double>
+         </void>
+         <void property="tipoAnuncio">
+          <string>Deporte</string>
+         </void>
+        </object>
+       </void>
+       <void method="add">
+        <object class="co.edu.uniquindio.subastasuq.model.Anuncio" id="Anuncio1">
+         <void property="codigoAnuncio">
+          <string>12</string>
+         </void>
+         <void property="descripcionAnuncio">
+          <string>MT09</string>
+         </void>
+         <void property="fotoAnuncio">
+          <string>C:\Users\herna\OneDrive\Escritorio\mt15.png</string>
+         </void>
+         <void property="isActivo">
+          <boolean>true</boolean>
+         </void>
+         <void property="listPujas">
+          <object class="java.util.ArrayList">
+           <void method="add">
+            <object idref="Puja0"/>
+           </void>
+           <void method="add">
+            <object class="co.edu.uniquindio.subastasuq.model.Puja">
+             <void property="aceptada">
+              <object idref="Boolean0"/>
+             </void>
+             <void property="compradorAsociado">
+              <object class="co.edu.uniquindio.subastasuq.model.UsuarioComprador" id="UsuarioComprador1">
+               <void property="apellido">
+                <string>Valencia</string>
+               </void>
+               <void property="cedula">
+                <string>2222</string>
+               </void>
+               <void property="edad">
+                <int>28</int>
+               </void>
+               <void property="listPujas">
+                <object class="java.util.ArrayList"/>
+               </void>
+               <void property="nombre">
+                <string>Pedro</string>
+               </void>
+               <void property="password">
+                <string>efgh</string>
+               </void>
+               <void property="username">
+                <string>pedro@example.com</string>
+               </void>
+              </object>
+             </void>
+             <void property="oferta">
+              <double>250000.0</double>
+             </void>
+            </object>
+           </void>
+          </object>
+         </void>
+         <void property="nombreAnuncio">
+          <string>Moto1</string>
+         </void>
+         <void property="precioInicial">
+          <double>50000.0</double>
+         </void>
+         <void property="productoAsociado">
+          <object class="co.edu.uniquindio.subastasuq.model.Producto" id="Producto1">
+           <void property="codigo">
+            <string>12345</string>
+           </void>
+           <void property="estado">
+            <string>Nuevo</string>
+           </void>
+           <void property="nombre">
+            <string>Casa</string>
+           </void>
+           <void property="tipoProducto">
+            <string>Bien raiz</string>
+           </void>
+          </object>
+         </void>
+         <void property="pujaMasAlta">
+          <double>50000.0</double>
+         </void>
+         <void property="tipoAnuncio">
+          <string>Bien raiz</string>
+         </void>
+        </object>
+       </void>
+      </object>
+     </void>
+     <void property="listProductos">
+      <object class="java.util.ArrayList">
+       <void method="add">
+        <object class="co.edu.uniquindio.subastasuq.model.Producto">
+         <void property="codigo">
+          <string>12345</string>
+         </void>
+         <void property="estado">
+          <string>Nuevo</string>
+         </void>
+         <void property="nombre">
+          <string>TV</string>
+         </void>
+         <void property="tipoProducto">
+          <string>Tecnologia</string>
+         </void>
+        </object>
+       </void>
+       <void method="add">
+        <object class="co.edu.uniquindio.subastasuq.model.Producto" id="Producto2">
+         <void property="codigo">
+          <string>12345</string>
+         </void>
+         <void property="estado">
+          <string>Nuevo</string>
+         </void>
+         <void property="nombre">
+          <string>Moto</string>
+         </void>
+         <void property="tipoProducto">
+          <string>Vehiculo</string>
+         </void>
+        </object>
+       </void>
+      </object>
+     </void>
+     <void property="nombre">
+      <string>Ana</string>
+     </void>
+     <void property="password">
+      <string>5678</string>
+     </void>
+     <void property="username">
+      <string>ana@example.com</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.subastasuq.model.UsuarioAnunciante">
+     <void property="apellido">
+      <string>Barcelona</string>
+     </void>
+     <void property="cedula">
+      <string>9012</string>
+     </void>
+     <void property="edad">
+      <int>30</int>
+     </void>
+     <void property="listAnuncios">
+      <object class="java.util.ArrayList">
+       <void method="add">
+        <object class="co.edu.uniquindio.subastasuq.model.Anuncio">
+         <void property="codigoAnuncio">
+          <string>12</string>
+         </void>
+         <void property="descripcionAnuncio">
+          <string>MT09</string>
+         </void>
+         <void property="fotoAnuncio">
+          <string>C:\Users\herna\OneDrive\Escritorio\mt15.png</string>
+         </void>
+         <void property="isActivo">
+          <boolean>true</boolean>
+         </void>
+         <void property="listPujas">
+          <object class="java.util.ArrayList"/>
+         </void>
+         <void property="nombreAnuncio">
+          <string>Moto1</string>
+         </void>
+         <void property="precioInicial">
+          <double>50000.0</double>
+         </void>
+         <void property="productoAsociado">
+          <object idref="Producto2"/>
+         </void>
+         <void property="pujaMasAlta">
+          <double>50000.0</double>
+         </void>
+         <void property="tipoAnuncio">
+          <string>Vehiculo</string>
+         </void>
+        </object>
+       </void>
+       <void method="add">
+        <object idref="Anuncio1"/>
+       </void>
+      </object>
+     </void>
+     <void property="listProductos">
+      <object class="java.util.ArrayList">
+       <void method="add">
+        <object idref="Producto0"/>
+       </void>
+       <void method="add">
+        <object idref="Producto1"/>
+       </void>
+      </object>
+     </void>
+     <void property="nombre">
+      <string>Juan</string>
+     </void>
+     <void property="password">
+      <string>9012</string>
+     </void>
+     <void property="username">
+      <string>juan@example.com</string>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="listCompradores">
+   <void method="add">
+    <object idref="UsuarioComprador0"/>
+   </void>
+   <void method="add">
+    <object idref="UsuarioComprador1"/>
+   </void>
+  </void>
+ </object>
+</java>

@@ -110,20 +110,12 @@ public class CompradorViewController {
     private void mostrarDetallesAnuncio(AnuncioDto anuncioDto) {
         txtInformation.setText("Nombre: " + anuncioDto.nombreAnuncio() + "\nCodigo: " + anuncioDto.codigoAnuncio()
                 + "\nDescripcion: " + anuncioDto.descripcionAnuncio() + "\nPuja mas alta: " + anuncioDto.pujaMasAlta() +
-                "\n Fecha cierre: " + formatofecha(anuncioDto.fechaFinal()));
+                "\n Fecha cierre: " + anuncioDto.fechaFinal() + anuncioDto.horaFinal());
     }
     private String formatofecha(LocalDateTime localDateTime) {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
         return localDateTime.format(formato);
     }
-
-//    private void listenerCheckBox() {
-//        tecnologiaCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> actualizarListaAnuncios());
-//        hogarCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> actualizarListaAnuncios());
-//        deportesCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> actualizarListaAnuncios());
-//        vehiculosCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> actualizarListaAnuncios());
-//        bienRaizCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> actualizarListaAnuncios());
-//    }
 
     @FXML
     void actualizarListaAnuncios(ActionEvent event) {

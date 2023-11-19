@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
@@ -88,6 +89,8 @@ public class InicioSesionViewController {
             Stage nuevaVentana = new Stage();
             nuevaVentana.setScene(scene);
 
+            nuevaVentana.setOnCloseRequest(windowEvent -> manejarCierre(windowEvent, nuevaVentana));
+
             nuevaVentana.setX(ventanaActual.getX());
             nuevaVentana.setY(ventanaActual.getY());
             nuevaVentana.setWidth(ventanaActual.getWidth());
@@ -113,6 +116,8 @@ public class InicioSesionViewController {
             Stage nuevaVentana = new Stage();
             nuevaVentana.setScene(scene);
 
+            nuevaVentana.setOnCloseRequest(windowEvent -> manejarCierre(windowEvent, nuevaVentana));
+
             // Configurar la nueva ventana en la misma posición y con el mismo tamaño
             nuevaVentana.setX(ventanaActual.getX());
             nuevaVentana.setY(ventanaActual.getY());
@@ -127,6 +132,14 @@ public class InicioSesionViewController {
         }
     }
 
+    private void manejarCierre(WindowEvent windowEvent, Stage stage) {
+        if(AlertaUtils.mostrarAlertaConfirmacion("¿Desea cerrar la aplicación?")){
+            //inicioSecionService.guardarCambios();
+            stage.close();
+        }else{
+            windowEvent.consume();
+        }
+    }
 
 
     private String determinarTipo() {

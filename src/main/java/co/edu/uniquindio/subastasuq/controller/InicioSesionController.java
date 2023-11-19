@@ -48,4 +48,8 @@ public class InicioSesionController {
         modelFactoryController.setAnunciante(usuario);
 
     }
+
+    public void guardarCambios() {
+        modelFactoryController.guardarCambios();
+    }
 }

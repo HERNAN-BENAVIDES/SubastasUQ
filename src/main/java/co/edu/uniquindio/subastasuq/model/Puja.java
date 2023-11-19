@@ -61,7 +61,7 @@ public class Puja implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Puja puja)) return false;
-        return Objects.equals(getFecha(), puja.getFecha()) && Objects.equals(getOferta(), puja.getOferta()) && Objects.equals(getCompradorAsociado(), puja.getCompradorAsociado()) && Objects.equals(isAceptada, puja.isAceptada);
+        return Objects.equals(getFecha(), puja.getFecha()) && Objects.equals(getOferta(), puja.getOferta()) && Objects.equals(getCompradorAsociado(), puja.getCompradorAsociado());
     }
 
     @Override

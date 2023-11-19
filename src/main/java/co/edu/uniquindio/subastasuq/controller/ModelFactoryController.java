@@ -26,7 +26,7 @@ public class ModelFactoryController {
     public ModelFactoryController() {
         cargarDatosBase();
 
-        //cargarResourceXML();
+//        cargarResourceXML();
 
         if(subasta == null){
             cargarDatosBase();
@@ -34,6 +34,9 @@ public class ModelFactoryController {
         }
 
 
+    }
+    public void guardarCambios() {
+        guardarResourceXML();
     }
 
     public void setAnunciante(UsuarioAnunciante anunciante){
@@ -71,6 +74,7 @@ public class ModelFactoryController {
     public static ModelFactoryController getInstance() {
         return SingletonHolder.eINSTANCE;
     }
+
     private static class SingletonHolder {
         private final static ModelFactoryController eINSTANCE = new ModelFactoryController();
     }
@@ -175,27 +179,21 @@ public class ModelFactoryController {
         return PujaMapper.getListPujas(AnuncioMapper.anuncioDtoToAnuncio(anuncioDto).getListPujas());
     }
 
-    public boolean aceptarPuja(AnuncioDto anuncioSeleccionado, PujaDto pujaSeleccionada) {
-        List<Puja> listaPujas = AnuncioMapper.anuncioDtoToAnuncio(anuncioSeleccionado).getListPujas();
-
-        Puja pujaEnLista = listaPujas.stream()
-                .filter(puja -> puja.equals(PujaMapper.pujaDtoToPuja(pujaSeleccionada)))
-                .findFirst()
-                .orElse(null);
-
-        if (pujaEnLista != null) {
-            pujaEnLista.setAceptada(true);
-            return true;
-        }
-
-        return false;
-    }
-
-
-    public void cerrarAnuncio(AnuncioDto anuncioSeleccionado) throws AnuncioException {
+    public void cerrarAnuncio(AnuncioDto anuncioSeleccionado, PujaDto pujaSeleccionada) throws AnuncioException {
         if(anunciante.getListAnuncios().contains(AnuncioMapper.anuncioDtoToAnuncio(anuncioSeleccionado))){
             Anuncio anuncio = AnuncioMapper.anuncioDtoToAnuncio(anuncioSeleccionado);
             anuncio.setIsActivo(false);
+
+            List<Puja> listaPujas = anuncio.getListPujas();
+            Puja puja = PujaMapper.pujaDtoToPuja(pujaSeleccionada);
+            puja.setAceptada(true);
+            int i = listaPujas.indexOf(puja);
+
+            if (i != -1) {
+                listaPujas.set(i, puja);
+                anuncio.setListPujas(listaPujas);
+            }
+
             anunciante.actualizarAnuncio(AnuncioMapper.anuncioDtoToAnuncio(anuncioSeleccionado),anuncio);
         }
     }
@@ -222,7 +220,7 @@ public class ModelFactoryController {
     }
 
     private void guardarResourceXML() {
-        Persistencia.guardarRecursoBancoXML(subasta);
+        Persistencia.guardarRecursoSubastaXML(subasta);
     }
 
 

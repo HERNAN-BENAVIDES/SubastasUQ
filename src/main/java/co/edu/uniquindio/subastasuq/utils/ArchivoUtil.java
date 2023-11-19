@@ -2,15 +2,7 @@ package co.edu.uniquindio.subastasuq.utils;
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.*;
@@ -192,27 +184,48 @@ public  class ArchivoUtil {
 
 
 
-    public static Object cargarRecursoSerializadoXML(String rutaArchivo) throws IOException {
+//    public static Object cargarRecursoSerializadoXML(String rutaArchivo) throws IOException {
+//
+//        XMLDecoder decodificadorXML;
+//        Object objetoXML;
+//
+//        decodificadorXML = new XMLDecoder(new FileInputStream(rutaArchivo));
+//        objetoXML = decodificadorXML.readObject();
+//        decodificadorXML.close();
+//        return objetoXML;
+//
+//    }
+//
+//    public static void salvarRecursoSerializadoXML(String rutaArchivo, Object objeto) throws IOException {
+//        try (XMLEncoder codificadorXML = new XMLEncoder(new FileOutputStream(rutaArchivo))) {
+//            codificadorXML.writeObject(objeto);
+//        }
+//    }
 
-        XMLDecoder decodificadorXML;
-        Object objetoXML;
-
-        decodificadorXML = new XMLDecoder(new FileInputStream(rutaArchivo));
-        objetoXML = decodificadorXML.readObject();
-        decodificadorXML.close();
-        return objetoXML;
-
-    }
+//    public static void salvarRecursoSerializadoXML(String rutaArchivo, Object objeto) throws IOException {
+//        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(rutaArchivo))) {
+//            oos.writeObject(objeto);
+//        }
+//    }
+//
+//    public static Object cargarRecursoSerializadoXML(String rutaArchivo) throws IOException, ClassNotFoundException {
+//        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(rutaArchivo))) {
+//            return ois.readObject();
+//        }
+//    }
 
     public static void salvarRecursoSerializadoXML(String rutaArchivo, Object objeto) throws IOException {
-
-        XMLEncoder codificadorXML;
-
-        codificadorXML = new XMLEncoder(new FileOutputStream(rutaArchivo));
-        codificadorXML.writeObject(objeto);
-        codificadorXML.close();
-
+        try (XMLEncoder xmlEncoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(rutaArchivo)))) {
+            xmlEncoder.writeObject(objeto);
+        }
     }
+
+    public static Object cargarRecursoSerializadoXML(String rutaArchivo) throws IOException {
+        try (XMLDecoder xmlDecoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(rutaArchivo)))) {
+            return xmlDecoder.readObject();
+        }
+    }
+
 
 
 

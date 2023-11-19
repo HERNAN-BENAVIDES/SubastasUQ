@@ -4,40 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2423953f-16b0-4a73-906f-f32f411d2c89" name="Changes" comment="crud anuncio">
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/CompradorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/dto/UsuarioCompradorDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/mappers/CompradorMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/mappers/PujaMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/CompradorViewController.java" afterDir="false" />
+    <list default="true" id="2423953f-16b0-4a73-906f-f32f411d2c89" name="Changes" comment="15">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/AnuncioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/AnuncioController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/InicioSesionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/InicioSesionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/ModelFactoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/ModelFactoryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/dto/AnuncioDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/dto/AnuncioDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/dto/PujaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/dto/PujaDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/mappers/AnuncioMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/mappers/AnuncioMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/mappers/PujaMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/mappers/PujaMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/Anuncio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/Anuncio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/Puja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/Puja.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/Subasta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/Subasta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/UsuarioAnunciante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/UsuarioAnunciante.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/services/ISubastaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/model/services/ISubastaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/utils/ArchivoUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/utils/ArchivoUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/utils/Persistencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/utils/Persistencia.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/utils/SubastaUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/utils/SubastaUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/AnuncioViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/AnuncioViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/ProductoViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/ProductoViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/SubastaViewController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/comprador/CompradorView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/comprador/CompradorView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/vendedor/AnuncioView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/vendedor/AnuncioView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fotos/gato.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fotos/mt15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/CompradorViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/CompradorViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/InicioSesionViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/InicioSesionViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/Subasta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/Subasta.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/log/SubastaLog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/log/SubastaLog.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/respaldo/SubastaLogRespaldo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/respaldo/archivoAnunciantes2Respaldo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/respaldo/archivoAnunciantesRespaldo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/respaldo/archivoCompradoresResoaldo.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,7 +191,7 @@
       <workItem from="1700083859569" duration="1667000" />
       <workItem from="1700137662895" duration="3780000" />
       <workItem from="1700143922155" duration="8148000" />
-      <workItem from="1700315907956" duration="15080000" />
+      <workItem from="1700315907956" duration="35924000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -329,7 +313,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699505179984</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="15">
+      <option name="closed" value="true" />
+      <created>1700336782767</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1700336782767</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,12 +354,19 @@
     <MESSAGE value="Persistencia" />
     <MESSAGE value="anuncio" />
     <MESSAGE value="crud anuncio" />
-    <option name="LAST_COMMIT_MESSAGE" value="crud anuncio" />
+    <MESSAGE value="15" />
+    <option name="LAST_COMMIT_MESSAGE" value="15" />
   </component>
   <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="co.edu.uniquindio.subastasuq.mapping.dto.AnuncioDto" memberName="listPujas" />
+      </pinned-members>
+    </pin-to-top-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="listAnuncios" language="JAVA" />
+        <watch expression="((AnuncioViewController)this).listPujas" custom="co.edu.uniquindio.subastasuq.viewController.AnuncioViewController" />
       </configuration>
     </watches-manager>
   </component>

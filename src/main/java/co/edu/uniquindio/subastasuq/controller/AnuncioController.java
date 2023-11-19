@@ -86,16 +86,8 @@ public class AnuncioController {
         return modelFactoryController.obtenerListaPujasAnuncio(anuncioDto);
     }
 
-    /**
-     * Aceptar una oferta de puja.
-     * @return True si la operación de aceptar la puja fue exitosa, de lo contrario, False.
-     */
-    public boolean aceptarOfertaPuja(AnuncioDto anuncioSeleccionado, PujaDto pujaSeleccionada) {
-        return modelFactoryController.aceptarPuja(anuncioSeleccionado, pujaSeleccionada);
-    }
-
-    public void cerrarAnuncio(AnuncioDto anuncioSeleccionado) throws AnuncioException {
-        modelFactoryController.cerrarAnuncio(anuncioSeleccionado);
+    public void cerrarAnuncio(AnuncioDto anuncioSeleccionado, PujaDto pujaSeleccionada) throws AnuncioException {
+        modelFactoryController.cerrarAnuncio(anuncioSeleccionado, pujaSeleccionada);
     }
 
 }

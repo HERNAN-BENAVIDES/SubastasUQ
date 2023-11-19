@@ -86,6 +86,15 @@ public class AnuncioViewController {
     @FXML
     private Button btAceptarOferta;
 
+    @FXML
+    private Button btActualizarAnuncio;
+
+    @FXML
+    private Button btCrearAnuncio;
+
+    @FXML
+    private Button btLimpiarCampos;
+
     private AnuncioController anuncioControllerService;
     private final List<AnuncioDto> listAnunciosActivos = new ArrayList<>();
     private final List<AnuncioDto> listAnunciosInactivos = new ArrayList<>();
@@ -135,8 +144,14 @@ public class AnuncioViewController {
             if (newToggle != null) {
                 if (rbAnunciosActivos.isSelected()) {
                     btAceptarOferta.setVisible(true); // Mostrar el botón
+                    btActualizarAnuncio.setVisible(true);
+                    btCrearAnuncio.setVisible(true);
+                    btLimpiarCampos.setVisible(true);
                 } else if (rbAnunciosInactivos.isSelected()) {
                     btAceptarOferta.setVisible(false); // Ocultar el botón
+                    btActualizarAnuncio.setVisible(false);
+                    btCrearAnuncio.setVisible(false);
+                    btLimpiarCampos.setVisible(false);
                 }
             }
         });
@@ -185,7 +200,7 @@ public class AnuncioViewController {
     }
 
     private void obtenerPujas() {
-        listPujas.addAll(organizarPujas(anuncioControllerService.obtenerListaPujasAnuncio(anuncioSeleccionado)));
+        listPujas.addAll(anuncioControllerService.obtenerListaPujasAnuncio(anuncioSeleccionado));
     }
     
     private GridPane crearGridPane(List<AnuncioDto> listAnuncios) {
@@ -246,26 +261,31 @@ public class AnuncioViewController {
     private void mostrarDetallesAnuncio(AnuncioDto anuncioDto) {
         txtInformation.setText("Nombre: " + anuncioDto.nombreAnuncio() + "\nCodigo: " + anuncioDto.codigoAnuncio()
                 + "\nDescripcion: " + anuncioDto.descripcionAnuncio() + "\nPuja mas alta: " + anuncioDto.pujaMasAlta() +
-                "\n Fecha cierre: " + formatofecha(anuncioDto.fechaFinal()));
+                "\n Fecha cierre: " + anuncioDto.horaFinal() + " " + formatoFecha(anuncioDto.fechaFinal()));
         txtNombreAnuncio.setText(anuncioDto.nombreAnuncio());
         txtCodigoAnuncio.setText(anuncioDto.codigoAnuncio());
-        dpFecha.setValue(LocalDate.from(anuncioDto.fechaFinal()));
-        txtHora.setText(obtenerHora(anuncioDto.fechaFinal()));
+        dpFecha.setValue(anuncioDto.fechaFinal());
+        txtHora.setText(String.valueOf(anuncioDto.horaFinal()));
         txtDescripcionAnuncio.setText(anuncioDto.descripcionAnuncio());
         lblFoto.setText(anuncioDto.fotoAnuncio());
         txtPrecioInicial.setText(String.valueOf(anuncioDto.precioInicial()));
         cbxElegirProducto.getSelectionModel().select(anuncioDto.productoAsociado().nombre());
     }
 
-    private String obtenerHora(LocalDateTime localDateTime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        return localDateTime.format(formatter);
+    private String formatoFecha(LocalDate localDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd:MM:yyyy");
+        return localDate.format(formatter);
     }
 
-    private String formatofecha(LocalDateTime localDateTime) {
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
-        return localDateTime.format(formato);
+    public String formatofecha(LocalDateTime fecha) {
+        if (fecha != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm dd-MM-yyyy");
+            return fecha.format(formatter);
+        } else {
+            return "Fecha no disponible";
+        }
     }
+
 
     @FXML
     void actualizarAnuncioAction(ActionEvent event) {
@@ -344,28 +364,17 @@ public class AnuncioViewController {
         txtHora.clear();
         dpFecha.setValue(null);
         tablePujas.getItems().clear();
+        txtInformation.clear();
     }
 
     private AnuncioDto crearAnuncioDto() {
-        return new AnuncioDto(txtNombreAnuncio.getText(), txtCodigoAnuncio.getText(), obtenerFecha(), txtDescripcionAnuncio.getText(),
-                lblFoto.getText(), obtenerProducto(), Double.parseDouble(txtPrecioInicial.getText()), Double.parseDouble(txtPrecioInicial.getText()),true, obtenerProducto().tipoProducto(), obtenerPujasAnuncio());
+        return new AnuncioDto(txtNombreAnuncio.getText(), txtCodigoAnuncio.getText(), dpFecha.getValue(), obtenerHora(), txtDescripcionAnuncio.getText(),
+                lblFoto.getText(), obtenerProducto(), Double.parseDouble(txtPrecioInicial.getText()), Double.parseDouble(txtPrecioInicial.getText()),true, obtenerProducto().tipoProducto(), new ArrayList<>());
     }
 
-    private List<PujaDto> obtenerPujasAnuncio() {
-        return anuncioSeleccionado.listPujas();
-    }
-
-    private LocalDateTime obtenerFecha() {
-        return LocalDateTime.of(dpFecha.getValue(), Objects.requireNonNull(parseHora()));
-    }
-
-    private LocalTime parseHora() {
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-            return LocalTime.parse(txtHora.getText(), formatter);
-        } catch (Exception e) {
-            return null;
-        }
+    private LocalTime obtenerHora() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        return LocalTime.parse(txtHora.getText(), formatter);
     }
 
     private boolean validarCampos() {
@@ -410,7 +419,7 @@ public class AnuncioViewController {
 
     private void eliminarAnuncio() {
         try {
-            if (anuncioSeleccionado != null) {
+            if (anuncioSeleccionado != null && pujaSeleccionada != null) {
                 if (AlertaUtils.mostrarAlertaConfirmacion("¿Está seguro que desea eliminar el anuncio seleccionado?")) {
                     if (anuncioControllerService.eliminarAnuncio(anuncioSeleccionado)) {
                         AlertaUtils.mostrarAlertaInformacion("Se eliminó correctamente el anuncio");
@@ -419,6 +428,8 @@ public class AnuncioViewController {
                         anuncioSeleccionado = null;
                     }
                 }
+            }else{
+                AlertaUtils.mostrarAlertaError("Debe seleccionar un anuncio y una oferta");
             }
         } catch (AnuncioException e) {
             AlertaUtils.mostrarAlertaError(e.getMessage());
@@ -476,8 +487,8 @@ public class AnuncioViewController {
             // Mostrar la columna solo si no está presente
             if (tcIsAceptada == null) {
                 tcIsAceptada = new TableColumn<>("Aceptada");
-                tcIsAceptada.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().isAceptada() ? "Aceptada" : "No Aceptada"));
                 tablePujas.getColumns().add(tcIsAceptada);
+                tcIsAceptada.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().isAceptada() ? "Aceptada" : "No aceptada"));
             }
         } else {
             // Eliminar la columna si está presente
@@ -486,7 +497,11 @@ public class AnuncioViewController {
                 tcIsAceptada = null;
             }
         }
+        tablePujas.refresh();
     }
+
+
+
 
     @FXML
     void acertarOfertaAction(ActionEvent event) {
@@ -496,10 +511,8 @@ public class AnuncioViewController {
     private void aceptarOfertaAnuncio() {
         if (AlertaUtils.mostrarAlertaConfirmacion("Esta apunto de aceptar la oferta: " + pujaSeleccionada.oferta())){
             try {
-                anuncioControllerService.cerrarAnuncio(anuncioSeleccionado);
-                if(anuncioControllerService.aceptarOfertaPuja(anuncioSeleccionado, pujaSeleccionada)){
-                    AlertaUtils.mostrarAlertaInformacion("Se acepto la oferta");
-                }
+                anuncioControllerService.cerrarAnuncio(anuncioSeleccionado, pujaSeleccionada);
+                AlertaUtils.mostrarAlertaInformacion("Se acepto la oferta");
 
                 actualizarAnuncios();
                 limpiarCamposAnuncio();
@@ -510,24 +523,4 @@ public class AnuncioViewController {
 
 
     }
-
-    public static List<PujaDto> organizarPujas(List<PujaDto> listaPujas) {
-        listaPujas.sort(new Comparator<PujaDto>() {
-            @Override
-            public int compare(PujaDto p1, PujaDto p2) {
-                // Coloca primero las pujas aceptadas (con aceptada=true)
-                if (p1.isAceptada() && !p2.isAceptada()) {
-                    return -1;
-                } else if (!p1.isAceptada() && p2.isAceptada()) {
-                    return 1;
-                } else {
-                    return 0; // Igual para todas las demás
-                }
-            }
-        });
-        return listaPujas;
-    }
-
-
-
 }

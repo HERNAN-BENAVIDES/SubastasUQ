@@ -32,6 +32,8 @@ public class PujaMapper {
     }
 
     public static Puja pujaDtoToPuja(PujaDto pujaDto) {
-        return new Puja(pujaDto.oferta(), CompradorMapper.compradorDtoToComprador(pujaDto.compradorAsociado()));//,AnuncioMapper.anuncioDtoToAnuncio(pujaDto.anuncioAsociado()));
+        Puja puja = new Puja(pujaDto.oferta(), CompradorMapper.compradorDtoToComprador(pujaDto.compradorAsociado()));
+        puja.setAceptada(pujaDto.isAceptada());
+        return puja;
     }
 }

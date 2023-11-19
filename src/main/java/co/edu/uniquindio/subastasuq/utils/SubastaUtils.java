@@ -2,7 +2,9 @@ package co.edu.uniquindio.subastasuq.utils;
 
 import co.edu.uniquindio.subastasuq.model.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class SubastaUtils {
@@ -27,15 +29,16 @@ public class SubastaUtils {
         Producto producto3 = new Producto("Bicicleta", "Deporte", "12345", "Nuevo");
         Producto producto4 = new Producto("Casa", "Bien raiz", "12345", "Nuevo");
 
-        String fechaHoraString = "2023-11-24 21:00"; // La fecha y hora como una cadena
-        LocalDateTime fechaHora = LocalDateTime.parse(fechaHoraString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
-        Anuncio anuncio = new Anuncio("Moto", "12", fechaHora, "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto3, 160000.0);
-        Anuncio anuncio1 = new Anuncio("Moto1", "12", fechaHora, "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto4, 50000.0);
-        Anuncio anuncio2 = new Anuncio("Moto1", "12", fechaHora, "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
+        Anuncio anuncio = new Anuncio("Moto", "12", LocalDate.of(2023, 12, 24), LocalTime.of(21,0),"MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 160000.0);
+        Anuncio anuncio1 = new Anuncio("Moto1", "12", LocalDate.of(2023, 12, 24),LocalTime.of(21,0), "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
+        Anuncio anuncio2 = new Anuncio("Moto1", "12", LocalDate.of(2023, 12, 24),LocalTime.of(21,0), "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
 
         anuncio.setIsActivo(false);
-        Puja puja = new Puja(200000.0,  comprador);
+   //     anuncio1.setIsActivo(true);
+   //     anuncio2.setIsActivo(true);
+
+        Puja puja = new Puja(300000.0,  comprador);
         puja.setAceptada(true);
         Puja puja1 = new Puja(200000.0,  comprador);
         Puja puja2 = new Puja(250000.0,  comprador1);
