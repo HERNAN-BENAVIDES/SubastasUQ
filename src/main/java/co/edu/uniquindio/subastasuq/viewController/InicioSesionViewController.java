@@ -35,9 +35,6 @@ public class InicioSesionViewController {
     private Button btRegistrar;
 
     @FXML
-    private Hyperlink contraseñaOlvidadaHyperlink;
-
-    @FXML
     private RadioButton rbComprador;
 
     @FXML
@@ -167,7 +164,34 @@ public class InicioSesionViewController {
 
     @FXML
     void registrarAction(ActionEvent event) {
+        abrirVentanaRegistrarNuevoUsuario();
+    }
 
+    private void abrirVentanaRegistrarNuevoUsuario() {
+        try {
+            Stage ventanaActual = (Stage) btRegistrar.getScene().getWindow();
+
+            // Cargar el archivo FXML de la nueva ventana
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/subastasuq/RegistrarNuevoUsuario.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage nuevaVentana = new Stage();
+            nuevaVentana.setScene(scene);
+
+            nuevaVentana.setOnCloseRequest(windowEvent -> manejarCierre(windowEvent, nuevaVentana));
+
+            // Configurar la nueva ventana en la misma posición y con el mismo tamaño
+            nuevaVentana.setX(ventanaActual.getX());
+            nuevaVentana.setY(ventanaActual.getY());
+            nuevaVentana.setWidth(ventanaActual.getWidth());
+            nuevaVentana.setHeight(ventanaActual.getHeight());
+
+            // Mostrar la nueva ventana
+            nuevaVentana.show();
+            ventanaActual.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 package co.edu.uniquindio.subastasuq.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public abstract class Persona implements Serializable {
 
@@ -51,6 +52,18 @@ public abstract class Persona implements Serializable {
 
     public void setEdad(Integer edad) {
         this.edad = edad;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Persona persona)) return false;
+        return Objects.equals(getNombre(), persona.getNombre()) && Objects.equals(getApellido(), persona.getApellido()) && Objects.equals(getCedula(), persona.getCedula());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNombre(), getApellido(), getCedula());
     }
 
     @Override

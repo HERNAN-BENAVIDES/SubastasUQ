@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.subastasuq.viewController.RegistrarUsuarioViewController">
+   <children>
+      <SplitPane prefHeight="650.0" prefWidth="950.0">
+         <items>
+            <HBox prefHeight="650.0" prefWidth="950.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="650.0" prefWidth="475.0" style="-fx-background-color: #0098c7;" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="Subasta UQ" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="30.0" />
+                           </font>
+                        </Label>
+                     </children></VBox>
+                  <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="650.0" prefWidth="475.0" spacing="15.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <GridPane prefHeight="413.0" prefWidth="482.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                              <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="187.0" />
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="166.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Nombre:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="Apellido:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label text="Cedula:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label text="Edad:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label text="Username:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <Label text="Password:" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <TextField fx:id="txNombre" alignment="TOP_RIGHT" style="-fx-background-radius: 30;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <TextField fx:id="txApellido" alignment="TOP_RIGHT" style="-fx-background-radius: 30;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <TextField fx:id="txCedula" alignment="TOP_RIGHT" style="-fx-background-radius: 30;" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <TextField fx:id="txEdad" alignment="TOP_RIGHT" style="-fx-background-radius: 30;" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                              <TextField fx:id="txUsername" alignment="TOP_RIGHT" style="-fx-background-radius: 30;" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                              <TextField fx:id="txPassword" alignment="TOP_RIGHT" style="-fx-background-radius: 30;" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                              <RadioButton fx:id="rbAnunciante" mnemonicParsing="false" text="Anunciante" textFill="#0098c7" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="tgUsuario" />
+                                 </toggleGroup></RadioButton>
+                              <RadioButton fx:id="rbComprador" mnemonicParsing="false" text="Comprador" textFill="#0098c7" toggleGroup="$tgUsuario" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+                              <Label text="Tipo de usuario:" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                              <Button fx:id="btRegistrar" mnemonicParsing="false" onAction="#registrarNuevoUser" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 30;" text="Registrar" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+                              <Button fx:id="btAtras" mnemonicParsing="false" onAction="#atras" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 30;" text="Atras" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                              <Label contentDisplay="CENTER" prefHeight="23.0" prefWidth="192.0" text="Registro" textAlignment="CENTER" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font name="Comic Sans MS" size="28.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </items>
+      </SplitPane>
+   </children>
+</VBox>

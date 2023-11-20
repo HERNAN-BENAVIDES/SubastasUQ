@@ -5,14 +5,8 @@ import co.edu.uniquindio.subastasuq.hilos.AnuncioThread;
 import co.edu.uniquindio.subastasuq.hilos.ProductoThread;
 import co.edu.uniquindio.subastasuq.hilos.PujaThread;
 import co.edu.uniquindio.subastasuq.hilos.UsuarioThread;
-import co.edu.uniquindio.subastasuq.mapping.dto.AnuncioDto;
-import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
-import co.edu.uniquindio.subastasuq.mapping.dto.PujaDto;
-import co.edu.uniquindio.subastasuq.mapping.dto.UsuarioCompradorDto;
-import co.edu.uniquindio.subastasuq.mapping.mappers.AnuncioMapper;
-import co.edu.uniquindio.subastasuq.mapping.mappers.CompradorMapper;
-import co.edu.uniquindio.subastasuq.mapping.mappers.ProductoMapper;
-import co.edu.uniquindio.subastasuq.mapping.mappers.PujaMapper;
+import co.edu.uniquindio.subastasuq.mapping.dto.*;
+import co.edu.uniquindio.subastasuq.mapping.mappers.*;
 import co.edu.uniquindio.subastasuq.model.*;
 import co.edu.uniquindio.subastasuq.utils.Constantes;
 import co.edu.uniquindio.subastasuq.utils.Persistencia;
@@ -149,6 +143,13 @@ public class ModelFactoryController {
     --------------------------------------INICIO SESION--------------------------------------------------------------
      */
 
+    public Boolean agregarComprador(UsuarioCompradorDto compradorDto) throws NuevoCompradorException {
+        return subasta.agregarUsuarioComprador(CompradorMapper.compradorDtoToComprador(compradorDto));
+    }
+
+    public boolean agregarAnunciante(UsuarioAnuncianteDto anuncianteDto) throws NuevoAnuncianteExcepcion {
+        return subasta.agregarUsuarioAnunciante(AnuncianteMapper.anuncianteDtoToAnunciante(anuncianteDto));
+    }
 
 
 

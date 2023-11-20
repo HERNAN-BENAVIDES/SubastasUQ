@@ -35,16 +35,18 @@ public abstract class Usuario extends Persona implements Serializable {
         this.password = password;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Usuario usuario)) return false;
+        if (!super.equals(o)) return false;
         return Objects.equals(getUsername(), usuario.getUsername());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getUsername());
+        return Objects.hash(super.hashCode(), getUsername());
     }
 
     @Override

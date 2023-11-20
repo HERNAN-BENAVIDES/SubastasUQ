@@ -40,27 +40,21 @@ public class Persistencia {
         ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_PRODUCTOS, contenido.toString(),false);
     }
 
-    public static void guardarAnunciantes(List<UsuarioAnunciante> listAnunciantes) throws IOException {
-        StringBuilder contenido = new StringBuilder();
-        for (UsuarioAnunciante anunciante : listAnunciantes) {
-            contenido.append(anunciante.getNombre()).append("@@").append(anunciante.getApellido()).append("@@")
-                    .append(anunciante.getCedula()).append("@@").append(anunciante.getEdad()).append("@@")
-                    .append(anunciante.getUsername()).append("@@").append(anunciante.getPassword()).append("\n");
-        }
-        ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_ANUNCIANTES, contenido.toString(), false);
-        ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_ANUNCIANTES_RESPALDO, contenido.toString(), false);
+    public static void guardarAnunciante(UsuarioAnunciante anunciante) throws IOException {
+        String contenido = anunciante.getNombre() + "@@" + anunciante.getApellido() + "@@" +
+                anunciante.getCedula() + "@@" + anunciante.getEdad() + "@@" +
+                anunciante.getUsername() + "@@" + anunciante.getPassword() + "\n";
+
+        ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_ANUNCIANTES, contenido, false);
     }
 
 
-    public static void guardarCompradores(List<UsuarioComprador> listCompradores) throws IOException {
-        StringBuilder contenido = new StringBuilder();
-        for (UsuarioComprador comprador : listCompradores) {
-            contenido.append(comprador.getNombre()).append("@@").append(comprador.getApellido()).append("@@")
-                    .append(comprador.getCedula()).append("@@").append(comprador.getEdad()).append("@@")
-                    .append(comprador.getUsername()).append("@@").append(comprador.getPassword()).append("\n");
-        }
-        ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_COMPRADORES, contenido.toString(), false);
-        ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_COMPRADORES_RESPALDO, contenido.toString(), false);
+    public static void guardarComprador(UsuarioComprador comprador) throws IOException {
+        String contenido = comprador.getNombre() + "@@" + comprador.getApellido() + "@@" +
+                comprador.getCedula() + "@@" + comprador.getEdad() + "@@" +
+                comprador.getUsername() + "@@" + comprador.getPassword() + "\n";
+
+        ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_COMPRADORES, contenido, false);
     }
 
 

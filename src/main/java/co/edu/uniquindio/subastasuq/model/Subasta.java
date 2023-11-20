@@ -1,5 +1,7 @@
 package co.edu.uniquindio.subastasuq.model;
 
+import co.edu.uniquindio.subastasuq.excepcions.NuevoAnuncianteExcepcion;
+import co.edu.uniquindio.subastasuq.excepcions.NuevoCompradorException;
 import co.edu.uniquindio.subastasuq.excepcions.UsuarioException;
 import co.edu.uniquindio.subastasuq.model.services.ISubastaService;
 
@@ -33,8 +35,13 @@ public class Subasta implements ISubastaService, Serializable {
         this.listCompradores = listCompradores;
     }
 
-    public boolean agregarUsuarioAnunciante(UsuarioAnunciante usuario){
-        return  getListAnunciantes().add(usuario);
+    public boolean agregarUsuarioAnunciante(UsuarioAnunciante usuario) throws NuevoAnuncianteExcepcion {
+        if(!existeUsuarioAnunciante(usuario)){
+            getListAnunciantes().add(usuario);
+            return true;
+        }else{
+            throw new NuevoAnuncianteExcepcion("El usuario ya se encuentra registrado");
+        }
     }
 
     public boolean eliminarUsuarioAnunciante(UsuarioAnunciante usuario) throws UsuarioException {
@@ -96,6 +103,16 @@ public class Subasta implements ISubastaService, Serializable {
             }
         }
         throw new UsuarioException("Usuario no encontrado");
+    }
+
+    @Override
+    public Boolean agregarUsuarioComprador(UsuarioComprador usuarioComprador) throws NuevoCompradorException {
+        if(!getListCompradores().contains(usuarioComprador)){
+            getListCompradores().add(usuarioComprador);
+            return true;
+        }else{
+            throw new NuevoCompradorException("El usuario ya se encuentra registrado");
+        }
     }
 
 
