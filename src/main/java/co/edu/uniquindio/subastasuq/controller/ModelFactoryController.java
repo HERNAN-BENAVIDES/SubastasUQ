@@ -88,6 +88,13 @@ public class ModelFactoryController {
         subasta = SubastaUtils.inicializarDatos();
     }
 
+    public Boolean exportarCvs(List<AnuncioDto> list, String rutaArchivoCsv) {
+        return Persistencia.exportarCSV(AnuncioMapper.getListAnuncios(list), rutaArchivoCsv);
+    }
+
+    public Boolean exportarProductos(List<Producto> listProducto, String rutaArchivoCsv) {
+        return Persistencia.exportarProductos(listProducto,rutaArchivoCsv);
+    }
     /*
     -----------------------------------------------------------------------------------------------------------
     --------------------------------------GET INSTANCE--------------------------------------------------------------
@@ -95,7 +102,6 @@ public class ModelFactoryController {
     public static ModelFactoryController getInstance() {
         return SingletonHolder.eINSTANCE;
     }
-
     private static class SingletonHolder {
         private final static ModelFactoryController eINSTANCE = new ModelFactoryController();
     }

@@ -19,7 +19,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -101,6 +103,7 @@ public class AnuncioViewController {
     private AnuncioDto anuncioSeleccionado;
     private final ObservableList<PujaDto> listPujas = FXCollections.observableArrayList();
     private PujaDto pujaSeleccionada;
+    private String rutaArchivoCsv;
 
 
     @FXML
@@ -522,5 +525,34 @@ public class AnuncioViewController {
         }
 
 
+    }
+
+    @FXML
+    void exportarAnunciosAction(ActionEvent event) {
+        seleccionarRuta();
+        exportarAnunciosCsv();
+    }
+
+    private void exportarAnunciosCsv() {
+        obtenerAnuncios();
+        if(anuncioControllerService.exportarCvs(listAnunciosActivos, rutaArchivoCsv)){
+            AlertaUtils.mostrarAlertaInformacion("Se guardo el archivo");
+        }
+    }
+
+    private void seleccionarRuta() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Guardar Archivo CSV");
+
+        // Configurar el filtro para mostrar solo archivos CSV
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Archivos CSV (*.csv)", "*.csv");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        // Mostrar el cuadro de diálogo de guardado
+        File selectedFile = fileChooser.showSaveDialog(new Stage());
+
+        if (selectedFile != null) {
+            rutaArchivoCsv = selectedFile.getAbsolutePath();
+        }
     }
 }

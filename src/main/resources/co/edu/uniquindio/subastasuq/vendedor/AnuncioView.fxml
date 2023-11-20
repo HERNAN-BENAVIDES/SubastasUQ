@@ -155,12 +155,14 @@
                               </Button>
                            </children>
                         </GridPane>
-                        <GridPane>
+                        <GridPane prefHeight="97.0" prefWidth="222.0">
                           <columnConstraints>
                             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
                               <Button id="btCrearAnuncio" fx:id="btLimpiarCampos" mnemonicParsing="false" onAction="#limpiarCamposAction" style="-fx-background-color: #0c5daf; -fx-background-radius: 20;" text="Limpiar campos" textFill="WHITE">
@@ -171,18 +173,15 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
+                              <Button id="btCrearAnuncio" fx:id="btExportarAnuncios" mnemonicParsing="false" onAction="#exportarAnunciosAction" style="-fx-background-color: #0c5daf; -fx-background-radius: 20;" text="Exportar anuncios" textFill="WHITE" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
                            </children>
-                        </GridPane>
-                        <GridPane fx:id="gripane1">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="10.0" />
-                              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="10.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
                         </GridPane>
                      </children>
             </VBox>

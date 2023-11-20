@@ -66,4 +66,12 @@ public class AnuncioMapper {
         return listaAnunciosDto;
     }
 
+    public static List<Anuncio> getListAnuncios(List<AnuncioDto> list) {
+        List<Anuncio> listaAnuncios = new ArrayList<>();
+        for (AnuncioDto anuncioDto : list) {
+            Anuncio anuncio = anuncioDtoToAnuncio(anuncioDto);
+            listaAnuncios.add(anuncio);
+        }
+        return listaAnuncios;
+    }
 }

@@ -36,4 +36,14 @@ public class ProductoMapper {
 
         return listaProductosDto;
     }
+
+    public static List<Producto> getListProducto(List<ProductoDto> listaProductosDto) {
+        List<Producto> listaProductos = new ArrayList<>();
+
+        for (ProductoDto productoDto : listaProductosDto) {
+            Producto producto = productoDtoToProducto(productoDto);
+            listaProductos.add(producto);
+        }
+
+        return listaProductos;    }
 }

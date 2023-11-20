@@ -2,7 +2,9 @@ package co.edu.uniquindio.subastasuq.controller;
 
 import co.edu.uniquindio.subastasuq.excepcions.ProductoException;
 import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
+import co.edu.uniquindio.subastasuq.mapping.mappers.ProductoMapper;
 import co.edu.uniquindio.subastasuq.model.UsuarioAnunciante;
+import javafx.collections.ObservableList;
 
 import java.util.List;
 
@@ -27,5 +29,9 @@ public class ProductoController {
 
     public boolean actualizarProducto(ProductoDto productoSeleccionado, ProductoDto productoNuevo) throws ProductoException {
         return modelFactoryController.actualizarProducto(productoSeleccionado, productoNuevo);
+    }
+
+    public Boolean exportarProductos(List<ProductoDto> listaProductosDto, String rutaArchivoCsv) {
+        return modelFactoryController.exportarProductos(ProductoMapper.getListProducto(listaProductosDto), rutaArchivoCsv);
     }
 }

@@ -90,5 +90,8 @@ public class AnuncioController {
         modelFactoryController.cerrarAnuncio(anuncioSeleccionado, pujaSeleccionada);
     }
 
+    public Boolean exportarCvs(List<AnuncioDto> list, String rutaArchivoCsv) {
+        return modelFactoryController.exportarCvs(list, rutaArchivoCsv);
+    }
 }
 

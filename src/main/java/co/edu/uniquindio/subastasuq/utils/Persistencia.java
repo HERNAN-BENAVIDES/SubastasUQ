@@ -2,18 +2,14 @@ package co.edu.uniquindio.subastasuq.utils;
 
 import co.edu.uniquindio.subastasuq.excepcions.AutenticacionException;
 import co.edu.uniquindio.subastasuq.excepcions.UsuarioException;
-import co.edu.uniquindio.subastasuq.model.Producto;
-import co.edu.uniquindio.subastasuq.model.Subasta;
-import co.edu.uniquindio.subastasuq.model.UsuarioAnunciante;
-import co.edu.uniquindio.subastasuq.model.UsuarioComprador;
+import co.edu.uniquindio.subastasuq.model.*;
+import com.opencsv.CSVWriter;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.io.BufferedReader;
 
 
 public class Persistencia {
@@ -45,7 +41,7 @@ public class Persistencia {
                 anunciante.getCedula() + "@@" + anunciante.getEdad() + "@@" +
                 anunciante.getUsername() + "@@" + anunciante.getPassword() + "\n";
 
-        ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_ANUNCIANTES, contenido, false);
+        ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_ANUNCIANTES, contenido, true);
     }
 
 
@@ -54,8 +50,10 @@ public class Persistencia {
                 comprador.getCedula() + "@@" + comprador.getEdad() + "@@" +
                 comprador.getUsername() + "@@" + comprador.getPassword() + "\n";
 
-        ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_COMPRADORES, contenido, false);
+        ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_COMPRADORES, contenido, true);
     }
+
+
 
 
     public static List<Producto> cargarProductos() throws IOException {
@@ -342,7 +340,40 @@ public class Persistencia {
             e.printStackTrace();
         }
     }
+    public static Boolean exportarCSV(List<Anuncio> anuncios, String rutaArchivo) {
+        try (CSVWriter writer = new CSVWriter(new FileWriter(rutaArchivo))) {
+            // Escribir la cabecera si es necesario
+            String[] header = {"Nombre", "Descripción", "Precio", "Fecha de Creación", "Hora final"};
+            writer.writeNext(header);
 
+            // Escribir los datos de los anuncios
+            for (Anuncio anuncio : anuncios) {
+                String[] data = {anuncio.getNombreAnuncio(), anuncio.getDescripcionAnuncio(), String.valueOf(anuncio.getPrecioInicial()), anuncio.getFechaFinal().toString(), anuncio.getHoraFinal().toString()};
+                writer.writeNext(data);
+            }
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace(); // Manejar la excepción apropiadamente
+        }
+        return false;
+    }
+    public static Boolean exportarProductos(List<Producto> listProducto, String rutaArchivoCsv) {
+        try (CSVWriter writer = new CSVWriter(new FileWriter(rutaArchivoCsv))) {
+            // Escribir la cabecera si es necesario
+            String[] header = {"Nombre", "Codigo", "Tipo", "Estado"};
+            writer.writeNext(header);
+
+            // Escribir los datos de los anuncios
+            for (Producto producto : listProducto) {
+                String[] data = {producto.getNombre(), producto.getCodigo(), producto.getTipoProducto(), producto.getEstado()};
+                writer.writeNext(data);
+            }
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace(); // Manejar la excepción apropiadamente
+        }
+        return false;
+    }
 }
 
 
