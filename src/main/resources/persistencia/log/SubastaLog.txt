@@ -884,3 +884,13 @@ nov 20, 2023 2:22:03 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guard
 INFO: Consumir mensajes desde colas RabbitMQ,Consumir mensajes,2023-11-20
 nov 20, 2023 2:31:30 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
 INFO: Consumir mensajes desde colas RabbitMQ,Consumir mensajes,2023-11-20
+nov 20, 2023 11:30:14 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Consumir mensajes desde colas RabbitMQ,Consumir mensajes,2023-11-20
+nov 20, 2023 11:31:54 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-20
+nov 20, 2023 11:32:00 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-20
+nov 20, 2023 11:32:15 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Consumir mensajes desde colas RabbitMQ,Consumir mensajes,2023-11-20
+nov 20, 2023 11:32:26 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-20

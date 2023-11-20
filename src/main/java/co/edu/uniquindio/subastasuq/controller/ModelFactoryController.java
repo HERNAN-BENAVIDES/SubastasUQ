@@ -1,33 +1,39 @@
 package co.edu.uniquindio.subastasuq.controller;
 
+import co.edu.uniquindio.subastasuq.config.RabbitFactory;
 import co.edu.uniquindio.subastasuq.excepcions.*;
-import co.edu.uniquindio.subastasuq.hilos.AnuncioThread;
-import co.edu.uniquindio.subastasuq.hilos.ProductoThread;
-import co.edu.uniquindio.subastasuq.hilos.PujaThread;
-import co.edu.uniquindio.subastasuq.hilos.UsuarioThread;
+import co.edu.uniquindio.subastasuq.hilos.*;
 import co.edu.uniquindio.subastasuq.mapping.dto.*;
 import co.edu.uniquindio.subastasuq.mapping.mappers.*;
 import co.edu.uniquindio.subastasuq.model.*;
 import co.edu.uniquindio.subastasuq.utils.Constantes;
 import co.edu.uniquindio.subastasuq.utils.Persistencia;
 import co.edu.uniquindio.subastasuq.utils.SubastaUtils;
-
-import co.edu.uniquindio.subastasuq.config.RabbitFactory;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.List;
 
 public class ModelFactoryController {
 
     RabbitFactory rabbitFactory;
     ConnectionFactory connectionFactory;
-    AnuncioThread anunciosConsumer;
-    ProductoThread productosConsumer;
-    PujaThread pujasConsumer;
-    UsuarioThread usuariosConsumer;
+
+    CrearAnuncioThread crearAnuncioThread;
+    EliminarAnuncioThread eliminarAnuncioThread;
+    ActualizarAnuncioThread actualizarAnuncioThread;
+
+    CrearProductoThread crearProductoThread;
+    EliminarProductoThread eliminarProductoThread;
+    ActualizarProductoThread actualizarProductoThread;
+
+    CrearPujaThread crearPujaThread;
+    ActualizarPujaThread actualizarPujaThread;
+
 
     private Subasta subasta;
     private UsuarioAnunciante anunciante;
@@ -45,17 +51,38 @@ public class ModelFactoryController {
     }
 
     private void consumirMensajes() {
-       anunciosConsumer  = new AnuncioThread(connectionFactory);
-       productosConsumer = new ProductoThread(connectionFactory);
-       pujasConsumer = new PujaThread(connectionFactory);
-       usuariosConsumer = new UsuarioThread(connectionFactory);
+        crearAnuncioThread  = new CrearAnuncioThread(connectionFactory);
+        eliminarAnuncioThread  = new EliminarAnuncioThread(connectionFactory);
+        actualizarAnuncioThread  = new ActualizarAnuncioThread(connectionFactory);
 
-       //anunciosConsumer.start();
-       pujasConsumer.start();
-       //productosConsumer.start();
-       //usuariosConsumer.start();
+        crearProductoThread  = new CrearProductoThread(connectionFactory);
+        eliminarProductoThread  = new EliminarProductoThread(connectionFactory);
+        actualizarProductoThread  = new ActualizarProductoThread(connectionFactory);
 
-        registrarAccionesSistema("Consumir mensajes", 1, "Consumir mensajes desde colas RabbitMQ");
+        crearPujaThread = new CrearPujaThread(connectionFactory);
+        actualizarPujaThread = new ActualizarPujaThread(connectionFactory);
+
+       iniciarHilos();
+
+
+       registrarAccionesSistema("Consumir mensajes", 1, "Consumir mensajes desde colas RabbitMQ");
+
+    }
+
+    private void iniciarHilos() {
+        // Iniciar los hilos relacionados con anuncios
+//       crearAnuncioThread.start();
+//       eliminarAnuncioThread.start();
+//       actualizarAnuncioThread.start();
+//
+//       // Iniciar los hilos relacionados con productos
+//       crearProductoThread.start();
+//       eliminarProductoThread.start();
+//       actualizarProductoThread.start();
+//
+//       // Iniciar los hilos relacionados con pujas
+//       crearPujaThread.start();
+        actualizarPujaThread.start();
 
     }
 
@@ -197,7 +224,7 @@ public class ModelFactoryController {
     public boolean agregarProducto(ProductoDto productoDto) throws ProductoException {
         if (anunciante.agregarProducto(ProductoMapper.productoDtoToProducto(productoDto))) {
             registrarAccionesSistema("Registrar producto", 1, "Usuario: " + anunciante.getNombre() + " " + anunciante.getApellido());
-            enviarObjeto(ProductoMapper.productoDtoToProducto(productoDto), Constantes.PRODUCTOS_QUEUE);
+            enviarObjeto(ProductoMapper.productoDtoToProducto(productoDto), Constantes.CREAR_PRODUCTO_QUEUE);
             return true;
         }
         return false;
@@ -207,7 +234,7 @@ public class ModelFactoryController {
     public boolean eliminarProducto(ProductoDto productoSeleccionado) throws ProductoException {
         if (anunciante.eliminarProducto(ProductoMapper.productoDtoToProducto(productoSeleccionado))) {
             registrarAccionesSistema("Usuario: " + anunciante.getNombre() + " " + anunciante.getApellido(), 1, "Eliminar producto");
-            enviarObjeto(ProductoMapper.productoDtoToProducto(productoSeleccionado), Constantes.PRODUCTOS_QUEUE); // Enviar mensaje a la cola de productos
+            enviarObjeto(ProductoMapper.productoDtoToProducto(productoSeleccionado), Constantes.ELIMINAR_PRODUCTO_QUEUE); // Enviar mensaje a la cola de productos
             return true;
         }
         return false;
@@ -219,7 +246,7 @@ public class ModelFactoryController {
                 ProductoMapper.productoDtoToProducto(productoSeleccionado),
                 ProductoMapper.productoDtoToProducto(productoNuevo))) {
             registrarAccionesSistema("Usuario: " + anunciante.getNombre() + " " + anunciante.getApellido(), 1, "Actualizar producto");
-      //      enviarObjeto(productoNuevo, Constantes.PRODUCTOS_QUEUE); // Enviar mensaje a la cola de productos
+            enviarObjeto(productoNuevo, Constantes.ACTUALIZAR_PRODUCTO_QUEUE); // Enviar mensaje a la cola de productos
             return true;
         }
         return false;
@@ -264,17 +291,15 @@ public class ModelFactoryController {
     public boolean agregarAnuncio(AnuncioDto anuncioDto) throws AnuncioException {
         if(anunciante.agregarAnuncio(AnuncioMapper.anuncioDtoToAnuncio(anuncioDto))){
             registrarAccionesSistema("Usuario: " + anunciante.getNombre() + " " + anunciante.getApellido(), 1, "Registrar anuncio");
-            enviarObjeto(AnuncioMapper.anuncioDtoToAnuncio(anuncioDto), Constantes.ANUNCIOS_QUEUE);
+            enviarObjeto(AnuncioMapper.anuncioDtoToAnuncio(anuncioDto), Constantes.CREAR_ANUNCIO_QUEUE);
             return true;
         }
         return false;
     }
-    public Boolean agregarAnuncioDto(AnuncioDto anuncioDto) throws AnuncioException {
-        return anunciante.agregarAnuncio(AnuncioMapper.anuncioDtoToAnuncio(anuncioDto));
-    }
 
     public boolean eliminarAnuncio(AnuncioDto elementoSeleccionado) throws AnuncioException {
         if(anunciante.eliminarAnuncio(AnuncioMapper.anuncioDtoToAnuncio(elementoSeleccionado))){
+            enviarObjeto(AnuncioMapper.anuncioDtoToAnuncio(elementoSeleccionado), Constantes.ELIMINAR_ANUNCIO_QUEUE);
             registrarAccionesSistema("Usuario: " + anunciante.getNombre() + " " + anunciante.getApellido(), 1, "Eliminar anuncio");
             return true;
         }
@@ -284,6 +309,7 @@ public class ModelFactoryController {
     public boolean actualizarAnuncio(AnuncioDto elementoSeleccionado, AnuncioDto anuncioDto) throws AnuncioException {
         if(anunciante.actualizarAnuncio(AnuncioMapper.anuncioDtoToAnuncio(elementoSeleccionado),
                 AnuncioMapper.anuncioDtoToAnuncio(anuncioDto))){
+            enviarObjeto(AnuncioMapper.anuncioDtoToAnuncio(anuncioDto), Constantes.ACTUALIZAR_ANUNCIO_QUEUE);
             registrarAccionesSistema("Usuario: " + anunciante.getNombre() + " " + anunciante.getApellido(), 1, "Actualizar anuncio");
             return true;
         }
@@ -325,6 +351,7 @@ public class ModelFactoryController {
         if(comprador.realizarPuja(AnuncioMapper.anuncioDtoToAnuncio(anuncioSeleccionado), comprador)){
             int i = subasta.getListAnuncios().indexOf(AnuncioMapper.anuncioDtoToAnuncio(anuncioSeleccionado));
             subasta.getListAnuncios().get(i).getListPujas().add(PujaMapper.pujaDtoToPuja(pujaDto));
+            enviarObjeto(PujaMapper.pujaDtoToPuja(pujaDto), Constantes.CREAR_PUJA_QUEUE);
             registrarAccionesSistema("Usuario: " + comprador.getNombre() + " " + comprador.getApellido(), 1, "Realizar puja");
             return true;
         }

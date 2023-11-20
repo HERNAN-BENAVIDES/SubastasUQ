@@ -1,15 +1,10 @@
 package co.edu.uniquindio.subastasuq.hilos;
 
 import co.edu.uniquindio.subastasuq.controller.ModelFactoryController;
-import co.edu.uniquindio.subastasuq.mapping.dto.AnuncioDto;
-import co.edu.uniquindio.subastasuq.mapping.dto.PujaDto;
-import co.edu.uniquindio.subastasuq.mapping.dto.UsuarioAnuncianteDto;
-import co.edu.uniquindio.subastasuq.mapping.mappers.AnuncioMapper;
-import co.edu.uniquindio.subastasuq.mapping.mappers.PujaMapper;
-import co.edu.uniquindio.subastasuq.model.Anuncio;
-import co.edu.uniquindio.subastasuq.model.Puja;
-import co.edu.uniquindio.subastasuq.model.Usuario;
-import co.edu.uniquindio.subastasuq.model.UsuarioAnunciante;
+import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
+import co.edu.uniquindio.subastasuq.mapping.mappers.ProductoMapper;
+import co.edu.uniquindio.subastasuq.model.Producto;
+import co.edu.uniquindio.subastasuq.utils.Constantes;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -19,14 +14,11 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
-import java.util.Objects;
 
-import static co.edu.uniquindio.subastasuq.utils.Constantes.USUARIOS_QUEUE;
-
-public class UsuarioThread extends  Thread {
+public class CrearProductoThread extends Thread{
     ModelFactoryController modelFactoryController;
     ConnectionFactory factory;
-    public UsuarioThread(ConnectionFactory connectionFactory) {
+    public CrearProductoThread(ConnectionFactory connectionFactory) {
         this.modelFactoryController = ModelFactoryController.getInstance();
         this.factory = connectionFactory;
     }
@@ -35,17 +27,17 @@ public class UsuarioThread extends  Thread {
     public void run() {
         try (Connection connection = factory.newConnection();
              Channel channel = connection.createChannel()) {
-            channel.queueDeclare(USUARIOS_QUEUE, false, false, false, null);
+            channel.queueDeclare(Constantes.CREAR_PRODUCTO_QUEUE, false, false, false, null);
 
             DeliverCallback deliverCallback = (consumerTag, delivery) -> {
                 byte[] datosSerializados = delivery.getBody();
-                UsuarioAnunciante anunciante = (UsuarioAnunciante) Objects.requireNonNull(deserializarObjeto(datosSerializados));
+                ProductoDto productoDto = ProductoMapper.productoToProductoDto((Producto) deserializarObjeto(datosSerializados));
 
                 // Aquí puedes manejar el nuevo anuncio recibido
-                System.out.println("Nuevo anunciante recibido: " + anunciante);
+                System.out.println("Nuevo producto recibido: " + productoDto);
             };
 
-            channel.basicConsume(USUARIOS_QUEUE, true, deliverCallback, consumerTag -> {
+            channel.basicConsume(Constantes.CREAR_PRODUCTO_QUEUE, true, deliverCallback, consumerTag -> {
             });
 
             // Mantener el hilo en ejecución para seguir escuchando mensajes

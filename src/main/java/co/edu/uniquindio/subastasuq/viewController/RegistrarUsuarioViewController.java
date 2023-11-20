@@ -1,6 +1,5 @@
 package co.edu.uniquindio.subastasuq.viewController;
 
-import co.edu.uniquindio.subastasuq.controller.ModelFactoryController;
 import co.edu.uniquindio.subastasuq.controller.RegistrarUsuarioController;
 import co.edu.uniquindio.subastasuq.excepcions.NuevoAnuncianteExcepcion;
 import co.edu.uniquindio.subastasuq.excepcions.NuevoCompradorException;
@@ -8,7 +7,6 @@ import co.edu.uniquindio.subastasuq.mapping.dto.UsuarioAnuncianteDto;
 import co.edu.uniquindio.subastasuq.mapping.dto.UsuarioCompradorDto;
 import co.edu.uniquindio.subastasuq.mapping.mappers.AnuncianteMapper;
 import co.edu.uniquindio.subastasuq.mapping.mappers.CompradorMapper;
-import co.edu.uniquindio.subastasuq.model.UsuarioComprador;
 import co.edu.uniquindio.subastasuq.utils.AlertaUtils;
 import co.edu.uniquindio.subastasuq.utils.Persistencia;
 import javafx.event.ActionEvent;

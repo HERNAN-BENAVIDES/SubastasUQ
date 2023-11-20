@@ -1,10 +1,10 @@
 package co.edu.uniquindio.subastasuq.hilos;
 
 import co.edu.uniquindio.subastasuq.controller.ModelFactoryController;
-import co.edu.uniquindio.subastasuq.excepcions.AnuncioException;
-import co.edu.uniquindio.subastasuq.mapping.dto.AnuncioDto;
-import co.edu.uniquindio.subastasuq.mapping.mappers.AnuncioMapper;
-import co.edu.uniquindio.subastasuq.model.Anuncio;
+import co.edu.uniquindio.subastasuq.mapping.dto.PujaDto;
+import co.edu.uniquindio.subastasuq.mapping.mappers.PujaMapper;
+import co.edu.uniquindio.subastasuq.model.Puja;
+import co.edu.uniquindio.subastasuq.utils.Constantes;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -14,33 +14,31 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
+import java.util.Objects;
 
-import static co.edu.uniquindio.subastasuq.utils.Constantes.ANUNCIOS_QUEUE;
-
-public class AnuncioThread extends Thread {
+public class CrearPujaThread extends Thread{
     ModelFactoryController modelFactoryController;
-    private ConnectionFactory factory;
-
-    public AnuncioThread(ConnectionFactory connectionFactory) {
-        modelFactoryController = ModelFactoryController.getInstance();
-        factory = connectionFactory;
+    ConnectionFactory factory;
+    public CrearPujaThread(ConnectionFactory connectionFactory) {
+        this.modelFactoryController = ModelFactoryController.getInstance();
+        this.factory = connectionFactory;
     }
 
     @Override
     public void run() {
         try (Connection connection = factory.newConnection();
              Channel channel = connection.createChannel()) {
-            channel.queueDeclare(ANUNCIOS_QUEUE, false, false, false, null);
+            channel.queueDeclare(Constantes.CREAR_PUJA_QUEUE, false, false, false, null);
 
             DeliverCallback deliverCallback = (consumerTag, delivery) -> {
                 byte[] datosSerializados = delivery.getBody();
-                AnuncioDto anuncioDto = AnuncioMapper.anuncioToAnuncioDto((Anuncio) deserializarObjeto(datosSerializados));
+                PujaDto pujaDto = PujaMapper.pujaToPujaDto((Puja) Objects.requireNonNull(deserializarObjeto(datosSerializados)));
 
                 // Aquí puedes manejar el nuevo anuncio recibido
-                System.out.println("Nuevo anuncio recibido: " + anuncioDto);
+                System.out.println("Nueva puja recibida: " + pujaDto);
             };
 
-            channel.basicConsume(ANUNCIOS_QUEUE, true, deliverCallback, consumerTag -> {
+            channel.basicConsume(Constantes.CREAR_PUJA_QUEUE, true, deliverCallback, consumerTag -> {
             });
 
             // Mantener el hilo en ejecución para seguir escuchando mensajes
