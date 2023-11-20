@@ -18,8 +18,9 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-public class ProductoViewController {
 
+
+public class ProductoViewController {
     ProductoController productoControllerService;
     ObservableList<ProductoDto> listaProductosDto = FXCollections.observableArrayList();
     ProductoDto productoSeleccionado;
@@ -192,7 +193,7 @@ public class ProductoViewController {
                 }
             }
         }catch (ProductoException e) {
-            Persistencia.guardarRegistroLog(e.getMessage(),2,"Excepcion");
+            Persistencia.guardarRegistroLog(e.getMessage(), 2, "Excepcion");
             AlertaUtils.mostrarAlertaError(e.getMessage());
             limpiarCamposProducto();
 
@@ -288,6 +289,7 @@ public class ProductoViewController {
                 }
             }
         }catch (ProductoException e){
+            Persistencia.guardarRegistroLog(e.getMessage(), 2, "Excepcion");
             AlertaUtils.mostrarAlertaError(e.getMessage());
         }
     }

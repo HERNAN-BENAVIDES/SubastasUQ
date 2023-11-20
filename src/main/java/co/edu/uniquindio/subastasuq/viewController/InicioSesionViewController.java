@@ -1,6 +1,8 @@
 package co.edu.uniquindio.subastasuq.viewController;
 
 import co.edu.uniquindio.subastasuq.controller.InicioSesionController;
+import co.edu.uniquindio.subastasuq.excepcions.AutenticacionAnuncianteException;
+import co.edu.uniquindio.subastasuq.excepcions.AutenticacionCompradorException;
 import co.edu.uniquindio.subastasuq.excepcions.AutenticacionException;
 import co.edu.uniquindio.subastasuq.utils.AlertaUtils;
 import javafx.event.ActionEvent;
@@ -68,7 +70,8 @@ public class InicioSesionViewController {
                         abrirVentanaComprador();
                     }
                 }
-            } catch (AutenticacionException | IOException e) {
+            } catch (AutenticacionException | IOException | AutenticacionCompradorException |
+                     AutenticacionAnuncianteException e) {
                 AlertaUtils.mostrarAlertaError(e.getMessage());
             }
 

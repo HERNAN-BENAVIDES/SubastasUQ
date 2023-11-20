@@ -1,7 +1,6 @@
 package co.edu.uniquindio.subastasuq.controller;
 
-import co.edu.uniquindio.subastasuq.excepcions.AutenticacionException;
-import co.edu.uniquindio.subastasuq.excepcions.UsuarioException;
+import co.edu.uniquindio.subastasuq.excepcions.*;
 import co.edu.uniquindio.subastasuq.model.UsuarioAnunciante;
 import co.edu.uniquindio.subastasuq.model.UsuarioComprador;
 import co.edu.uniquindio.subastasuq.utils.AlertaUtils;
@@ -18,18 +17,18 @@ public class InicioSesionController {
     }
 
 
-    public boolean iniciarSesion(String user, String password, String tipo) throws IOException, AutenticacionException {
+    public boolean iniciarSesion(String user, String password, String tipo) throws IOException, AutenticacionException, AutenticacionCompradorException, AutenticacionAnuncianteException {
         if(modelFactoryController.iniciarSesion(user,password,tipo)){
             if(tipo.equals("Anunciante")){
                 try {
                     obtenerUsuarioAnunciante(user);
-                } catch (UsuarioException e) {
+                } catch (UsuarioAnuncianteException e) {
                     AlertaUtils.mostrarAlertaInformacion(e.getMessage());
                 }
             }else if (tipo.equals("Comprador")) {
                 try {
                     obtenerUsuarioComprador(user);
-                } catch (UsuarioException e) {
+                } catch (UsuarioCompradorException e) {
                     AlertaUtils.mostrarAlertaInformacion(e.getMessage());
                 }
             }
@@ -38,12 +37,12 @@ public class InicioSesionController {
         return false;
     }
 
-    private void obtenerUsuarioComprador(String user) throws UsuarioException {
+    private void obtenerUsuarioComprador(String user) throws UsuarioCompradorException {
        UsuarioComprador comprador = modelFactoryController.obtenerComprador(user);
        modelFactoryController.setComprador(comprador);
     }
 
-    private void obtenerUsuarioAnunciante(String user) throws UsuarioException {
+    private void obtenerUsuarioAnunciante(String user) throws UsuarioAnuncianteException {
         UsuarioAnunciante usuario = modelFactoryController.obtenerAnunciante(user);
         modelFactoryController.setAnunciante(usuario);
 

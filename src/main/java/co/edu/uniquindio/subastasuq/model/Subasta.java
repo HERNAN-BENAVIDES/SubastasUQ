@@ -1,8 +1,6 @@
 package co.edu.uniquindio.subastasuq.model;
 
-import co.edu.uniquindio.subastasuq.excepcions.NuevoAnuncianteExcepcion;
-import co.edu.uniquindio.subastasuq.excepcions.NuevoCompradorException;
-import co.edu.uniquindio.subastasuq.excepcions.UsuarioException;
+import co.edu.uniquindio.subastasuq.excepcions.*;
 import co.edu.uniquindio.subastasuq.model.services.ISubastaService;
 
 import java.io.Serializable;
@@ -57,13 +55,13 @@ public class Subasta implements ISubastaService, Serializable {
         return listAnunciantes.contains(usuario);
     }
 
-    public UsuarioAnunciante obtenerAnunciante(String username) throws UsuarioException {
+    public UsuarioAnunciante obtenerAnunciante(String username) throws UsuarioAnuncianteException {
         for (UsuarioAnunciante usuario : listAnunciantes) {
             if (usuario.getUsername().equals(username)) {
                 return usuario;
             }
         }
-        throw new UsuarioException("Usuario no encontrado");
+        throw new UsuarioAnuncianteException("Usuario no encontrado");
     }
 
     public boolean actualizarUsuarioAnunciante(UsuarioAnunciante usuarioAntiguo, UsuarioAnunciante usuarioActualizado) throws UsuarioException {
@@ -96,13 +94,13 @@ public class Subasta implements ISubastaService, Serializable {
     }
 
     @Override
-    public UsuarioComprador obtenerComprador(String user) throws UsuarioException {
+    public UsuarioComprador obtenerComprador(String user) throws UsuarioCompradorException {
         for (UsuarioComprador comprador : listCompradores) {
             if (comprador.getUsername().equals(user)) {
                 return comprador;
             }
         }
-        throw new UsuarioException("Usuario no encontrado");
+        throw new UsuarioCompradorException("Usuario no encontrado");
     }
 
     @Override

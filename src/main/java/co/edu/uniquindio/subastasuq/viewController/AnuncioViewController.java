@@ -19,7 +19,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -335,6 +334,7 @@ public class AnuncioViewController {
                 }
             }
         } catch (AnuncioException e) {
+            Persistencia.guardarRegistroLog(e.getMessage(), 2, "Excepcion");
             AlertaUtils.mostrarAlertaError(e.getMessage());
         }
     }
@@ -435,6 +435,7 @@ public class AnuncioViewController {
                 AlertaUtils.mostrarAlertaError("Debe seleccionar un anuncio y una oferta");
             }
         } catch (AnuncioException e) {
+            Persistencia.guardarRegistroLog(e.getMessage(), 2, "Excepcion");
             AlertaUtils.mostrarAlertaError(e.getMessage());
         }
     }
@@ -520,6 +521,7 @@ public class AnuncioViewController {
                 actualizarAnuncios();
                 limpiarCamposAnuncio();
             } catch (AnuncioException e) {
+                Persistencia.guardarRegistroLog(e.getMessage(), 2, "Excepcion");
                 throw new RuntimeException(e);
             }
         }

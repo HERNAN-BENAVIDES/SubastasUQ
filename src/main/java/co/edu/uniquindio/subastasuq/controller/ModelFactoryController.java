@@ -67,10 +67,10 @@ public class ModelFactoryController {
         this.comprador = comprador;
     }
 
-    public UsuarioAnunciante obtenerAnunciante(String user) throws UsuarioException {
+    public UsuarioAnunciante obtenerAnunciante(String user) throws UsuarioAnuncianteException {
         return subasta.obtenerAnunciante(user);
     }
-    public UsuarioComprador obtenerComprador(String user) throws UsuarioException {
+    public UsuarioComprador obtenerComprador(String user) throws UsuarioCompradorException {
         return subasta.obtenerComprador(user);
     }
 
@@ -164,7 +164,7 @@ public class ModelFactoryController {
     --------------------------------------INICIO SESION--------------------------------------------------------------
      */
 
-    public boolean iniciarSesion(String user, String password, String tipo) throws IOException, AutenticacionException {
+    public boolean iniciarSesion(String user, String password, String tipo) throws IOException, AutenticacionException, AutenticacionCompradorException, AutenticacionAnuncianteException {
         if(Persistencia.iniciarSesion(user, password, tipo)){
             Persistencia.guardarRegistroLog("Inicio de sesión",1,"Inicio de sesión: " + "user: " + user);
             return true;

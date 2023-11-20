@@ -4,22 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2423953f-16b0-4a73-906f-f32f411d2c89" name="Changes" comment="23">
+    <list default="true" id="2423953f-16b0-4a73-906f-f32f411d2c89" name="Changes" comment="24">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/AnuncioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/AnuncioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/ModelFactoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/ModelFactoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/ProductoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/ProductoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/mappers/AnuncioMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/mappers/AnuncioMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/mappers/ProductoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/mapping/mappers/ProductoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/utils/Persistencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/utils/Persistencia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/AnuncioViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/AnuncioViewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/ProductoViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/ProductoViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/vendedor/AnuncioView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/vendedor/AnuncioView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/vendedor/ProductoView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastasuq/vendedor/ProductoView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/archivoAnunciantes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/archivoAnunciantes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/log/SubastaLog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/log/SubastaLog.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +184,7 @@
       <workItem from="1700398709308" duration="6779000" />
       <workItem from="1700406150722" duration="9218000" />
       <workItem from="1700430971378" duration="22453000" />
-      <workItem from="1700456566929" duration="2154000" />
+      <workItem from="1700456566929" duration="3408000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -359,7 +346,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700449374657</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="24">
+      <option name="closed" value="true" />
+      <created>1700458926682</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1700458926682</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,7 +392,8 @@
     <MESSAGE value="17" />
     <MESSAGE value="18" />
     <MESSAGE value="23" />
-    <option name="LAST_COMMIT_MESSAGE" value="23" />
+    <MESSAGE value="24" />
+    <option name="LAST_COMMIT_MESSAGE" value="24" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

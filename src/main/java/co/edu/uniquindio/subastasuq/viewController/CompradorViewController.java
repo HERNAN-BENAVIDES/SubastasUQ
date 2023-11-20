@@ -6,6 +6,7 @@ import co.edu.uniquindio.subastasuq.mapping.dto.AnuncioDto;
 import co.edu.uniquindio.subastasuq.mapping.dto.PujaDto;
 import co.edu.uniquindio.subastasuq.mapping.dto.UsuarioCompradorDto;
 import co.edu.uniquindio.subastasuq.utils.AlertaUtils;
+import co.edu.uniquindio.subastasuq.utils.Persistencia;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,10 +27,6 @@ import java.util.List;
 
 public class CompradorViewController {
 
-    @FXML
-    private Button btHacerOferta;
-    @FXML
-    private Button btOfertar;
     @FXML
     private CheckBox bienRaizCheckBox;
     @FXML
@@ -225,6 +222,7 @@ public class CompradorViewController {
                 }
             }
         } catch (PujaException e) {
+            Persistencia.guardarRegistroLog(e.getMessage(), 2, "Excepcion");
             AlertaUtils.mostrarAlertaInformacion(e.getMessage());
         }
     }

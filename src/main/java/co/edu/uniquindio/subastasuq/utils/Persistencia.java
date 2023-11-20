@@ -1,5 +1,7 @@
 package co.edu.uniquindio.subastasuq.utils;
 
+import co.edu.uniquindio.subastasuq.excepcions.AutenticacionAnuncianteException;
+import co.edu.uniquindio.subastasuq.excepcions.AutenticacionCompradorException;
 import co.edu.uniquindio.subastasuq.excepcions.AutenticacionException;
 import co.edu.uniquindio.subastasuq.excepcions.UsuarioException;
 import co.edu.uniquindio.subastasuq.model.*;
@@ -145,19 +147,19 @@ public class Persistencia {
     }
 
     public static boolean iniciarSesion(String usuario, String contrasenia, String tipo)
-            throws FileNotFoundException, IOException, AutenticacionException {
+            throws FileNotFoundException, IOException, AutenticacionException, AutenticacionAnuncianteException, AutenticacionCompradorException {
         switch (tipo) {
             case "Anunciante":
                 if (validarAnunciante(usuario, contrasenia)) {
                     return true;
                 } else {
-                    throw new AutenticacionException("Credenciales de Anunciante incorrectas");
+                    throw new AutenticacionAnuncianteException("Credenciales de Anunciante incorrectas");
                 }
             case "Comprador":
                 if (validarComprador(usuario, contrasenia)) {
                     return true;
                 } else {
-                    throw new AutenticacionException("Credenciales de Comprador incorrectas");
+                    throw new AutenticacionCompradorException("Credenciales de Comprador incorrectas");
                 }
             default:
                 throw new AutenticacionException("Seleccione un tipo de usuario válido");

@@ -798,3 +798,9 @@ nov 20, 2023 12:19:49 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guar
 INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-20
 nov 20, 2023 12:26:08 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
 INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-20
+nov 20, 2023 1:01:43 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-20
+nov 20, 2023 1:01:48 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Registrar producto,Usuario: Ana Madrid,2023-11-20
+nov 20, 2023 1:01:54 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+WARNING: Excepcion,El producto ya se encuentra registrado,2023-11-20
