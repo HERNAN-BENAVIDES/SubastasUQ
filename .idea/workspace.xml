@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2423953f-16b0-4a73-906f-f32f411d2c89" name="Changes" comment="24">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/ProductoViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/viewController/ProductoViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/ModelFactoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastasuq/controller/ModelFactoryController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,8 +99,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="co.edu.uniquindio.subastasuq.mapping.mappers" />
       <recent name="co.edu.uniquindio.subastasuq.excepcions" />
+      <recent name="co.edu.uniquindio.subastasuq.mapping.mappers" />
       <recent name="co.edu.uniquindio.subastasuq.controller" />
       <recent name="co.edu.uniquindio.subastasuq.hilos" />
       <recent name="co.edu.uniquindio.subastasuq.mapping.dto" />
@@ -184,7 +184,7 @@
       <workItem from="1700398709308" duration="6779000" />
       <workItem from="1700406150722" duration="9218000" />
       <workItem from="1700430971378" duration="22453000" />
-      <workItem from="1700456566929" duration="3408000" />
+      <workItem from="1700456566929" duration="5607000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -354,7 +354,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700458926682</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="24">
+      <option name="closed" value="true" />
+      <created>1700461160607</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1700461160607</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
