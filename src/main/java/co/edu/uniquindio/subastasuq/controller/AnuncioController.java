@@ -4,6 +4,7 @@ import co.edu.uniquindio.subastasuq.excepcions.AnuncioException;
 import co.edu.uniquindio.subastasuq.mapping.dto.AnuncioDto;
 import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
 import co.edu.uniquindio.subastasuq.mapping.dto.PujaDto;
+import co.edu.uniquindio.subastasuq.mapping.dto.UsuarioAnuncianteDto;
 
 import java.util.List;
 
@@ -92,6 +93,10 @@ public class AnuncioController {
 
     public Boolean exportarCvs(List<AnuncioDto> list, String rutaArchivoCsv) {
         return modelFactoryController.exportarCvs(list, rutaArchivoCsv);
+    }
+
+    public UsuarioAnuncianteDto getAnunciante() {
+        return modelFactoryController.getAnunciante();
     }
 }
 

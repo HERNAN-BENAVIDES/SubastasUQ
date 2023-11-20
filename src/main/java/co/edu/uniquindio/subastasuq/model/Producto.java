@@ -10,16 +10,18 @@ public class Producto implements Serializable {
     private String tipoProducto;
     private String codigo;
     private String estado;
+    private UsuarioAnunciante anuncianteAsociado;
 
     public Producto() {
 
     }
 
-    public Producto(String nombre, String tipoProducto, String codigo, String estado) {
+    public Producto(String nombre, String tipoProducto, String codigo, String estado, UsuarioAnunciante anuncianteAsociado) {
         this.nombre = nombre;
         this.tipoProducto = tipoProducto;
         this.codigo = codigo;
         this.estado = estado;
+        this.anuncianteAsociado = anuncianteAsociado;
     }
 
     public String getNombre() {
@@ -74,5 +76,13 @@ public class Producto implements Serializable {
                 ", codigo='" + codigo + '\'' +
                 ", estado=" + estado +
                 '}';
+    }
+
+    public UsuarioAnunciante getAnuncianteAsociado() {
+        return anuncianteAsociado;
+    }
+
+    public void setAnuncianteAsociado(UsuarioAnunciante anuncianteAsociado) {
+        this.anuncianteAsociado = anuncianteAsociado;
     }
 }

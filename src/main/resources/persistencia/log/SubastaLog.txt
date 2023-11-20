@@ -804,3 +804,83 @@ nov 20, 2023 1:01:48 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guard
 INFO: Registrar producto,Usuario: Ana Madrid,2023-11-20
 nov 20, 2023 1:01:54 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
 WARNING: Excepcion,El producto ya se encuentra registrado,2023-11-20
+nov 20, 2023 1:40:25 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Consumir mensajes desde colas RabbitMQ,Consumir mensajes,2023-11-20
+nov 20, 2023 1:40:35 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: elena@example.com,Inicio de sesión,2023-11-20
+nov 20, 2023 1:41:03 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Guardar cambios en la aplicación,Guardar cambios,2023-11-20
+nov 20, 2023 1:47:02 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Consumir mensajes desde colas RabbitMQ,Consumir mensajes,2023-11-20
+nov 20, 2023 1:47:47 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-20
+nov 20, 2023 1:47:54 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Usuario: Ana Madrid,Registrar producto,2023-11-20
+nov 20, 2023 1:47:58 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+WARNING: Excepcion,El producto ya se encuentra registrado,2023-11-20
+nov 20, 2023 1:48:03 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+WARNING: Excepcion,El producto ya se encuentra registrado,2023-11-20
+nov 20, 2023 1:48:06 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Usuario: Ana Madrid,Registrar producto,2023-11-20
+nov 20, 2023 1:48:08 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Usuario: Ana Madrid,Registrar producto,2023-11-20
+nov 20, 2023 1:48:11 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+WARNING: Excepcion,El producto ya se encuentra registrado,2023-11-20
+nov 20, 2023 1:51:40 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Eliminar producto,Usuario: Ana Madrid,2023-11-20
+nov 20, 2023 1:51:43 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Eliminar producto,Usuario: Ana Madrid,2023-11-20
+nov 20, 2023 1:51:46 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Eliminar producto,Usuario: Ana Madrid,2023-11-20
+nov 20, 2023 1:51:49 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Eliminar producto,Usuario: Ana Madrid,2023-11-20
+nov 20, 2023 1:51:52 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Eliminar producto,Usuario: Ana Madrid,2023-11-20
+nov 20, 2023 1:51:55 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Eliminar producto,Usuario: Ana Madrid,2023-11-20
+nov 20, 2023 1:51:59 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Usuario: Ana Madrid,Registrar producto,2023-11-20
+nov 20, 2023 1:52:03 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+WARNING: Excepcion,El producto ya se encuentra registrado,2023-11-20
+nov 20, 2023 1:52:12 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+WARNING: Excepcion,El producto ya se encuentra registrado,2023-11-20
+nov 20, 2023 1:52:16 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Usuario: Ana Madrid,Registrar producto,2023-11-20
+nov 20, 2023 1:52:20 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Eliminar producto,Usuario: Ana Madrid,2023-11-20
+nov 20, 2023 1:52:25 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+WARNING: Excepcion,El producto ya se encuentra registrado,2023-11-20
+nov 20, 2023 1:52:27 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Eliminar producto,Usuario: Ana Madrid,2023-11-20
+nov 20, 2023 1:52:42 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Eliminar anuncio,Usuario: Ana Madrid,2023-11-20
+nov 20, 2023 1:52:46 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Eliminar anuncio,Usuario: Ana Madrid,2023-11-20
+nov 20, 2023 1:52:50 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Eliminar anuncio,Usuario: Ana Madrid,2023-11-20
+nov 20, 2023 1:52:58 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Eliminar anuncio,Usuario: Ana Madrid,2023-11-20
+nov 20, 2023 1:53:01 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Registrar anuncio,Usuario: Ana Madrid,2023-11-20
+nov 20, 2023 1:53:05 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+WARNING: Excepcion,El producto ya se encuentra registrado,2023-11-20
+nov 20, 2023 1:53:08 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Registrar anuncio,Usuario: Ana Madrid,2023-11-20
+nov 20, 2023 1:53:15 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Registrar anuncio,Usuario: Ana Madrid,2023-11-20
+nov 20, 2023 1:53:28 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Guardar cambios en la aplicación,Guardar cambios,2023-11-20
+nov 20, 2023 1:53:48 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Consumir mensajes desde colas RabbitMQ,Consumir mensajes,2023-11-20
+nov 20, 2023 1:54:21 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-20
+nov 20, 2023 1:54:25 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Usuario: Ana Madrid,Registrar producto,2023-11-20
+nov 20, 2023 1:54:30 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Guardar cambios en la aplicación,Guardar cambios,2023-11-20
+nov 20, 2023 2:14:41 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Consumir mensajes desde colas RabbitMQ,Consumir mensajes,2023-11-20
+nov 20, 2023 2:22:03 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Consumir mensajes desde colas RabbitMQ,Consumir mensajes,2023-11-20
+nov 20, 2023 2:31:30 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Consumir mensajes desde colas RabbitMQ,Consumir mensajes,2023-11-20

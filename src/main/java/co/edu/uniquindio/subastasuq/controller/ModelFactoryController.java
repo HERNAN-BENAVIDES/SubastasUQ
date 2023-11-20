@@ -89,6 +89,10 @@ public class ModelFactoryController {
 
     }
 
+    public UsuarioAnuncianteDto getAnunciante() {
+        return AnuncianteMapper.anuncianteToAnuncianteDto(anunciante);
+    }
+
     private void cargarDatosBase() {
         subasta = SubastaUtils.inicializarDatos();
     }
@@ -107,6 +111,7 @@ public class ModelFactoryController {
     public static ModelFactoryController getInstance() {
         return SingletonHolder.eINSTANCE;
     }
+
     private static class SingletonHolder {
         private final static ModelFactoryController eINSTANCE = new ModelFactoryController();
     }

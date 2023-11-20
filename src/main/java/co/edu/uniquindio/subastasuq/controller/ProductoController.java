@@ -2,6 +2,7 @@ package co.edu.uniquindio.subastasuq.controller;
 
 import co.edu.uniquindio.subastasuq.excepcions.ProductoException;
 import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
+import co.edu.uniquindio.subastasuq.mapping.dto.UsuarioAnuncianteDto;
 import co.edu.uniquindio.subastasuq.mapping.mappers.ProductoMapper;
 import co.edu.uniquindio.subastasuq.model.UsuarioAnunciante;
 import javafx.collections.ObservableList;
@@ -33,5 +34,9 @@ public class ProductoController {
 
     public Boolean exportarProductos(List<ProductoDto> listaProductosDto, String rutaArchivoCsv) {
         return modelFactoryController.exportarProductos(ProductoMapper.getListProducto(listaProductosDto), rutaArchivoCsv);
+    }
+
+    public UsuarioAnuncianteDto obtenerUsuario() {
+        return modelFactoryController.getAnunciante();
     }
 }

@@ -6,6 +6,7 @@ public record PujaDto(
         LocalDateTime fecha,
         Double oferta,
         UsuarioCompradorDto compradorAsociado,
-        Boolean isAceptada
+        Boolean isAceptada,
+        AnuncioDto anuncioAsociado
 ) {
 }

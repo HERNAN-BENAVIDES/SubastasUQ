@@ -19,7 +19,7 @@ public class PujaMapper {
 
     public static PujaDto pujaToPujaDto(Puja puja) {
         return new PujaDto(puja.getFecha(), puja.getOferta(), CompradorMapper.compradorToCompradorDto(puja.getCompradorAsociado()),
-                puja.getAceptada());
+                puja.getAceptada(), AnuncioMapper.anuncioToAnuncioDto(puja.getAnuncioAsociado()));
     }
 
     public static List<Puja> setListPujas(List<PujaDto> pujaDtos) {
@@ -32,7 +32,7 @@ public class PujaMapper {
     }
 
     public static Puja pujaDtoToPuja(PujaDto pujaDto) {
-        Puja puja = new Puja(pujaDto.oferta(), CompradorMapper.compradorDtoToComprador(pujaDto.compradorAsociado()));
+        Puja puja = new Puja(pujaDto.oferta(), CompradorMapper.compradorDtoToComprador(pujaDto.compradorAsociado()), AnuncioMapper.anuncioDtoToAnuncio(pujaDto.anuncioAsociado()));
         puja.setAceptada(pujaDto.isAceptada());
         return puja;
     }

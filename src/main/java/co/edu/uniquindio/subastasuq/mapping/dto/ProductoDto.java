@@ -4,6 +4,7 @@ public record ProductoDto(
      String nombre,
      String tipoProducto,
      String codigo,
-     String estado
+     String estado,
+     UsuarioAnuncianteDto anuncianteAsociado
 ){
 }

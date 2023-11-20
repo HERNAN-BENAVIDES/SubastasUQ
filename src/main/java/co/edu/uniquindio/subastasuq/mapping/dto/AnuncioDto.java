@@ -13,6 +13,7 @@ public record AnuncioDto(
         String descripcionAnuncio,
         String fotoAnuncio,
         ProductoDto productoAsociado,
+        UsuarioAnuncianteDto anuncianteAsociado,
         Double precioInicial,
         Double pujaMasAlta,
         Boolean isActivo,

@@ -3,7 +3,6 @@ package co.edu.uniquindio.subastasuq.utils;
 import co.edu.uniquindio.subastasuq.excepcions.AutenticacionAnuncianteException;
 import co.edu.uniquindio.subastasuq.excepcions.AutenticacionCompradorException;
 import co.edu.uniquindio.subastasuq.excepcions.AutenticacionException;
-import co.edu.uniquindio.subastasuq.excepcions.UsuarioException;
 import co.edu.uniquindio.subastasuq.model.*;
 import com.opencsv.CSVWriter;
 
@@ -58,40 +57,17 @@ public class Persistencia {
 
 
 
-    public static List<Producto> cargarProductos() throws IOException {
-        List<Producto> productos = new ArrayList<Producto>();
-        List<String> contenido = ArchivoUtil.leerArchivo(RUTA_ARCHIVO_PRODUCTOS);
-
-        for (String linea : contenido) {
-            String[] partes = linea.split("@@");
-
-            if (partes.length == 4) {
-                String nombre = partes[0];
-                String tipoProducto = partes[1];
-                String codigo = partes[2];
-                String estado = partes[3];
-
-
-                Producto producto = new Producto(nombre, tipoProducto, codigo, estado);
-                productos.add(producto);
-            }
-        }
-
-        return productos;
-    }
 
 
     public static void cargarDatosArchivo(Subasta subasta) throws IOException {
         //List<UsuarioAnunciante> listAnunciantes = cargarAnunciantes();
-        List<UsuarioAnunciante> listAnunciantes2 = cargarAnunciantes2();
+
 
  //      if (!listAnunciantes.isEmpty()){
  //          subasta.getListAnunciantes().addAll(listAnunciantes);
  //      }
 
-        if (!listAnunciantes2.isEmpty()){
-            subasta.getListAnunciantes().addAll(listAnunciantes2);
-        }
+
 
  //       if(!listCompradores.isEmpty()){
  //           subasta.getListCompradores().addAll(listCompradores);
@@ -222,37 +198,6 @@ public class Persistencia {
         return contenido.toString();
     }
 
-
-    public static List<UsuarioAnunciante> cargarAnunciantes2() throws IOException {
-        List<UsuarioAnunciante> listAnunciantes = new ArrayList<>();
-        BufferedReader br = new BufferedReader(new FileReader(RUTA_ARCHIVO_ANUNCIANTES2));
-        String linea;
-
-        while ((linea = br.readLine()) != null) {
-            String[] partes = linea.split("##");
-
-            if (partes.length == 1){
-                UsuarioAnunciante anunciante = crearAnunciante(partes[0]);
-                listAnunciantes.add(anunciante);
-            }
-
-            if (partes.length >= 2) {
-                String infoAnunciante = partes[0];
-                String[] productoInfo = Arrays.copyOfRange(partes, 1, partes.length);
-
-                UsuarioAnunciante anunciante = crearAnunciante(infoAnunciante);
-                List<Producto> productos = crearProductos(productoInfo);
-
-                anunciante.setListProductos(productos);
-                listAnunciantes.add(anunciante);
-            }
-
-        }
-
-        br.close();
-        return listAnunciantes;
-    }
-
     public static UsuarioAnunciante crearAnunciante(String infoAnuncianteStr) {
         String[] infoAnunciante = infoAnuncianteStr.split("@@");
         if (infoAnunciante.length >= 6) {
@@ -267,21 +212,6 @@ public class Persistencia {
         return null; // Manejo de errores opcional
     }
 
-    public static List<Producto> crearProductos(String[] productoInfoStrs) {
-        List<Producto> productos = new ArrayList<>();
-        for (String productoInfoStr : productoInfoStrs) {
-            String[] productoInfo = productoInfoStr.split("@@");
-            if (productoInfo.length == 4) {
-                String nombreProducto = productoInfo[0];
-                String tipoProducto = productoInfo[1];
-                String codigo = productoInfo[2];
-                String estado = productoInfo[3];
-                Producto producto = new Producto(nombreProducto, tipoProducto, codigo, estado);
-                productos.add(producto);
-            }
-        }
-        return productos;
-    }
 
 
     public static void guardarRegistroLog(String mensajeLog, int nivel, String accion) {

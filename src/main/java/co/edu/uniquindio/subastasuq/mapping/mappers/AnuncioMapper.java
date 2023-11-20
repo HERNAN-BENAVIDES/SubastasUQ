@@ -7,8 +7,7 @@ import co.edu.uniquindio.subastasuq.model.Puja;
 import java.util.ArrayList;
 import java.util.List;
 
-import static co.edu.uniquindio.subastasuq.mapping.mappers.ProductoMapper.productoDtoToProducto;
-import static co.edu.uniquindio.subastasuq.mapping.mappers.ProductoMapper.productoToProductoDto;
+
 
 public class AnuncioMapper {
     public static Anuncio anuncioDtoToAnuncio(AnuncioDto anuncioDto) {
@@ -23,7 +22,8 @@ public class AnuncioMapper {
                 anuncioDto.horaFinal(),
                 anuncioDto.descripcionAnuncio(),
                 anuncioDto.fotoAnuncio(),
-                productoDtoToProducto(anuncioDto.productoAsociado()),
+                ProductoMapper.productoDtoToProducto(anuncioDto.productoAsociado()),
+                AnuncianteMapper.anuncianteDtoToAnunciante(anuncioDto.anuncianteAsociado()),
                 anuncioDto.precioInicial()
         );
         anuncio.setPujaMasAlta(anuncioDto.pujaMasAlta());
@@ -46,7 +46,8 @@ public class AnuncioMapper {
                 anuncio.getHoraFinal(),
                 anuncio.getDescripcionAnuncio(),
                 anuncio.getFotoAnuncio(),
-                productoToProductoDto(anuncio.getProductoAsociado()),
+                ProductoMapper.productoToProductoDto(anuncio.getProductoAsociado()),
+                AnuncianteMapper.anuncianteToAnuncianteDto(anuncio.getAnuncianteAsociado()),
                 anuncio.getPrecioInicial(),
                 anuncio.getPujaMasAlta(),
                 anuncio.getIsActivo(),

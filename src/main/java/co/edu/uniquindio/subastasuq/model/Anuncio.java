@@ -17,6 +17,7 @@ public class Anuncio implements Serializable{
     private String descripcionAnuncio;
     private String fotoAnuncio;
     private Producto productoAsociado;
+    private UsuarioAnunciante anuncianteAsociado;
     private Double precioInicial;
     private Double pujaMasAlta;
     private boolean isActivo;
@@ -27,7 +28,7 @@ public class Anuncio implements Serializable{
 
     }
 
-    public Anuncio(String nombreAnuncio, String codigoAnuncio, LocalDate fechaFinal, LocalTime horaFinal, String descripcionAnuncio, String fotoAnuncio, Producto productoAsociado,  Double precioInicial) {
+    public Anuncio(String nombreAnuncio, String codigoAnuncio, LocalDate fechaFinal, LocalTime horaFinal, String descripcionAnuncio, String fotoAnuncio, Producto productoAsociado, UsuarioAnunciante anuncianteAsociado,  Double precioInicial) {
         this.nombreAnuncio = nombreAnuncio;
         this.codigoAnuncio = codigoAnuncio;
         this.fechaFinal = fechaFinal;
@@ -35,6 +36,7 @@ public class Anuncio implements Serializable{
         this.descripcionAnuncio = descripcionAnuncio;
         this.fotoAnuncio = fotoAnuncio;
         this.productoAsociado = productoAsociado;
+        this.anuncianteAsociado = anuncianteAsociado;
         this.tipoAnuncio = productoAsociado.getTipoProducto();
         this.precioInicial = precioInicial;
         this.pujaMasAlta = precioInicial;
@@ -152,8 +154,8 @@ public class Anuncio implements Serializable{
                 .count();
     }
 
-    public void realizarPuja(UsuarioComprador usuarioComprador, Double oferta) {
-        Puja puja = new Puja(oferta,usuarioComprador);
+    public void realizarPuja(UsuarioComprador usuarioComprador, Double oferta, Anuncio anuncio) {
+        Puja puja = new Puja(oferta,usuarioComprador, anuncio);
         listPujas.add(puja);
     }
 
@@ -161,4 +163,11 @@ public class Anuncio implements Serializable{
         return listPujas.stream().filter(puja -> puja.getCompradorAsociado().equals(comprador)).toList();
     }
 
+    public UsuarioAnunciante getAnuncianteAsociado() {
+        return anuncianteAsociado;
+    }
+
+    public void setAnuncianteAsociado(UsuarioAnunciante anuncianteAsociado) {
+        this.anuncianteAsociado = anuncianteAsociado;
+    }
 }

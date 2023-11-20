@@ -11,7 +11,7 @@ public class ProductoMapper {
         if (productoDto == null) {
             return null;
         }
-        return  new Producto(productoDto.nombre(), productoDto.tipoProducto(), productoDto.codigo(), productoDto.estado());
+        return  new Producto(productoDto.nombre(), productoDto.tipoProducto(), productoDto.codigo(), productoDto.estado(), AnuncianteMapper.anuncianteDtoToAnunciante(productoDto.anuncianteAsociado()));
 
     }
 
@@ -22,7 +22,7 @@ public class ProductoMapper {
         }
 
         return new ProductoDto(producto.getNombre(), producto.getTipoProducto(), producto.getCodigo(),
-                producto.getEstado()
+                producto.getEstado(), AnuncianteMapper.anuncianteToAnuncianteDto(producto.getAnuncianteAsociado())
         );
     }
 

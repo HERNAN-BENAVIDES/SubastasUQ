@@ -10,13 +10,16 @@ public class Puja implements Serializable {
     private LocalDateTime fecha;
     private Double oferta;
     private UsuarioComprador compradorAsociado;
+
+    private  Anuncio anuncioAsociado;
     private Boolean isAceptada;
 
     public Puja() {
 
     }
 
-    public Puja(Double oferta, UsuarioComprador compradorAsociado) {
+    public Puja(Double oferta, UsuarioComprador compradorAsociado, Anuncio anuncioAsociado) {
+        this.anuncioAsociado = anuncioAsociado;
         this.fecha = LocalDateTime.now();
         this.oferta = oferta;
         this.compradorAsociado = compradorAsociado;
@@ -76,4 +79,11 @@ public class Puja implements Serializable {
     }
 
 
+    public Anuncio getAnuncioAsociado() {
+        return anuncioAsociado;
+    }
+
+    public void setAnuncioAsociado(Anuncio anuncioAsociado) {
+        this.anuncioAsociado = anuncioAsociado;
+    }
 }

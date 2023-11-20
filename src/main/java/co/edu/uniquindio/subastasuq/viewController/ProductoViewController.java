@@ -3,6 +3,7 @@ package co.edu.uniquindio.subastasuq.viewController;
 import co.edu.uniquindio.subastasuq.controller.ProductoController;
 import co.edu.uniquindio.subastasuq.excepcions.ProductoException;
 import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
+import co.edu.uniquindio.subastasuq.mapping.dto.UsuarioAnuncianteDto;
 import co.edu.uniquindio.subastasuq.utils.AlertaUtils;
 import co.edu.uniquindio.subastasuq.utils.Persistencia;
 import javafx.beans.property.SimpleStringProperty;
@@ -219,7 +220,12 @@ public class ProductoViewController {
         return new ProductoDto(txtNombre.getText(),
                 cbxTipo.getSelectionModel().getSelectedItem(),
                 txtCodigo.getText(),
-                cbxEstado.getSelectionModel().getSelectedItem());
+                cbxEstado.getSelectionModel().getSelectedItem(),
+                obtenerAnunciante());
+    }
+
+    private UsuarioAnuncianteDto obtenerAnunciante() {
+        return productoControllerService.obtenerUsuario();
     }
 
     /**

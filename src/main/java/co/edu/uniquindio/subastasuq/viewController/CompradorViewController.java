@@ -229,7 +229,7 @@ public class CompradorViewController {
 
     private PujaDto crearPuja() {
         UsuarioCompradorDto c = compradorControllerService.obtenerCompradorDto();
-        return new PujaDto(LocalDateTime.now(),Double.parseDouble(txtOferta.getText()),c,false);
+        return new PujaDto(LocalDateTime.now(),Double.parseDouble(txtOferta.getText()),c, false,anuncioSeleccionado);
     }
 
     private void limpiarCampos() {

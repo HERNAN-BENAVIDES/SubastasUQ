@@ -5,6 +5,7 @@ import co.edu.uniquindio.subastasuq.excepcions.AnuncioException;
 import co.edu.uniquindio.subastasuq.mapping.dto.AnuncioDto;
 import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
 import co.edu.uniquindio.subastasuq.mapping.dto.PujaDto;
+import co.edu.uniquindio.subastasuq.mapping.dto.UsuarioAnuncianteDto;
 import co.edu.uniquindio.subastasuq.utils.AlertaUtils;
 import co.edu.uniquindio.subastasuq.utils.Persistencia;
 import javafx.beans.property.SimpleStringProperty;
@@ -372,7 +373,11 @@ public class AnuncioViewController {
 
     private AnuncioDto crearAnuncioDto() {
         return new AnuncioDto(txtNombreAnuncio.getText(), txtCodigoAnuncio.getText(), dpFecha.getValue(), obtenerHora(), txtDescripcionAnuncio.getText(),
-                lblFoto.getText(), obtenerProducto(), Double.parseDouble(txtPrecioInicial.getText()), Double.parseDouble(txtPrecioInicial.getText()),true, obtenerProducto().tipoProducto(), new ArrayList<>());
+                lblFoto.getText(), obtenerProducto(), obtenerAnunciante(), Double.parseDouble(txtPrecioInicial.getText()), Double.parseDouble(txtPrecioInicial.getText()),true, obtenerProducto().tipoProducto(), new ArrayList<>());
+    }
+
+    private UsuarioAnuncianteDto obtenerAnunciante() {
+        return anuncioControllerService.getAnunciante();
     }
 
     private LocalTime obtenerHora() {
