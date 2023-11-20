@@ -1,6 +1,10 @@
 package co.edu.uniquindio.subastasuq.controller;
 
 import co.edu.uniquindio.subastasuq.excepcions.*;
+import co.edu.uniquindio.subastasuq.hilos.AnuncioThread;
+import co.edu.uniquindio.subastasuq.hilos.ProductoThread;
+import co.edu.uniquindio.subastasuq.hilos.PujaThread;
+import co.edu.uniquindio.subastasuq.hilos.UsuarioThread;
 import co.edu.uniquindio.subastasuq.mapping.dto.AnuncioDto;
 import co.edu.uniquindio.subastasuq.mapping.dto.ProductoDto;
 import co.edu.uniquindio.subastasuq.mapping.dto.PujaDto;
@@ -10,30 +14,54 @@ import co.edu.uniquindio.subastasuq.mapping.mappers.CompradorMapper;
 import co.edu.uniquindio.subastasuq.mapping.mappers.ProductoMapper;
 import co.edu.uniquindio.subastasuq.mapping.mappers.PujaMapper;
 import co.edu.uniquindio.subastasuq.model.*;
+import co.edu.uniquindio.subastasuq.utils.Constantes;
 import co.edu.uniquindio.subastasuq.utils.Persistencia;
 import co.edu.uniquindio.subastasuq.utils.SubastaUtils;
 
-import java.io.IOException;
+import co.edu.uniquindio.subastasuq.config.RabbitFactory;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+
+import java.io.*;
 import java.util.List;
 
 public class ModelFactoryController {
+
+    RabbitFactory rabbitFactory;
+    ConnectionFactory connectionFactory;
+    AnuncioThread anunciosConsumer;
+    ProductoThread productosConsumer;
+    PujaThread pujasConsumer;
+    UsuarioThread usuariosConsumer;
 
     private Subasta subasta;
     private UsuarioAnunciante anunciante;
     private UsuarioComprador comprador;
 
     public ModelFactoryController() {
-//        cargarDatosBase();
-
+        initRabbitConnection();
         cargarResourceXML();
+        consumirMensajes();
 
         if(subasta == null){
             cargarDatosBase();
             guardarResourceXML();
         }
-
-
     }
+
+    private void consumirMensajes() {
+       anunciosConsumer  = new AnuncioThread(connectionFactory);
+       productosConsumer = new ProductoThread(connectionFactory);
+       pujasConsumer = new PujaThread(connectionFactory);
+       usuariosConsumer = new UsuarioThread(connectionFactory);
+
+       //anunciosConsumer.start();
+       pujasConsumer.start();
+       //productosConsumer.start();
+       //usuariosConsumer.start();
+    }
+
     public void guardarCambios() {
         guardarResourceXML();
     }
@@ -78,6 +106,52 @@ public class ModelFactoryController {
         private final static ModelFactoryController eINSTANCE = new ModelFactoryController();
     }
 
+
+    /*
+    -----------------------------------------------------------------------------------------------------------
+    --------------------------------------RABBIT--------------------------------------------------------------
+     */
+
+
+    private void initRabbitConnection() {
+        rabbitFactory = new RabbitFactory();
+        connectionFactory = rabbitFactory.getConnectionFactory();
+        System.out.println("conexion establecidad");
+    }
+
+    private void enviarObjeto(Object objeto, String cola) {
+        try (Connection connection = connectionFactory.newConnection(); Channel channel = connection.createChannel()) {
+            // Declara la cola si no existe
+            channel.queueDeclare(cola, false, false, false, null);
+
+            // Serializa el objeto
+            byte[] datosSerializados = serializarObjeto(objeto);
+
+            // Envía el objeto serializado a la cola
+            channel.basicPublish("", cola, null, datosSerializados);
+            System.out.println(" [x] Enviado '" + objeto.toString() + "'");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private byte[] serializarObjeto(Object objeto) throws Exception {
+        try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
+             ObjectOutputStream out = new ObjectOutputStream(bos)) {
+            out.writeObject(objeto);
+            return bos.toByteArray();
+        }
+    }
+
+
+    /*
+    -----------------------------------------------------------------------------------------------------------
+    --------------------------------------INICIO SESION--------------------------------------------------------------
+     */
+
+
+
+
     /*
     -----------------------------------------------------------------------------------------------------------
     --------------------------------------INICIO SESION--------------------------------------------------------------
@@ -91,40 +165,49 @@ public class ModelFactoryController {
         return false;
     }
 
+
+
     /*
     -----------------------------------------------------------------------------------------------------------
     --------------------------------------PRODUCTOS--------------------------------------------------------------
      */
 
-    public boolean agregarProducto(ProductoDto productoDto) throws ProductoException {
-        if(anunciante.agregarProducto(ProductoMapper.productoDtoToProducto(productoDto))){
-            Persistencia.guardarRegistroLog("Usuario: " + anunciante.getNombre() + " " + anunciante.getApellido(),1,"Registrar producto");
-            return true;
-        }
-        return false;
-    }
-
     public List<ProductoDto> obtenerProductos() {
         return ProductoMapper.getListProductos(anunciante.getListProductos());
     }
 
-    public boolean eliminarProducto(ProductoDto productoSeleccionado) throws ProductoException {
-        if(anunciante.eliminarProducto(ProductoMapper.productoDtoToProducto(productoSeleccionado))){
-            registrarAccionesSistema("Usuario: " + anunciante.getNombre() + " " + anunciante.getApellido(),1,"Eliminar producto");
+    // Método para agregar un producto
+    public boolean agregarProducto(ProductoDto productoDto) throws ProductoException {
+        if (anunciante.agregarProducto(ProductoMapper.productoDtoToProducto(productoDto))) {
+            Persistencia.guardarRegistroLog("Usuario: " + anunciante.getNombre() + " " + anunciante.getApellido(), 1, "Registrar producto");
+            enviarObjeto(ProductoMapper.productoDtoToProducto(productoDto), Constantes.PRODUCTOS_QUEUE); // Enviar mensaje a la cola de productos
             return true;
         }
         return false;
     }
 
-    public boolean actualizarProducto(ProductoDto productoSeleccionado, ProductoDto productoNuevo) throws ProductoException {
-        if(anunciante.actualizarProducto(ProductoMapper.productoDtoToProducto(productoSeleccionado),
-                ProductoMapper.productoDtoToProducto(productoNuevo))){
-            registrarAccionesSistema("Usuario: " + anunciante.getNombre() + " " + anunciante.getApellido(),1,"Actualizar producto");
-            return  true;
+    // Método para eliminar un producto
+    public boolean eliminarProducto(ProductoDto productoSeleccionado) throws ProductoException {
+        if (anunciante.eliminarProducto(ProductoMapper.productoDtoToProducto(productoSeleccionado))) {
+            registrarAccionesSistema("Usuario: " + anunciante.getNombre() + " " + anunciante.getApellido(), 1, "Eliminar producto");
+            enviarObjeto(ProductoMapper.productoDtoToProducto(productoSeleccionado), Constantes.PRODUCTOS_QUEUE); // Enviar mensaje a la cola de productos
+            return true;
         }
-
         return false;
     }
+
+    // Método para actualizar un producto
+    public boolean actualizarProducto(ProductoDto productoSeleccionado, ProductoDto productoNuevo) throws ProductoException {
+        if (anunciante.actualizarProducto(
+                ProductoMapper.productoDtoToProducto(productoSeleccionado),
+                ProductoMapper.productoDtoToProducto(productoNuevo))) {
+            registrarAccionesSistema("Usuario: " + anunciante.getNombre() + " " + anunciante.getApellido(), 1, "Actualizar producto");
+      //      enviarObjeto(productoNuevo, Constantes.PRODUCTOS_QUEUE); // Enviar mensaje a la cola de productos
+            return true;
+        }
+        return false;
+    }
+
 
         /*
     -----------------------------------------------------------------------------------------------------------
@@ -162,6 +245,13 @@ public class ModelFactoryController {
     }
 
     public boolean agregarAnuncio(AnuncioDto anuncioDto) throws AnuncioException {
+        if(anunciante.agregarAnuncio(AnuncioMapper.anuncioDtoToAnuncio(anuncioDto))){
+            enviarObjeto(AnuncioMapper.anuncioDtoToAnuncio(anuncioDto), Constantes.ANUNCIOS_QUEUE);
+            return true;
+        }
+        return false;
+    }
+    public Boolean agregarAnuncioDto(AnuncioDto anuncioDto) throws AnuncioException {
         return anunciante.agregarAnuncio(AnuncioMapper.anuncioDtoToAnuncio(anuncioDto));
     }
 

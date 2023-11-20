@@ -3,9 +3,7 @@ package co.edu.uniquindio.subastasuq.utils;
 import co.edu.uniquindio.subastasuq.model.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 public class SubastaUtils {
 
@@ -30,9 +28,9 @@ public class SubastaUtils {
         Producto producto4 = new Producto("Casa", "Bien raiz", "12345", "Nuevo");
 
 
-        Anuncio anuncio = new Anuncio("Moto", "12", LocalDate.of(2023, 12, 24), LocalTime.of(21,0),"MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 160000.0);
-        Anuncio anuncio1 = new Anuncio("Moto1", "12", LocalDate.of(2023, 12, 24),LocalTime.of(21,0), "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
-        Anuncio anuncio2 = new Anuncio("Moto2", "12", LocalDate.of(2023, 12, 24),LocalTime.of(21,0), "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2, 50000.0);
+        Anuncio anuncio = new Anuncio("Moto", "12", LocalDate.of(2023, 12, 24), LocalTime.of(21,0),"MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2,  160000.0);
+        Anuncio anuncio1 = new Anuncio("Moto1", "12", LocalDate.of(2023, 12, 24),LocalTime.of(21,0), "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2,  50000.0);
+        Anuncio anuncio2 = new Anuncio("Moto2", "12", LocalDate.of(2023, 12, 24),LocalTime.of(21,0), "MT09", "C:\\Users\\herna\\OneDrive\\Escritorio\\mt15.png", producto2,  50000.0);
 
         anuncio.setIsActivo(false);
    //     anuncio1.setIsActivo(true);

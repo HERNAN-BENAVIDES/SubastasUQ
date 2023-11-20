@@ -19,5 +19,6 @@ public record AnuncioDto(
         String tipoAnuncio,
         List<PujaDto> listPujas
         ) {
+
 }
 

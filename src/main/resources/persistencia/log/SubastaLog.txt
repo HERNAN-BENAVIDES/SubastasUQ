@@ -720,3 +720,61 @@ nov 19, 2023 8:52:43 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guard
 INFO: Inicio de sesión: user: elena@example.com,Inicio de sesión,2023-11-19
 nov 19, 2023 8:53:29 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
 INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 10:10:05 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 10:10:19 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Registrar producto,Usuario: Ana Madrid,2023-11-19
+nov 19, 2023 10:12:27 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 10:12:36 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Registrar producto,Usuario: Ana Madrid,2023-11-19
+nov 19, 2023 11:02:23 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 11:03:35 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 11:10:39 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 11:10:43 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Eliminar producto,Usuario: Ana Madrid,2023-11-19
+nov 19, 2023 11:10:47 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Eliminar producto,Usuario: Ana Madrid,2023-11-19
+nov 19, 2023 11:11:11 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 11:26:12 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 11:27:39 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 11:28:47 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: elena@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 11:33:34 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 11:40:43 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 11:49:25 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 11:56:55 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 11:58:42 A. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 12:16:16 P. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 12:26:06 P. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 5:32:42 P. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 5:32:51 P. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Registrar producto,Usuario: Ana Madrid,2023-11-19
+nov 19, 2023 5:53:43 P. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 5:56:41 P. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 5:57:56 P. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 6:03:49 P. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 7:27:31 P. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Inicio de sesión: user: ana@example.com,Inicio de sesión,2023-11-19
+nov 19, 2023 7:28:48 P. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Registrar producto,Usuario: Ana Madrid,2023-11-19
+nov 19, 2023 7:29:24 P. M. co.edu.uniquindio.subastasuq.utils.ArchivoUtil guardarRegistroLog
+INFO: Registrar producto,Usuario: Ana Madrid,2023-11-19

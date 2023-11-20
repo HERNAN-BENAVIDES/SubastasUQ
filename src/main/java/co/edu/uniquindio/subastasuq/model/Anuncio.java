@@ -1,7 +1,5 @@
 package co.edu.uniquindio.subastasuq.model;
 
-import co.edu.uniquindio.subastasuq.mapping.dto.PujaDto;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -29,7 +27,7 @@ public class Anuncio implements Serializable{
 
     }
 
-    public Anuncio(String nombreAnuncio, String codigoAnuncio, LocalDate fechaFinal, LocalTime horaFinal, String descripcionAnuncio, String fotoAnuncio, Producto productoAsociado, Double precioInicial) {
+    public Anuncio(String nombreAnuncio, String codigoAnuncio, LocalDate fechaFinal, LocalTime horaFinal, String descripcionAnuncio, String fotoAnuncio, Producto productoAsociado,  Double precioInicial) {
         this.nombreAnuncio = nombreAnuncio;
         this.codigoAnuncio = codigoAnuncio;
         this.fechaFinal = fechaFinal;
@@ -162,4 +160,5 @@ public class Anuncio implements Serializable{
     public List<Puja> getPujasUsuario(UsuarioComprador comprador) {
         return listPujas.stream().filter(puja -> puja.getCompradorAsociado().equals(comprador)).toList();
     }
+
 }

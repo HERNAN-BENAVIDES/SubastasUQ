@@ -419,7 +419,7 @@ public class AnuncioViewController {
 
     private void eliminarAnuncio() {
         try {
-            if (anuncioSeleccionado != null && pujaSeleccionada != null) {
+            if (anuncioSeleccionado != null) {
                 if (AlertaUtils.mostrarAlertaConfirmacion("¿Está seguro que desea eliminar el anuncio seleccionado?")) {
                     if (anuncioControllerService.eliminarAnuncio(anuncioSeleccionado)) {
                         AlertaUtils.mostrarAlertaInformacion("Se eliminó correctamente el anuncio");
